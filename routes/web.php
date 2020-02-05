@@ -107,6 +107,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         });
     });
 
+
     Route::prefix('opt')->group(function() {
         Route::post('/in', 'ControllerDash@optIn');
         Route::get('/out', 'ControllerDash@optOut');
