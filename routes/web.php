@@ -30,7 +30,8 @@ Route::get('/pilots/request-staffing', 'FrontController@showStaffRequest');
 Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
-
+Route::get('/profile_pic', 'FrontController@newProfilePic');
+Route::post('/profile_pic', 'FrontController@sFile');
 Route::get("/admin", function(){
     return View::make("admin");
  });
@@ -106,7 +107,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/messages/delete/{id}', 'ChatController@deleteMessage');
         });
     });
-
 
     Route::prefix('opt')->group(function() {
         Route::post('/in', 'ControllerDash@optIn');
