@@ -120,8 +120,7 @@ class FrontController extends Controller
 
         $ext = $request->file('file')->getClientOriginalExtension();
         $user = Auth::id();
-        $name = $user;
-
+	$name = Input::get('cid');
         $path = $request->file('file')->storeAs(
             '/public/files', $name
         );
@@ -132,6 +131,7 @@ class FrontController extends Controller
         $file->name = Input::get('title');
         $file->type = Input::get('type');
         $file->desc = Input::get('desc');
+	
         $file->path = $public_url;
         $file->save();
 
