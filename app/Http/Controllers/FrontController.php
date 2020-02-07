@@ -124,9 +124,13 @@ class FrontController extends Controller
 
         $name = $request->cid.'_'.$time.'.'.$ext;
       
-        $user = Auth::id();
-	$name = Input::get('cid');
 
+	
+        $path = $request->file('file')->storeAs(
+            '/public/files', $name
+        );
+        $public_url = '/storage/files'.$name;
+        $file = new File;
         $file->path = $public_url;
         $file->save();
 
