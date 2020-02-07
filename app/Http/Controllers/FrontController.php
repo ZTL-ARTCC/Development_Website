@@ -129,8 +129,7 @@ class FrontController extends Controller
 
         $file = new File;
         $file->name = Input::get('title');
-        $file->type = Input::get('type');
-        $file->desc = Input::get('desc');
+
 	
         $file->path = $public_url;
         $file->save();
