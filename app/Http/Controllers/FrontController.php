@@ -114,31 +114,24 @@ class FrontController extends Controller
     }
     public function sFile(Request $request) {
         $validator = $request->validate([
-            'file' => 'required'
+            'file' => 'required',
+		'cid' => 'required'
         ]);
         $time = Carbon::now()->timestamp;
 
         $ext = $request->file('file')->getClientOriginalExtension();
         $user = Auth::id();
-	$name = Input::get('cid');
+	$name = $request->cid.'_'.'.'.$ext;
         $path = $request->file('file')->storeAs(
             '/public/files', $name
         );
-
         $public_url = '/storage/files'.$name;
-
         $file = new File;
-        $file->name = Input::get('title');
-
-	
         $file->path = $public_url;
         $file->save();
 
-        $audit = new Audit;
-        $audit->cid = Auth::id();
-        $audit->ip = $_SERVER['REMOTE_ADDR'];
-        $audit->what = Auth::user()->full_name.' created the file '.$file->name.'.';
-        $audit->save();
+
+     
         return view('site.profile');
     }
     public function showCalendarEvent($id) {
