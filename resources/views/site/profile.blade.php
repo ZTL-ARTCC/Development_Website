@@ -66,15 +66,7 @@
                             <div class="block">
                                 <a class="block block-transparent text-center bg-gd-lake" >
                                 <div class="block-content"><img class="img-avatar" src="/storage/files/<?php echo $user->id; ?>.jpg" alt="Profile Picture">
-                                    <p class="font-size-h1 text-white">
-                                        <strong>
-											@if(!empty($stats['year']))
-											{{{ $stats['year'] }}}
-											@else
-											0
-											@endif
-										</strong>
-                                    </p>
+                                  
                                     <p class="font-w600 text-white-op">
                                         <i class="fa fa-podcast mr-5"></i> <?php echo date("Y"); ?> Hours
                                     </p>
