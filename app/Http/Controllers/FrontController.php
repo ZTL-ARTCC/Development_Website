@@ -150,7 +150,7 @@ class FrontController extends Controller
         $file = File::find($id);
       
         $file->save();
-        return redirect('/')->with('success', 'The file has been edited successfully.');
+        return view('site.home');
     }
 
 
