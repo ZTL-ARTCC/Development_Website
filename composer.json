@@ -13,7 +13,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "santigarcor/laratrust": "5.0.*",
-        "unisharp/laravel-ckeditor": "^4.7"
+        "unisharp/laravel-ckeditor": "^4.7",
+        "planetteamspeak/ts3-php-framework": "1.1.33"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
