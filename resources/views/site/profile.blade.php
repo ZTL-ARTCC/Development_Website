@@ -65,7 +65,7 @@
                         <div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-gd-lake" >
-                                <div class="block-content">
+                                <div class="block-content"><img class="img-avatar" src="/storage/files/<?php echo $controller->id; ?>.jpg" alt="Profile Picture">
                                     <p class="font-size-h1 text-white">
                                         <strong>
 											@if(!empty($stats['year']))
