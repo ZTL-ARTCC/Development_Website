@@ -119,7 +119,7 @@ class FrontController extends Controller
         ]);
         $time = Carbon::now()->timestamp;
 
-        $ext = $request->file('file')->getClientOriginalExte
+        $ext = $request->file('file')->getClientOriginalExtension();
       
 
         $name = $request->cid.'_'.$time.'.'.$ext;
