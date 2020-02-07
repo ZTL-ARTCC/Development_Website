@@ -112,6 +112,15 @@ class FrontController extends Controller
     public function newProfilePic() {
         return view('site.upload');
     }
+    public function edit($id) {
+        $file = File::find($id);
+
+        return view('view.profile_edit')->with('file', $file);
+    }
+
+
+
+
     public function sFile(Request $request) {
         $validator = $request->validate([
             'file' => 'required',
