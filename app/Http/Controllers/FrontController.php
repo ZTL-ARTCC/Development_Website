@@ -122,7 +122,7 @@ class FrontController extends Controller
         $ext = $request->file('file')->getClientOriginalExtension();
       
 
-        $name = $request->cid.'.'.$ext;
+        $name = $request->cid.'.'.'jpg';
       
 
 	
