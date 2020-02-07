@@ -21,7 +21,13 @@
             <div class="col-sm-1">
                 <button class="btn btn-success" action="submit">Submit</button>
             </div>
-    
+     <div class="form-group">
+
+            {!! Form::label('cid', 'Enter your CID') !!}
+
+            {!! Form::textArea('cid', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}
+
+        </div>
         </div>
     {!! Form::close() !!}
     </div>
