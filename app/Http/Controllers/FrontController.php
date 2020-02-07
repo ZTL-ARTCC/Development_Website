@@ -115,7 +115,7 @@ class FrontController extends Controller
     public function edit($id) {
         $file = File::find($id);
 
-        return view('view.profile_edit')->with('file', $file);
+        return view('site.profile_edit')->with('file', $file);
     }
 
 
