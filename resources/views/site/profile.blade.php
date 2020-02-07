@@ -62,7 +62,8 @@
                             </a>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
+						@if($url_exist == "1")
+						<div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-gd-lake" >
                                 <div class="block-content"><img class="img-avatar" src="/storage/files/<?php echo $user->id; ?>.jpg" alt="Profile Picture">
@@ -74,6 +75,7 @@
                             </a>
                             </div>
                         </div>
+						@endif
                         <div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-primary" >

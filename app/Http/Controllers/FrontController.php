@@ -139,8 +139,8 @@ class FrontController extends Controller
     }
     public function showCalendarEvent($id) {
         $calendar = Calendar::find($id);
-
         return view('site.news')->with('calendar', $calendar);
+
     }
 
     public function viewEvent($id) {
@@ -447,12 +447,22 @@ class FrontController extends Controller
         }
 
         $user = User::find($id);
+       
+        $client = new Client();
+        $request = $client->head('/storage/files/', $user->id);
+
+        if( $request->getStatusCode() == 200 ) {
+            $url_exist = "1";
+        } else {
+            $url_exist = "0";
+        }
+
         $feedback = Feedback::where('controller_id', '=', $id)->where('status', 1)->orderBy('created_at', 'DESC')->get();
         $log = ControllerLog::where('cid', '=', $id)->orderBy('id', 'DESC')->get();
         $stats = ControllerLog::getControllerStats($id);
 
         return view('site.profile')->with('user', $user)->with('feedback', $feedback)
-                                         ->with('log', $log)->with('stats', $stats);
+                                         ->with('log', $log)->with('stats', $stats)->with('url_exist', $url_exist);
     }
 
     public function showRunways()
