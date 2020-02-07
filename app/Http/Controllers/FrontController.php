@@ -146,6 +146,14 @@ class FrontController extends Controller
 
         return view('site.profile');
     }
+    public function eFile(Request $request, $id) {
+        $file = File::find($id);
+      
+        $file->save();
+        return redirect('/')->with('success', 'The file has been edited successfully.');
+    }
+
+
     public function showCalendarEvent($id) {
         $calendar = Calendar::find($id);
         return view('site.news')->with('calendar', $calendar);
