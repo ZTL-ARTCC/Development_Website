@@ -449,12 +449,10 @@ class FrontController extends Controller
         $user = User::find($id);
        
         $client = new Client();
-        $request = $client->head('/storage/files/', $user->id);
-
-        if( $request->getStatusCode() == 200 ) {
-            $url_exist = "1";
-        } else {
-            $url_exist = "0";
+        
+        $url = ('http://development.ztlartcc.org/storage/files/' + $user->id + '.jpg');
+        if(get_headers($url)) {
+            $url_exist = 1;
         }
 
         $feedback = Feedback::where('controller_id', '=', $id)->where('status', 1)->orderBy('created_at', 'DESC')->get();
