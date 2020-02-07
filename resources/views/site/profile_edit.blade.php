@@ -6,7 +6,7 @@
 </div>
 <br>
 <div class="container">
-{!! Form::open(['action' => ['FrontController@sFile', $file->id]]) !!}
+{!! Form::open(['action' => ['FrontController@eFile', $file->id]]) !!}
         @csrf
 <div class="form-group">
             {!! Form::file('file', ['class' => 'form-control']) !!}
