@@ -450,7 +450,7 @@ class FrontController extends Controller
        
         $client = new Client();
         
-        $url = ("http://development.ztlartcc.org/storage/files/<?php echo $user->id ?>.jpg");
+        $url = ("https://development.ztlartcc.org/storage/files/<?php echo $user->id ?>.jpg");
         $headers = get_headers($url); 
         if($headers && strpos( $headers[0], '200')) { 
             $url_exist = "1"; 
