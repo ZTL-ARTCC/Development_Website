@@ -68,7 +68,7 @@
                                 <div class="block-content"><img class="img-avatar" src="/storage/files/<?php echo $user->id; ?>.jpg" alt="Profile Picture">
                                   
                                     <p class="font-w600 text-white-op">
-                                       <br><br>
+                                       <br>
                                     </p>
                                 </div>
                             </a>
