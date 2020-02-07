@@ -451,9 +451,13 @@ class FrontController extends Controller
         $client = new Client();
         
         $url = ("http://development.ztlartcc.org/storage/files/<?php echo $user->id ?>.png");
-        if(get_headers($url)) {
-            $url_exist = 1;
-        }
+        $headers = get_headers($url); 
+        if($headers && strpos( $headers[0], '200')) { 
+            $url_exist = "1"; 
+        } 
+        else { 
+            $url_exist = "0"; 
+        } 
 
         $feedback = Feedback::where('controller_id', '=', $id)->where('status', 1)->orderBy('created_at', 'DESC')->get();
         $log = ControllerLog::where('cid', '=', $id)->orderBy('id', 'DESC')->get();
