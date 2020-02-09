@@ -27,12 +27,17 @@ class TeamSpeakManager extends TeamSpeakCommand
      */
     public function handle()
     {
-       
-            $tscon = TeamSpeak::run('VATSIM UK Management Bot');
-
-            // get all clients and initiate loop
-         
-          
      
+            $tscon = TeamSpeak::run('ZTL Management Bot');
+            foreach ($clients as $client) {
+                $member = TeamSpeak::checkClientRegistration($client);
+             
+                    $this->currentMember = $client['client_database_id'];
+                    // perform the necessary checks on the client
+                   
+                        TeamSpeak::checkClientIdleTime($client, $member);
+                    }
+              
+  
     }
-}
+    }

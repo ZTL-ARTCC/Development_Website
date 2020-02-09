@@ -38,18 +38,34 @@ class TeamSpeak
             env('TS_PORT'),
             $nonBlocking ? '&blocking=0' : ''
         );
-        try {
-            $factory = TeamSpeak3::factory($connectionUrl);
-        } catch (TeamSpeak3_Adapter_ServerQuery_Exception $e) {
-            if (stripos($e->getMessage(), 'nickname is already in use')) {
-                // Try again in 3 seconds
-                sleep(3);
-                $factory = TeamSpeak3::factory($connectionUrl);
-            }
+      
+    }
+    public static function checkClientIdleTime(TeamSpeak3_Node_Client $client, Account $member)
+    {
+        $idleTime = floor($client['client_idle_time'] / 1000 / 60); // minutes
+        if ($member->hasPermissionTo('teamspeak/idle/permanent') || $member->is_on_network) {
+            return;
+        } elseif ($member->hasPermissionTo('teamspeak/idle/temporary')) {
+            $maxIdleTime = 120;
+        } else {
+            $maxIdleTime = 60;
+
+        }
+        $notified = Cache::has(self::CACHE_PREFIX_IDLE_NOTIFY.$client['client_database_id']);
+        if ($idleTime >= $maxIdleTime) {
+            self::pokeClient($client, trans('teamspeak.idle.kick.poke.1', ['maxIdleTime' => $maxIdleTime]));
+            self::pokeClient($client, trans('teamspeak.idle.kick.poke.2'));
+            self::kickClient($client, trans('teamspeak.idle.kick.reason'));
+            throw new ClientKickedFromServerException;
+        } elseif ($idleTime >= $maxIdleTime - 5 && !$notified) {
+            self::pokeClient($client, trans('teamspeak.idle.poke', ['idleTime' => $idleTime]));
+            Cache::put(self::CACHE_PREFIX_IDLE_NOTIFY.$client['client_database_id'], Carbon::now(), 5 * 60);
+        } elseif (($maxIdleTime - 15 > 0) && ($idleTime >= $maxIdleTime - 15 && !$notified)) {
+            self::messageClient($client, trans('teamspeak.idle.message', ['idleTime' => $idleTime, 'maxIdleTime' => $maxIdleTime]));
+            Cache::put(self::CACHE_PREFIX_IDLE_NOTIFY.$client['client_database_id'], Carbon::now(), 10 * 60);
+
         }
 
-        return $factory;
     }
-
  
-    }     
+}     
