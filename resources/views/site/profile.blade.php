@@ -64,7 +64,7 @@
                         </div>
 						<div class="col-sm-6 col-lg-3">
                             <div class="block">
-                                <a class="block block-transparent text-center bg-gd-lake" >
+                                <a class="block block-transparent text-center bg-gd-lake" href="/profile_pic">
                                 <div class="block-content"><img class="img-avatar" src="/storage/files/<?php echo $user->id; ?>.jpg" alt="Profile Picture">
                                   
                                     <p class="font-w600 text-white-op">
