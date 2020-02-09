@@ -62,7 +62,6 @@
                             </a>
                             </div>
                         </div>
-						@if($url_exist == "1")
 						<div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-gd-lake" >
@@ -75,7 +74,6 @@
                             </a>
                             </div>
                         </div>
-						@endif
                         <div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-primary" >
