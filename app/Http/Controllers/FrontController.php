@@ -112,11 +112,13 @@ class FrontController extends Controller
     public function newProfilePic() {
         return view('site.upload');
     }
-    public function edit() {
-        $id = Auth::id();
-        $file_path = app_path("/storage/files/", $id, '.jpg'); // app_path("public/test.txt");
-        if(File::exists($file_path)) File::delete($file_path);
-        
+
+    public function edit($id) {
+        $file = File::find($id);
+        $file_path = $file->path;
+        $file_name = $file->name;
+        unlink('/storage/app/public/'.$file_name.'.jpg');
+        $file->delete();
     }
 
 
@@ -137,9 +139,9 @@ class FrontController extends Controller
 
 	
         $path = $request->file('file')->storeAs(
-            '/public/files', $name
+            '/public/files/', $name
         );
-        $public_url = '/storage/files'.$name;
+        $public_url = '/storage/files/'.$name;
         $file = new File;
         $file->path = $public_url;
         $file->save();

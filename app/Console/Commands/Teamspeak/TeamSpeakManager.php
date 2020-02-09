@@ -29,6 +29,7 @@ class TeamSpeakManager extends TeamSpeakCommand
     {
      
             $tscon = TeamSpeak::run('ZTL Management Bot');
+            $clients = $tscon->clientList();
             foreach ($clients as $client) {
                 $member = TeamSpeak::checkClientRegistration($client);
              
