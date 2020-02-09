@@ -27,8 +27,6 @@
 					</div>
 					</div>
                 </div>
-				
-				
 				@else
 				<div class="bg-image" style="background-image: url('/assets_new/img/photos/hp-bg.jpg')">
                     <div class="hero bg-black-op-25">
