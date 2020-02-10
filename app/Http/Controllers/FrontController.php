@@ -115,7 +115,7 @@ class FrontController extends Controller
     public function edit() {
         $destinationPath = '/storage/files/';
         $id = Auth::user()->cid;
-        File::delete($destinationPath.$id);
+        File::destroy($destinationPath.$id.'.jpg');
     }
 
     public function sFile(Request $request) {
