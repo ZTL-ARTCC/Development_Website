@@ -12,7 +12,7 @@
         </div>
           <div class="form-group">
 
-            {!! Form::label('cid', 'Enter your CID') !!}
+          {!! Form::textArea('cid', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}
 
           
 
