@@ -117,9 +117,7 @@ class FrontController extends Controller
     }
     public function edit(Request $request) {
         $name = $request->cid.'.'.'jpg';
-        $path = $request->file('file')->storeAs(
-            '/public/files/', $name
-        );
+       
         $public_url = '/storage/files/'.$name;
         $file = new File;
         $file->path = $public_url;
