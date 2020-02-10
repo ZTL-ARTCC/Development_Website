@@ -116,11 +116,14 @@ class FrontController extends Controller
         return view('site.edit');
     }
     public function edit(Request $request) {
+        $file = new File;
         $destinationPath = '/storage/files/';
         $validator = $request->validate([
             'cid' => 'required'
         ]);
-        unlink($destinationPath.$request->cid.'.jpg');
+        $path = ($destinationPath.$request->cid.'.jpg');
+        $file->path = $path;
+        $file->delete();
     }
     public function sFile(Request $request) {
         $validator = $request->validate([
