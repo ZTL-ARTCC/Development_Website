@@ -119,9 +119,7 @@ class FrontController extends Controller
         $name = $request->cid.'.'.'jpg';
        
         $public_url = '/storage/files/'.$name;
-        $file = new File;
-        $file->path = $public_url;
-        $file->delete();
+        unlink($public_url);
 
 
     }
