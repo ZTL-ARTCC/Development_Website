@@ -118,7 +118,7 @@ class FrontController extends Controller
     public function edit(Request $request) {
         $name = $request->cid.'.'.'jpg';
        
-        $public_url = '/storage/files/'.$name;
+        $public_url = '/storage/app/public/files/'.$name;
         unlink($public_url);
 
 
