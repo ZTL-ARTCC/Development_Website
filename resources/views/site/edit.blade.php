@@ -7,9 +7,7 @@
 <br>
 <div class="container">
 {!! Form::open(['action' => 'FrontController@edit', 'files' => true]) !!}
-<div class="form-group">
-            {!! Form::file('file', ['class' => 'form-control']) !!}
-        </div>
+
           <div class="form-group">
 
           {!! Form::textArea('cid', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}

@@ -115,7 +115,7 @@ class FrontController extends Controller
     public function eprof() {
         return view('site.edit');
     }
-    public function edit($request) {
+    public function edit(Request $request) {
         $destinationPath = '/storage/app/public/files/';
         $validator = $request->validate([
             'cid' => 'required'
