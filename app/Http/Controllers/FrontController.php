@@ -113,9 +113,10 @@ class FrontController extends Controller
         return view('site.upload');
     }
     public function edit() {
+        $user = new User;
         $destinationPath = '/storage/app/public/files/';
-        $id = Auth::user()->cid;
-        File::destroy($destinationPath.$id.'.jpg');
+       
+        File::destroy($destinationPath.$user->id.'.jpg');
     }
 
     public function sFile(Request $request) {
