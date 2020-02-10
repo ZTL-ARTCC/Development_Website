@@ -116,7 +116,7 @@ class FrontController extends Controller
         $user = new User;
         $destinationPath = '/storage/app/public/files/';
        
-        File::delete($destinationPath.$user->id.'.jpg');
+        unlink($destinationPath.$user->id.'.jpg');
     }
 
     public function sFile(Request $request) {
