@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 /*
 *   Front Page Stuff
 */
@@ -32,12 +30,11 @@ Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('/profile_pic', 'FrontController@newProfilePic');
 Route::post('/profile_pic', 'FrontController@sFile');
-Route::get('/edit_pic', 'FrontController@edit');
+Route::get('/eprof', 'FrontController@edit');
 Route::post('/edit_pic', 'FrontController@eFile');
 Route::get("/admin", function(){
     return View::make("admin");
  });
- 
 
 Route::get('/profile/{id?}', 'FrontController@showProfile');
 Route::get('/documents', 'FrontController@showFiles');
