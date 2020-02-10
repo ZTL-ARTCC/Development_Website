@@ -112,17 +112,11 @@ class FrontController extends Controller
     public function newProfilePic() {
         return view('site.upload');
     }
-
     public function edit($id) {
-        $file = File::find($id);
-        $file_path = $file->path;
-        $file_name = $file->name;
-        unlink('/storage/app/public/'.$file_name.'.jpg');
-        $file->delete();
+        $destinationPath = '/storage/files/';
+        $id = Auth::user()->cid;
+        File::delete($destinationPath.$id);
     }
-
-
-
 
     public function sFile(Request $request) {
         $validator = $request->validate([
