@@ -109,8 +109,8 @@ class FrontController extends Controller
     public function teamspeak() {
         return view('site.teamspeak');
     }
-    public function newProfilePic() {
-        return view('site.upload');
+    public function newProfilePic($id) {
+        return view('site.upload')->with('user', $user);;;
     }
     public function eprof($id) {
         $user = User::find($id);
