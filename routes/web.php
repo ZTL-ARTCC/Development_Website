@@ -30,8 +30,6 @@ Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('/profile_pic/{id}', 'FrontController@newProfilePic');
 Route::post('/profile_pic/{id}', 'FrontController@sFile');
-Route::get('/edit_pic', 'FrontController@eprof');
-Route::post('/edit_pic', 'FrontController@edit');
 Route::get("/admin", function(){
     return View::make("admin");
  });
