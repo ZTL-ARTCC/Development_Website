@@ -113,7 +113,8 @@ class FrontController extends Controller
         return view('site.upload');
     }
     public function eprof($id) {
-        return view('site.edit');
+        $user = User::find($id);
+        return view('site.edit')->with('user', $user);;
     }
     public function edit(Request $request) {
         $name = $request->cid.'.'.'jpg';
