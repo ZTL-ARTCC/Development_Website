@@ -112,7 +112,7 @@ class FrontController extends Controller
     public function newProfilePic() {
         return view('site.upload');
     }
-    public function eprof() {
+    public function eprof($id) {
         return view('site.edit');
     }
     public function edit(Request $request) {
