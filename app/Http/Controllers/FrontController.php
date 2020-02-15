@@ -123,27 +123,24 @@ class FrontController extends Controller
 
 
     }
-    public function sFile(Request $request) {
+    public function sFile(Request $request, $id) {
         $validator = $request->validate([
             'file' => 'required',
-            'cid' => 'required'
+            
         ]);
         $time = Carbon::now()->timestamp;
-
         $ext = $request->file('file')->getClientOriginalExtension();
-      
-
-        $name = $request->cid.'.'.'jpg';
-      
+        $name = $request->$time.'.'.'jpg';
+            
 
 	
         $path = $request->file('file')->storeAs(
             '/public/files/', $name
         );
         $public_url = '/storage/files/'.$name;
-        $file = new File;
-        $file->path = $public_url;
-        $file->save();
+        $user = User::find($id);
+        $user->path = $public_url;
+        $user->save();
 
 
         return view('site.profile');
