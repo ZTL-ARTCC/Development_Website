@@ -1015,7 +1015,7 @@ class AdminDash extends Controller
        $public_url ='/storage/files/'.$name;
        $user->path = $public_url;
        $user->save();
-       return redirect()->route('/profile/{id?}');
+       return redirect()->action('FrontController@showProfile');
     }
    
 
