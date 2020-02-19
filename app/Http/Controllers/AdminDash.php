@@ -988,14 +988,22 @@ class AdminDash extends Controller
         return redirect('/dashboard/controllers/files')->with('success', 'The file has been successfully added.');
     }
    
-    public function profilepic($id) {
-       $user = User::find($id);
+    public function profilepic($id = null) {
+        if ($id == null || !Entrust::can('profile'))
+        {
+            $id = Auth::id();
+        }
+        $user = User::find($id);
   
        return view('site.upload')->with('user', $user)->with('success', 'Profile picture has been edited/created');;
        
     }
  
-    public function editprofilepic(Request $request, $id){
+    public function editprofilepic(Request $request, $id = null){
+        if ($id == null || !Entrust::can('profile'))
+        {
+            $id = Auth::id();
+        }
        $user = User::find($id);
        $time = Carbon::now()->timestamp; 
        $validator = $request->validate([
