@@ -999,11 +999,7 @@ class AdminDash extends Controller
        
     }
  
-    public function editprofilepic(Request $request, $id = null){
-        if ($id == null || !Entrust::can('profile'))
-        {
-            $id = Auth::id();
-        }
+    public function editprofilepic(Request $request, $id){
        $user = User::find($id);
        $time = Carbon::now()->timestamp; 
        $validator = $request->validate([
