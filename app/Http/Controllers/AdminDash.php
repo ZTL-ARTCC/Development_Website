@@ -987,6 +987,32 @@ class AdminDash extends Controller
 
         return redirect('/dashboard/controllers/files')->with('success', 'The file has been successfully added.');
     }
+   
+    public function profilepic($id) {
+       $user = User::find($id);
+  
+       return view('site.upload')->with('user', $user);
+       
+    }
+ 
+    public function editprofilepic(Request $request, $id){
+       $user = User::find($id);
+       $time = Carbon::now()->timestamp; 
+       $validator = $request->validate([
+            
+            'file' => 'required'
+        ]);
+
+       $name = $time;
+       $path =$request->file('file')->storeAs(
+           '/public/files/',$name.'.jpg'
+       );
+
+       $public_url ='/storage/files/'.$name;
+       $user->path = $public_url;
+       $user->save();
+    }
+   
 
     public function editFile($id) {
         $file = File::find($id);
