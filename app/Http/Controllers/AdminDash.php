@@ -991,7 +991,7 @@ class AdminDash extends Controller
     public function profilepic($id) {
        $user = User::find($id);
   
-       return view('site.upload')->with('user', $user);
+       return view('site.upload')->with('user', $user)->with('success', 'Profile picture has been edited/created');;
        
     }
  
@@ -1011,6 +1011,7 @@ class AdminDash extends Controller
        $public_url ='/storage/files/'.$name;
        $user->path = $public_url;
        $user->save();
+       return view('site.profile')->with('user', $user);
     }
    
 
