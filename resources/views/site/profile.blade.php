@@ -65,7 +65,9 @@
 						<div class="col-sm-6 col-lg-3">
                             <div class="block">
                                 <a class="block block-transparent text-center bg-gd-lake" href="/edit_pic/<?php echo $user->id; ?>">
-                                <div class="block-content"><img class="img-avatar" src="<?php echo $user->path; ?>.jpg" alt="Profile Picture">
+                               
+							@if($user->path != null) <div class="block-content"><img class="img-avatar" src="<?php echo $user->path; ?>.jpg" alt="Profile Picture">
+							@else <div class="block-content"><img class="img-avatar" src="/assets_new/img/avatars/avatar0.jpg" alt="Profile Picture">
                                   <br>
                                     <p class="font-w600 text-white-op">
                                        <br>
