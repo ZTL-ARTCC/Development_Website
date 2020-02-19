@@ -68,6 +68,7 @@
                                
 							@if($user->path != null) <div class="block-content"><img class="img-avatar" src="<?php echo $user->path; ?>.jpg" alt="Profile Picture">
 							@else <div class="block-content"><img class="img-avatar" src="/assets_new/img/avatars/avatar0.jpg" alt="Profile Picture">
+							@endif
                                   <br>
                                     <p class="font-w600 text-white-op">
                                        <br>
