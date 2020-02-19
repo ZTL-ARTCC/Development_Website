@@ -28,8 +28,6 @@ Route::get('/pilots/request-staffing', 'FrontController@showStaffRequest');
 Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
-
-
 Route::get('/edit_pic/{id}', 'AdminDash@profilepic');
 Route::post('edit_pic/{id}', 'AdminDash@editprofilepic');
 Route::get("/admin", function(){

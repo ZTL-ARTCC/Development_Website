@@ -6,17 +6,11 @@
 </div>
 <br>
 <div class="container">
-{!! Form::open(['action' => 'FrontController@sFile', 'files' => true]) !!}
+{!! Form::open(['action' => ['AdminDash@editprofilepic', $user->id], 'files' => true]) !!}
 <div class="form-group">
             {!! Form::file('file', ['class' => 'form-control']) !!}
         </div>
-          <div class="form-group">
-
-            {!! Form::label('cid', 'Enter your CID') !!}
-
-            {!! Form::textArea('cid', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}
-
-        </div>
+          
         <div class="row">
             <div class="col-sm-1">
                 <button class="btn btn-success" action="submit">Submit</button>
