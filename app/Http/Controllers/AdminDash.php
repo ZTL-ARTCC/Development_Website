@@ -24,7 +24,7 @@ use App\User;
 use App\Visitor;
 use App\VisitRej;
 use Artisan;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Config;
 use GuzzleHttp\Client;
