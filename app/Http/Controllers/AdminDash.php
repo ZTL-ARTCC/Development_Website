@@ -35,6 +35,9 @@ use Storage;
 
 class AdminDash extends Controller
 {
+    public function index() {
+        return view('admin.index');
+    }
     public function showScenery() {
         $scenery = Scenery::orderBy('airport', 'ASC')->get();
 
@@ -196,7 +199,7 @@ class AdminDash extends Controller
             return $user->hasRole('ins');
         });
 
-        return view('dashboard.admin.roster.index')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)->with('mtr', $mtr)->with('ins', $ins);
+        return view('admin.roster.index')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)->with('mtr', $mtr)->with('ins', $ins);
     }
 
     public function showRosterPurge($year = null, $month = null) {
@@ -234,7 +237,7 @@ class AdminDash extends Controller
     public function editController($id) {
         $user = User::find($id);
 
-        return view('dashboard.admin.roster.edit')->with('user', $user);
+        return view('admin.roster.edit')->with('user', $user);
     }
 
     public function updateController(Request $request, $id) {
@@ -454,7 +457,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' made changes to '.$user->full_name.'.';
         $audit->save();
 
-        return redirect('/dashboard/controllers/roster')->with('success', 'Controller updated successfully.');
+        return redirect('/admin/roster')->with('success', 'Controller updated successfully.');
     }
 
     public function disallowVisitReq($id) {
@@ -821,6 +824,7 @@ class AdminDash extends Controller
                 $e->delete();
             }
             $user->status = 2;
+            $user->delete();
             $user->save();
 
             $audit = new Audit;
