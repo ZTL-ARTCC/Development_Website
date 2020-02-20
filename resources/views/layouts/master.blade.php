@@ -108,8 +108,8 @@
                                 <ul>
                                     <li><a href="/profile">Profile</a></li>
 									<li><a href="/training/notes">My Training</a></li>
-									@if(Auth::user()->can('snrstaff') || Auth::user()->can('staff') || Auth::user()->can('mentor') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('docs'))
-									<li><a href="/admin/dashboard">Admin Center</a></li>
+									@if(Auth::user()->can('snrStaff') || Auth::user()->can('staff') || Auth::user()->can('mentor') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('docs'))
+									<li><a href="/admin/">Admin Center</a></li>
 									@endif
 									<li><a href="/logout">Logout</a></li>
 								</ul>
