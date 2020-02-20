@@ -359,21 +359,7 @@ class FrontController extends Controller
             'reason' => 'required'
         ]);
 
-        //Google reCAPTCHA Verification
-       
-        $client = new Client;
-        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
-            'form_params' => [
-                'secret' => Config::get('google.recaptcha'),
-                'response' => $request->input('g-recaptcha-response'),
-            ]
-        ]);
-        $r = json_decode($response->getBody())->success;
-        if($r != true) {
-            return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
-        }
-       
-        //Continue Request
+     
         $visit = new Visitor;
         if($visit->rating != 1) {
         $visit->cid = $request->cid;
