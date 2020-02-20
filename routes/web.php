@@ -30,15 +30,18 @@ Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('/edit_pic/{id?}', 'AdminDash@profilepic');
 Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
-Route::get("/admin", function(){
-    return View::make("admin");
- });
-
 Route::get('/profile/{id?}', 'FrontController@showProfile');
 Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/training/notes', 'TrainingDash@showNotes');
 Route::get('/event/{id}', 'FrontController@viewEvent');
+
+
+Route::get("/admin", 'AdminDash@index');
+Route::get('/admin/roster', 'AdminDash@ShowRoster');
+Route::get('/admin/roster/edit/{id}', 'AdminDash@editController');
+Route::post('/admin/roster/edit/{id}', 'AdminDash@updateController');
+Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
 /*
 *   End Front Page Stuff
 */

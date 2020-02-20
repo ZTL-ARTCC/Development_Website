@@ -498,7 +498,7 @@ class AdminDash extends Controller
         $accepted = Visitor::where('status', 1)->orderBy('updated_at', 'ASC')->get();
         $rejected = Visitor::where('status', 2)->orderBy('updated_at', 'ASC')->get();
 
-        return view('dashboard.admin.roster.vis_index')->with('new', $new)->with('accepted', $accepted)->with('rejected', $rejected);
+        return view('admin.roster.visit')->with('new', $new)->with('accepted', $accepted)->with('rejected', $rejected);
     }
 
     /**
