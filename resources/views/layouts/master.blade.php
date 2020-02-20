@@ -195,9 +195,9 @@
                                
                                 <!-- Toggle Side Overlay -->
                                 <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-								@if(Auth::user()->can('snrstaff') || Auth::user()->can('staff') || Auth::user()->can('mentor') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('docs'))
+								@if(Auth::user()->can('snrStaff') || Auth::user()->can('staff') || Auth::user()->can('train') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('files'))
 								<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/dashboard">
+                                <a class="dropdown-item" href="/admin">
                                     <i class="si si-wrench mr-5"></i> Admin Center
                                 </a>
 								@endif
