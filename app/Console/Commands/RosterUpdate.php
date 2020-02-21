@@ -305,7 +305,7 @@ class RosterUpdate extends Command
                         $e->delete();
                     }
 
-                    $use->status =2;
+                    $use->status = 2;
     
                     $use->save();
                 }

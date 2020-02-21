@@ -778,6 +778,17 @@ class AdminDash extends Controller
     }
 
     public function storeVisitor(Request $request) {
+        $userid = Input::get('cid');
+        if(User::find($userid) !== null) {
+            $user = User::find($userid);
+            $user->status = 1;
+            $user->save();
+            $audit = new Audit;
+            $audit->cid = Auth::id();
+            $audit->ip = $_SERVER['REMOTE_ADDR'];
+            $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
+            $audit->save();
+        }
         $user = new User;
         $user->id = Input::get('cid');
         $user->fname = Input::get('fname');
