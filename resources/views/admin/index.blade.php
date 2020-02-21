@@ -87,7 +87,7 @@
 								<a class="dropdown-item" href="/admin/mentor/students">
 									<i class="fa fa-fw fa-sticky-note mr-5"></i>Search for Student Profile
 								</a>
-								<a class="dropdown-item" href="/admin/mentor/addnote">
+								<a class="dropdown-item" href="/admin/mentor/addticket">
 									<i class="fa fa-fw fa-plus-square mr-5"></i>Create Training Note
 								</a>
 							</div>

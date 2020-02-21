@@ -13,7 +13,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
-
+use App\MentorAvail;
 class TrainingDash extends Controller
 {
     public function showATCast() {
@@ -28,7 +28,8 @@ class TrainingDash extends Controller
     public function showNotes()
 	{
         $id = Auth::id();
-		$user = User::find($id);
+        $user = User::find($id);
+        
         $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function($t) {
             return strtotime($t->date.' '.$t->start_time);
         })->pluck('id');
@@ -57,9 +58,13 @@ class TrainingDash extends Controller
         } else {
             $last_training_given = null;
         }
-
+        $postion = ['Minor Delivery/Ground'];
+		$availability = MentorAvail::with('mentor')
+			->whereNull('trainee_id')
+			->where('slot', '>', Carbon::now('America/New_York'))
+			->get();
 		$exam = json_decode(file_get_contents("https://api.vatusa.net/v2/user/".$id."/exam/history?apikey=ef9SEgwK6Z0bCDPp"),true);
-		return view('dashboard.training')->with('user', $user)->with('exam', $exam)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given);
+		return view('site.training')->with('user', $user)->with('exam', $exam)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given)->with('availability', $availability)->with('postion', $postion);
     }
     
     public function trainingInfo() {
