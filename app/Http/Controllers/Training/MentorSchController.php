@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Training;
 
+use App\Http\Controllers\Controller;
 use App\MentorAvail;
 use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Controller;
 class MentorSchController extends Controller
 {
     public function showAvail()
