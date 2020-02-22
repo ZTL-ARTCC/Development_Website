@@ -90,6 +90,9 @@
 								<a class="dropdown-item" href="/admin/mentor/addticket">
 									<i class="fa fa-fw fa-plus-square mr-5"></i>Create Training Note
 								</a>
+								<a class="dropdown-item" href="/admin/mentor/manage_avi">
+									<i class="fa fa-fw fa-plus-square mr-5"></i>Manage Availability
+								</a>
 							</div>
 						</div>
 					</div>

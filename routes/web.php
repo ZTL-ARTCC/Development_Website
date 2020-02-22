@@ -33,13 +33,14 @@ Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
 Route::get('/profile/{id?}', 'FrontController@showProfile');
 Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
-Route::get('/training/notes', 'TrainingDash@showNotes');
-Route::post('/mtravi', 'TrainingController@saveSession');
-
-
 Route::get('/event/{id}', 'FrontController@viewEvent');
+Route::get('/training/notes', 'TrainingDash@showNotes');
 
 
+
+
+Route::post('/mtravi', 'TrainingController@saveSession');
+Route::get('/admin/mentor/manage_avi', 'Training\MentorSchController@showAvail');
 Route::get("/admin", 'AdminDash@index');
 Route::get('/admin/roster', 'AdminDash@ShowRoster');
 Route::get('/admin/roster/edit/{id}', 'AdminDash@editController');
