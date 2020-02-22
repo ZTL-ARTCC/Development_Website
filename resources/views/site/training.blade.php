@@ -156,61 +156,6 @@
 			<i class="fa fa-sticky-note mr-5"></i> Training Information
 		</h2>
 		<div class="row">
-		<div class="table-responsive">
-		<table class="availability table table-bordered table-condensed">
-			<thead>
-				<tr></tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-		<div class="col-md-12">
-				<div class="block block-rounded">
-					<div class="block-header block-header-default">
-						<h3 class="block-title"><i class="fa fa-graduation-cap mr-5"></i>Book a training session</h3>
-					</div>
-					<div class="block-content">
-					{{ Form::open(['action' => 'TrainingController@saveSession', 'class' => 'session-request-form']) }}
-		<div class="row">
-			<div class="col-sm-12">
-				{{Form::label('slot', 'Mentor:', ['class'=>'control-label'])}}
-				{{Form::select('slot', [], 0, ['class'=>'form-control','onChange'=>'populatePositions()'])}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="form-group">
-					{{Form::label('position', 'Position:', ['class'=>'control-label'])}}
-					{{Form::select('position', [], 0, ['class'=>'form-control'])}}
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="form-group">
-					{{Form::label('date', 'Slot:', ['class'=>'control-label'])}}
-					{{Form::text('date', null, ['class'=>'form-control', 'disabled' => 'disabled'])}}
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="form-group">
-					{{Form::label('comments', 'Comments:', ['class'=>'control-label'])}}
-					{{Form::textarea('comments', null, ['class'=>'form-control'])}}
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="form-group">
-					{{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-				</div>
-			</div>
-		</div>
-	{{ Form::close() }}
-					</div>
-				</div>
-			</div>
 			<div class="col-md-12">
 				<div class="block block-rounded">
 					<div class="block-header block-header-default">

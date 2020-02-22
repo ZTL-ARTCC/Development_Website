@@ -34,6 +34,9 @@ Route::get('/profile/{id?}', 'FrontController@showProfile');
 Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/training/notes', 'TrainingDash@showNotes');
+Route::post('/mtravi', 'TrainingController@saveSession');
+
+
 Route::get('/event/{id}', 'FrontController@viewEvent');
 
 

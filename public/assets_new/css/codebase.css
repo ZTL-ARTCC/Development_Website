@@ -14,6 +14,18 @@
   a:visited {
     text-decoration: underline;
   }
+  table.availability td {
+    cursor: pointer;
+    background-color: #A71B1B;
+  }
+  
+  table.availability td.available {
+    background-color: #34BF34;
+  }
+  
+  .session-request-form {
+    display: none;
+  }
   abbr[title]::after {
     content: " (" attr(title) ")";
   }

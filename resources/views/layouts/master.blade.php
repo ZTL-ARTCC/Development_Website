@@ -43,11 +43,16 @@
         <link rel="stylesheet" href="/assets_new/js/plugins/datatables/dataTables.bootstrap4.min.css">
         <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
         <link rel="stylesheet" id="css-main" href="/assets_new/css/codebase.min.css">
-		
+		<link rel="stylesheet" href="/assets_new/white.min.css">
 		<!-- Site legacy style sheets -->
 		<link rel="stylesheet" href="/assets/css/main.css">
-     <script src="/assets/js/jquery.min.js"></script>
-		
+        <script src="/assets/js/jquery.min.js"></script>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       
+       
+
+        
     </head>
     <body>
         <div id="page-container" class="sidebar-inverse side-scroll page-header-fixed page-header-inverse main-content-boxed">
