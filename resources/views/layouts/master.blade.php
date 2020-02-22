@@ -43,7 +43,7 @@
         <link rel="stylesheet" href="/assets_new/js/plugins/datatables/dataTables.bootstrap4.min.css">
         <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
         <link rel="stylesheet" id="css-main" href="/assets_new/css/codebase.min.css">
-		<link rel="stylesheet" href="/assets_new/white.min.css">
+        <link rel="stylesheet" href="/css/Footer-white.css">
 		<!-- Site legacy style sheets -->
 		<link rel="stylesheet" href="/assets/css/main.css">
         <script src="/assets/js/jquery.min.js"></script>
