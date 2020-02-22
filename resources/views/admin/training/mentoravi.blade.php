@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
 @section('title')
-@parent| Administrator Center @stop
+@parent
+| Training
+@stop
 
 @section('content')
 
@@ -27,11 +29,7 @@
 		</nav>
 	</div>
 </div>
-<!-- END Breadcrumb -->
 
-<!-- Begin Page Content -->
-<div class="content">
-	<div class="row">
     <div class="container">
 	<legend>
 		Select time blocks available for mentoring. Current Time: <span class="time"></span> EST
@@ -154,3 +152,4 @@
 
 </script>
 
+@stop
