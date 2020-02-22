@@ -108,7 +108,7 @@
 		<!-- Website Notices -->
 		@if(Auth::user()->can('staff'))
 		<div class="col-md-4">
-			<a class="block block-link-shadow" href="https://forum.zjxartcc.org/index.php?board=2.0" target="_blank">
+			<a class="block block-link-shadow" href="" target="_blank">
 				<div class="block-content text-center" style="height:215px;">
 					<div class="py-20" style="margin-top: 35px;">
 						<p class="h1 text-corporate-dark font-w600 mb-10"><i class="fa fa-newspaper-o"></i></p>
