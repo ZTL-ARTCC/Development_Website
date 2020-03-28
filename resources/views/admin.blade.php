@@ -553,11 +553,6 @@
                                         </div>
                                         <div class="font-size-h4 font-w600">9.25k Subscribers</div>
                                         <div class="text-muted">Your main list is growing!</div>
-                                        <div class="pt-20">
-                                            <a class="btn btn-rounded btn-alt-primary" href="javascript:void(0)">
-                                                <i class="fa fa-cog mr-5"></i> Manage list
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

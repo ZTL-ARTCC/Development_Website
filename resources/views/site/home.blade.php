@@ -3,6 +3,8 @@
 @section('title')
 @parent| Home @stop
 
+
+
 @section('content')
 
  <!-- Main Container -->

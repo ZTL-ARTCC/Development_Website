@@ -263,7 +263,7 @@ class TrainingDash extends Controller
 
     public function saveNewTicket(Request $request) {
         $request->validate([
-            'controller' => 'required',
+            'controller_id' => 'required',
             'position' => 'required',
             'type' => 'required',
             'date' => 'required',
@@ -271,9 +271,8 @@ class TrainingDash extends Controller
             'end' => 'required',
             'duration' => 'required'
         ]);
-
         $ticket = new TrainingTicket;
-        $ticket->controller_id = $request->controller;
+        $ticket->controller_id = $request->controller_id;
         $ticket->trainer_id = Auth::id();
         $ticket->position = $request->position;
         $ticket->type = $request->type;
@@ -285,10 +284,8 @@ class TrainingDash extends Controller
         $ticket->ins_comments = $request->trainer_comments;
         $ticket->save();
         $extra = null;
-
         $controller = User::find($ticket->controller_id);
         $trainer = User::find($ticket->trainer_id);
-
         if($request->ots == 1) {
             $ots = new Ots;
             $ots->controller_id = $ticket->controller_id;
@@ -298,24 +295,12 @@ class TrainingDash extends Controller
             $ots->save();
             $extra = ' and the OTS recommendation has been added';
         }
-
         Mail::send(['html' => 'emails.training_ticket'], ['ticket' => $ticket, 'controller' => $controller, 'trainer' => $trainer], function ($m) use ($controller, $ticket) {
             $m->from('training@notams.ztlartcc.org', 'vZTL ARTCC Training Department');
             $m->subject('New Training Ticket Submitted');
             $m->to($controller->email)->cc('ta@ztlartcc.org');
-        });
-
-        $audit = new Audit;
-        $audit->cid = Auth::id();
-        $audit->ip = $_SERVER['REMOTE_ADDR'];
-        $audit->what = Auth::user()->full_name.' added a training ticket for '.User::find($ticket->controller_id)->full_name.'.';
-        $audit->save();
-
-
-  
-        return redirect('/dashboard/training/tickets?id='.$ticket->controller_id)->with('success', 'The training ticket has been submitted successfully'.$extra.'.');
-    
-
+        }); 
+        return redirect('/admin/mentor/student/'.$ticket->controller_id)->with('success', 'The training ticket has been submitted successfully'.$extra.'.');
     }
 
     public function viewTicket($id) {

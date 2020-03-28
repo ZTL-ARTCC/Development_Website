@@ -26,6 +26,32 @@ class RosterController extends Controller
 
         return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)->with('visagreecontrollers', $visagreecontrollers);
     }
+    public function ajax_get_user_info($cid)
+    {
+        if (empty($cid) || !is_numeric($cid))
+            return Response::json(['error' => 'Invalid or empty cid given']);
+        $client = new Client;
+        $url = sprintf(\Config::get('services.vatsim.url'), $cid);
+        $result = $client->get($url);
+        $xml = new SimpleXMLElement($result->getBody());
+        $res = [
+            'cid' => $xml->user['cid']->__toString(),
+        ];
+        foreach ($xml->user->children() as $child) {
+            $res[$child->getName()] = $child->__toString();
+        }
+        foreach (User::$RatingLong as $id => $long) {
+            if (strtolower($res['rating']) == strtolower($long)) {
+                $res['rating'] = $id;
+            }
+        }
+        return Response::json($res);
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
 
     public function login() {
         if(Auth::check()) {

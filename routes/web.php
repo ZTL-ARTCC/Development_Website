@@ -35,10 +35,9 @@ Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/event/{id}', 'FrontController@viewEvent');
 Route::get('/training/notes', 'TrainingDash@showNotes');
-
-
-
-
+/* 
+* Admin roster, need to setup permission. Do this after everything else if complete!
+*/
 Route::get('/mentoravi', 'Training\StudentSchController@showMentAvail');
 Route::get('/admin/mentor/manage_avi', 'Training\MentorSchController@showAvail');
 Route::get("/admin", 'AdminDash@index');
@@ -46,10 +45,13 @@ Route::get('/admin/roster', 'AdminDash@ShowRoster');
 Route::get('/admin/roster/edit/{id}', 'AdminDash@editController');
 Route::post('/admin/roster/edit/{id}', 'AdminDash@updateController');
 Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
-Route::get('/admin/mentor/addticket', 'Training\MentorController@addTicket');
-Route::post('/admin/mentor/saveticket', 'Training\MentorController@saveTicket');
+Route::get('/admin/mentor/addticket', 'MentorController@addNote');
+Route::post('/admin/mentor/saveticket', 'MentorController@saveNote');
 Route::get('/admin/mentor/students', 'MentorController@findStudents');
 Route::post('/admin/mentor/student', 'MentorController@findStudent');
+Route::get('/admin/mentor/student/{id}', 'MentorController@student');
+Route::get('/admin/roster/vatsim/{id}', 'RosterController@ajax_get_user_info');
+Route::post('/admin/roster/{id}/controller', 'AdminController@setController');
 /*
 *   End Front Page Stuff
 */

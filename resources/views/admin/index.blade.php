@@ -46,11 +46,6 @@
 									<i class="fa fa-fw fa-address-book mr-5"></i>Manage Roster
 								</a>
 								@if(Auth::user()->can('roster'))
-								<a class="dropdown-item" href="/admin/roster/create">
-									<i class="fa fa-fw fa-user-plus mr-5"></i>Add Controller
-								</a>
-								@endif
-								@if(Auth::user()->can('roster'))
 								<a class="dropdown-item" href="/admin/show/visit">
 									<i class="fa fa-fw fa-id-card mr-5"></i>Visiting Requests
 								</a>
@@ -90,9 +85,7 @@
 								<a class="dropdown-item" href="/admin/mentor/addticket">
 									<i class="fa fa-fw fa-plus-square mr-5"></i>Create Training Note
 								</a>
-								<a class="dropdown-item" href="/admin/mentor/manage_avi">
-									<i class="fa fa-fw fa-plus-square mr-5"></i>Manage Availability
-								</a>
+								
 							</div>
 						</div>
 					</div>
