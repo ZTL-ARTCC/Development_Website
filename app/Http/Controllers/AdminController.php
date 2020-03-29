@@ -51,5 +51,6 @@ class AdminDash extends Controller {
             }
             return View::make('admin.home');
         }
+    
     }
     

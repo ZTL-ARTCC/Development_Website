@@ -47,6 +47,8 @@ class AdminDash extends Controller
 
         return view('dashboard.admin.scenery.index')->with('fsx', $fsx)->with('xp', $xp)->with('afcad', $afcad);
     }
+    
+    
 
     public function mode(){
         Artisan::call('down');
@@ -1271,7 +1273,7 @@ class AdminDash extends Controller
 
     public function setAnnouncement() {
         $announcement = Announcement::find(1);
-        return view('dashboard.admin.announcement')->with('announcement', $announcement);
+        return view('admin.announcements.index')->with('announcement', $announcement);
     }
 
     public function saveAnnouncement(Request $request) {
@@ -1714,4 +1716,9 @@ class AdminDash extends Controller
         $audits = Audit::orderBy('created_at', 'DSC')->paginate(50);
         return view('dashboard.admin.audits')->with('audits', $audits);
     }
+    public function showActivityLog()
+        {
+            $audits = Audit::orderBy('created_at', 'DSC')->paginate(50);
+            return view('admin.activitylog')->with('audits', $audits);
+        }
 }

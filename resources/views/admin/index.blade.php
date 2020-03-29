@@ -135,6 +135,7 @@
 		
 		<!-- Activity Log -->
 		@if(Auth::user()->can('staff'))
+		
 		<div class="col-md-4">
 			<a class="block block-link-shadow" href="/admin/activitylog">
 				<div class="block-content text-center" style="height:215px;">
@@ -146,6 +147,7 @@
 				</div>
 			</a>
 		</div>
+	
 		@endif
 		<!-- END Activity Log -->
 		

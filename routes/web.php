@@ -52,6 +52,9 @@ Route::post('/admin/mentor/student', 'MentorController@findStudent');
 Route::get('/admin/mentor/student/{id}', 'MentorController@student');
 Route::get('/admin/roster/vatsim/{id}', 'RosterController@ajax_get_user_info');
 Route::post('/admin/roster/{id}/controller', 'AdminController@setController');
+Route::get('/admin/activitylog', 'AdminDash@showActivityLog');
+Route::get('/admin/announcements', 'AdminDash@setAnnouncement');
+
 Route::resource('/admin/docs', 'DocumentController', ['except' => ['show']]);
 /*
 *   End Front Page Stuff
