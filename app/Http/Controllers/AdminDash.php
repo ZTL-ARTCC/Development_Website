@@ -1173,7 +1173,7 @@ class AdminDash extends Controller
 
     public function sendNewEmail() {
         $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
-        return view('dashboard.admin.email.send')->with('controllers', $controllers);
+        return view('admin.email.send')->with('controllers', $controllers);
     }
 
     public function sendEmail(Request $request) {

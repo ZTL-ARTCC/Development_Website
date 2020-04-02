@@ -54,6 +54,9 @@ Route::get('/admin/roster/vatsim/{id}', 'RosterController@ajax_get_user_info');
 Route::post('/admin/roster/{id}/controller', 'AdminController@setController');
 Route::get('/admin/activitylog', 'AdminDash@showActivityLog');
 Route::get('/admin/announcements', 'AdminDash@setAnnouncement');
+Route::get('/admin/send', 'AdminDash@sendNewEmail');
+Route::post('/admin/send', 'AdminDash@sendEmail');
+
 
 Route::resource('/admin/docs', 'DocumentController', ['except' => ['show']]);
 /*
