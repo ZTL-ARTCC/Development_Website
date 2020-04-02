@@ -6,14 +6,17 @@
 @stop
 
 @section('content')
-
-@section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Events</h2>
-    &nbsp;
+<div class="bg-gd-dusk">
+	<div class="bg-black-op-25">
+		<div class="content content-top content-full text-center">
+			<h1 class="h3 text-white font-w700 mb-10">
+				Administrator Center
+			</h1>
+			<h2 class="h4 font-w400 text-white-op">Atlanta ARTCC</h2>
+		</div>
+	</div>
 </div>
-<br>
+
 
 <div class="container">
     @if(Auth::user()->can('events'))

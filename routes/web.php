@@ -56,7 +56,7 @@ Route::get('/admin/activitylog', 'AdminDash@showActivityLog');
 Route::get('/admin/announcements', 'AdminDash@setAnnouncement');
 Route::get('/admin/send', 'AdminDash@sendNewEmail');
 Route::post('/admin/send', 'AdminDash@sendEmail');
-
+Route::get('/admin/events', 'ControllerDash@showEvents');
 
 Route::resource('/admin/docs', 'DocumentController', ['except' => ['show']]);
 /*

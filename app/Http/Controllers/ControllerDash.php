@@ -295,7 +295,7 @@ class ControllerDash extends Controller
                 return strtotime($e->date);
             });
         }
-        return view('dashboard.controllers.events.index')->with('events', $events);
+        return view('admin.events.index')->with('events', $events);
     }
 
     public function viewEvent($id) {
