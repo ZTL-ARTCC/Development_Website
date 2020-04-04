@@ -17,10 +17,10 @@
 	</div>
 </div>
 
-
+<br>
 <div class="container">
     @if(Auth::user()->can('events'))
-        <a href="/dashboard/admin/events/new" class="btn btn-primary">New Event</a>
+        <a href="admin/events/new" class="btn btn-primary">New Event</a>
         <br><br>
     @endif
     <table class="table table-bordered">

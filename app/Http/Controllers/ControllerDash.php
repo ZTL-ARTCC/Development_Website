@@ -227,7 +227,7 @@ class ControllerDash extends Controller
         $loa = File::where('type', 5)->orderBy('name', 'ASC')->get();
         $staff = File::where('type', 6)->orderBy('name', 'ASC')->get();
 
-        return view('dashboard.controllers.files')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa)->with('staff', $staff);
+        return view('admin.documents.index')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa)->with('staff', $staff);
     }
 
     public function showTickets() {

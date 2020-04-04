@@ -57,8 +57,7 @@ Route::get('/admin/announcements', 'AdminDash@setAnnouncement');
 Route::get('/admin/send', 'AdminDash@sendNewEmail');
 Route::post('/admin/send', 'AdminDash@sendEmail');
 Route::get('/admin/events', 'ControllerDash@showEvents');
-
-Route::resource('/admin/docs', 'DocumentController', ['except' => ['show']]);
+Route::get('/admin/docs', 'ControllerDash@showFiles');
 /*
 *   End Front Page Stuff
 */
