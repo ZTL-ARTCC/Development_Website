@@ -69,7 +69,7 @@ Route::get('/admin/events/positions/unassign/{id}', 'AdminDash@unassignPosition'
 Route::post('/admin/events/positions/manual-assign/{id}', 'AdminDash@manualAssign');
 Route::get('/admin/events/edit/{id}', 'AdminDash@editEvent');
 Route::get('/admin/events/delete/{id}', 'AdminDash@deleteEvent');
-
+Route::get('/admin/events/hide/{id}', 'AdminDash@hideEvent');
 /*
 *   End Front Page Stuff
 */
@@ -120,6 +120,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::post('/events/view/signup', 'ControllerDash@signupForEvent');
         Route::get('/events/view/{id}/un-signup', 'ControllerDash@unsignupForEvent');
         Route::get('/scenery', 'ControllerDash@sceneryIndex');
+
         Route::get('/scenery/view/{id}', 'ControllerDash@showScenery');
         Route::post('/scenery/search', 'ControllerDash@searchScenery');
         Route::post('/search-airport', 'ControllerDash@searchAirport');
