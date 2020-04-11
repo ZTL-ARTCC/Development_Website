@@ -15,13 +15,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
-                    @if($c != null)
-                        {!! Form::select('controller', $controllers, $c, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
-                    @else
-                        {!! Form::select('controller', $controllers, null, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
-                    @endif
-                    
+                 {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
                 </div>
             </div>
             <div class="col-sm-4">
