@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="container">
-    {!! Form::open(['action' => 'TrainingDash@saveNewTicket']) !!}
+    {!! Form::open(['action' => 'TrainingDash@saveTicket']) !!}
         @csrf
         <div class="row">
             <div class="col-sm-4">
