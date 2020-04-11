@@ -134,7 +134,7 @@
 		<!-- END Webmail -->
 		
 		<!-- Activity Log -->
-		@if(Auth::user()->can('staff'))
+		@if(Auth::user()->can('snrStaff'))
 		
 		<div class="col-md-4">
 			<a class="block block-link-shadow" href="/admin/activitylog">
@@ -183,21 +183,7 @@
 		@endif
 		<!-- END Events -->
 		
-		<!-- Scenery -->
-		@if(Auth::user()->can('scenery'))
-		<div class="col-md-4">
-			<a class="block block-link-shadow" href="/admin/scenery">
-				<div class="block-content text-center" style="height:215px;">
-					<div class="py-20" style="margin-top: 35px;">
-						<p class="h1 text-corporate-dark font-w600 mb-10"><i class="fa fa-sun-o"></i></p>
-						<p class="font-size-lg">Scenery</p><p>
-					</p>
-					</div>
-				</div>
-			</a>
-		</div>
-		@endif
-		<!-- END Scenery -->
+	
 		
 		<!-- Feedback -->
 		@if(Auth::user()->can('snrStaff'))
@@ -214,7 +200,22 @@
 		</div>
 		@endif
 		<!-- END Feedback -->
-		
+			
+			<!-- BLANK -->
+			@if(Auth::user()->can('snrStaff'))
+		<div class="col-md-4">
+			<a class="block block-link-shadow" href="/admin">
+				<div class="block-content text-center" style="height:215px;">
+					<div class="py-20" style="margin-top: 35px;">
+						<p class="h1 text-corporate-dark font-w600 mb-10"><i class="fa fa-sun-o"></i></p>
+						<p class="font-size-lg">Scenery</p><p>
+					</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		@endif
+		<!-- END Blank -->
 	</div>
 </div>
 <!-- END Page Content -->
