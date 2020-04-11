@@ -46,7 +46,7 @@ Route::get('/admin/roster', 'AdminDash@ShowRoster');
 Route::get('/admin/roster/edit/{id}', 'AdminDash@editController');
 Route::post('/admin/roster/edit/{id}', 'AdminDash@updateController');
 Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
-Route::get('/admin/mentor/addticket', 'TrainingDash@newTrainingTickets');
+Route::get('/admin/mentor/addticket', 'TrainingDash@newTrainingTicket');
 Route::post('/admin/mentor/saveticket', 'MentorController@saveNote');
 Route::get('/admin/mentor/students', 'MentorController@findStudents');
 Route::post('/admin/mentor/student', 'MentorController@findStudent');
