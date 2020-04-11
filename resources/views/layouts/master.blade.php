@@ -94,7 +94,7 @@
 									<li><a href="/roster">Roster</a></li>
 									<li><a href="/documents">Documents and Downloads</a></li>
 									<li><a href="/stats">ARTCC Stats</a></li>
-                                    <li><a href="/events">ARTCC Stats</a></li>
+                                    <li><a href="/events">Events</a></li>
 								</ul>
 							</li>
 							<li><a href="/feedback/new"><i class="si si-pencil"></i>Feedback</a></li>
@@ -162,6 +162,7 @@
 									<li><a href="/roster">Roster</a></li>
 									<li><a href="/documents">Documents and Downloads</a></li>
 									<li><a href="/stats">ARTCC Stats</a></li>
+                                    <li><a href="/events">Events</a></li>
 								</ul>
 							</li>
 							<li><a href="/feedback/new"><i class="si si-pencil"></i>Feedback</a></li>

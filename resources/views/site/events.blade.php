@@ -173,9 +173,9 @@
                         Signup/Position Assignments
                         @if(Auth::user()->can('events'))
                             @if($event->reg == 0)
-                                <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-success btn-simple-tooltip float-right" data-toggle="tooltip" title="Open Registration"><i class="fas fa-check"></i></a>
+                                <a href="/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-success btn-simple-tooltip float-right" data-toggle="tooltip" title="Open Registration"><i class="fas fa-check"></i></a>
                             @else
-                                <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-danger btn-simple-tooltip float-right" data-toggle="tooltip" title="Close Registration"><i class="fas fa-times"></i></a>
+                                <a href="/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-danger btn-simple-tooltip float-right" data-toggle="tooltip" title="Close Registration"><i class="fas fa-times"></i></a>
                             @endif
                         @endif
                     </h3>
@@ -228,7 +228,7 @@
                                         </td>
                                         @if(Auth::user()->can('events'))
                                             <td>
-                                                <a href="/dashboard/admin/events/position/delete/{{ $p->id }}" class="btn btn-danger btn-sm simple-tooltip" data-toggle="tooltip" title="Remove Position"><i class="fas fa-times"></i></a>
+                                                <a href="/admin/events/position/delete/{{ $p->id }}" class="btn btn-danger btn-sm simple-tooltip" data-toggle="tooltip" title="Remove Position"><i class="fas fa-times"></i></a>
                                             </td>
                                         @endif
                                     </tr>
@@ -296,7 +296,7 @@
                                 <div class="form-group inline">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                     @if($your_registration1)
-                                        <a href="/dashboard/controllers/events/view/{{ $your_registration1->id }}/un-signup" class="btn btn-danger">Delete your Signup</a>
+                                        <a href="/events/view/{{ $your_registration1->id }}/un-signup" class="btn btn-danger">Delete your Signup</a>
                                     @endif
                                 </div>
                             @else
@@ -340,9 +340,9 @@
         </div>
     </div>
     <br>
-    <a href="/dashboard/controllers/events" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+    <a href="/events" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
     @if(Auth::user()->can('events'))
-        <a href="/dashboard/admin/events/edit/{{ $event->id }}" class="btn btn-success">Edit</a>
+        <a href="/admin/events/edit/{{ $event->id }}" class="btn btn-success">Edit</a>
         <a href="/dashboard/admin/events/delete/{{ $event->id }}" class="btn btn-danger">Delete</a>
     @endif
 
