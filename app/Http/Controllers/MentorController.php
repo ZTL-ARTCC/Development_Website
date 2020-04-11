@@ -28,9 +28,8 @@ class MentorController extends Controller {
 	}
 	public function addNote()
 	{
-		$c = $request->id;
 		$controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
-		return View('admin.mentors.addnote')->with('controllers', $controllers)->with('c', $c);
+		return View('admin.mentors.addnote')->with('controller', $controller);
     }
 	public function saveNote()
 	{
