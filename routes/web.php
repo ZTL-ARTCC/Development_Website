@@ -35,6 +35,7 @@ Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/event/{id}', 'FrontController@viewEvent');
 Route::get('/training/notes', 'TrainingDash@showNotes');
+
 /* 
 * Admin roster, need to setup permission. Do this after everything else if complete!
 */
@@ -70,6 +71,13 @@ Route::post('/admin/events/positions/manual-assign/{id}', 'AdminDash@manualAssig
 Route::get('/admin/events/edit/{id}', 'AdminDash@editEvent');
 Route::get('/admin/events/delete/{id}', 'AdminDash@deleteEvent');
 Route::get('/admin/events/hide/{id}', 'AdminDash@hideEvent');
+Route::get('/admin/feedback', 'AdminDash@showFeedback');
+Route::post('/admin/feedback/save/{id}', 'AdminDash@saveFeedback');
+Route::post('/admin/feedback/hide/{id}', 'AdminDash@hideFeedback');
+Route::post('/admin/feedback/update/{id}', 'AdminDash@updateFeedback');
+Route::post('/admin/feedback/email/{id}', 'AdminDash@emailFeedback');
+
+
 /*
 *   End Front Page Stuff
 */

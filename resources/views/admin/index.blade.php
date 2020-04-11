@@ -124,7 +124,7 @@
 				<div class="block-content text-center" style="height:215px;">
 					<div class="py-20" style="margin-top: 35px;">
 						<p class="h1 text-corporate-dark font-w600 mb-10"><i class="fa fa-envelope-open"></i></p>
-						<p class="font-size-lg">Email</p><p>
+						<p class="font-size-lg">Bulk Email</p><p>
 					</p>
 					</div>
 				</div>
@@ -141,7 +141,7 @@
 				<div class="block-content text-center" style="height:215px;">
 					<div class="py-20" style="margin-top: 35px;">
 						<p class="h1 text-corporate-dark font-w600 mb-10"><i class="fa fa-user-secret"></i></p>
-						<p class="font-size-lg">Website Activity Log</p><p>
+						<p class="font-size-lg">Website Audit</p><p>
 					</p>
 					</div>
 				</div>
