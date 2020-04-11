@@ -60,13 +60,13 @@ Route::get('/admin/events', 'ControllerDash@showEvents');
 Route::get('/admin/docs', 'ControllerDash@showFiles');
 Route::get('/admin/events/new', 'AdminDash@newEvent');
 Route::post('/admin/events/new', 'AdminDash@saveNewEvent');
-Route::get('/admin/set-active/{id}', 'AdminDash@setEventActive');
-Route::post('/admin/edit/{id}', 'AdminDash@saveEvent');
-Route::post('/amdin/positions/add/{id}', 'AdminDash@addPosition');
-Route::get('/admin/position/delete/{id}', 'AdminDash@removePosition');
-Route::post('/admin/positions/assign/{id}', 'AdminDash@assignPosition');
-Route::get('/admin/positions/unassign/{id}', 'AdminDash@unassignPosition');
-Route::post('/admin/positions/manual-assign/{id}', 'AdminDash@manualAssign');
+Route::get('/admin/events/set-active/{id}', 'AdminDash@setEventActive');
+Route::post('/admin/events/edit/{id}', 'AdminDash@saveEvent');
+Route::post('/amdin/events/positions/add/{id}', 'AdminDash@addPosition');
+Route::get('/admin/events/position/delete/{id}', 'AdminDash@removePosition');
+Route::post('/admin/events/positions/assign/{id}', 'AdminDash@assignPosition');
+Route::get('/admin/events/positions/unassign/{id}', 'AdminDash@unassignPosition');
+Route::post('/admin/events/positions/manual-assign/{id}', 'AdminDash@manualAssign');
 
 
 
