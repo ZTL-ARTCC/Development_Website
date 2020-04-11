@@ -15,21 +15,19 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
+                    {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
                     @if($c != null)
                         {!! Form::select('controller', $controllers, $c, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
                     @else
                         {!! Form::select('controller', $controllers, null, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
                     @endif
-                 
-                    
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     {!! Form::label('position', 'Training Session', ['class' => 'form-label']) !!}
                     {!! Form::select('position', [
-                        7 => 'S1T1-DEL-1 (Theory)',
+                                                 7 => 'S1T1-DEL-1 (Theory)',
                         8 => 'S1P1-DEL-2',
                         9 => 'S1P2-DEL-3',
                         10 => 'S1M1-DEL-4 (Live Network Monitoring – CLT)',
@@ -192,5 +190,4 @@ $(function () {
         });
     });
 </script>
-
-@stop
+@endsection
