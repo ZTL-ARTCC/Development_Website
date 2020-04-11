@@ -331,7 +331,7 @@ class TrainingDash extends Controller
                 'duration' => 'required'
             ]);
 
-            $ticket->controller_id = $request->controller;
+            $ticket->controller_id = $request->controller_id;
             $ticket->position = $request->position;
             $ticket->type = $request->type;
             $ticket->date = $request->date;
