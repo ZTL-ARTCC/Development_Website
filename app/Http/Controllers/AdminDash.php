@@ -1268,7 +1268,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' sent an email from the send email page.';
         $audit->save();
 
-        return redirect('/dashboard/admin/email/send')->with('success', 'The email has been sent successfully and a copy has been sent to you as well.');
+        return redirect('/admin/email/send')->with('success', 'The email has been sent successfully and a copy has been sent to you as well.');
     }
 
     public function setAnnouncement() {
@@ -1376,7 +1376,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' set the pyrite mic winner for 20'.$year.'.';
         $audit->save();
 
-        return redirect('/dashboard/admin/pyrite-mic/'.$year)->with('success', 'The controller has been set as the pyrite mic winner successfully.');
+        return redirect('/admin/pyrite-mic/'.$year)->with('success', 'The controller has been set as the pyrite mic winner successfully.');
     }
 
     public function removePyriteWinner($id, $year) {
@@ -1389,7 +1389,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' removed the pyrite mic winner for 20'.$year.'.';
         $audit->save();
 
-        return redirect('/dashboard/admin/pyrite-mic/'.$year)->with('success', 'The winner has been removed successfully.');
+        return redirect('/admin/pyrite-mic/'.$year)->with('success', 'The winner has been removed successfully.');
     }
 
     public function newEvent() {
@@ -1434,7 +1434,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' created the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/admin/events'.$event->id)->with('success', 'The event has been created successfully.');
+        return redirect('/admin/events?'.$event->id)->with('success', 'The event has been created successfully.');
     }
 
     public function editEvent($id) {
@@ -1480,7 +1480,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' edited the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/events/view/'.$event->id)->with('success', 'The event has been edited successfully.');
+        return redirect('/events/view?'.$event->id)->with('success', 'The event has been edited successfully.');
     }
 
     public function deleteEvent($id) {
