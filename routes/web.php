@@ -67,8 +67,8 @@ Route::get('/admin/events/position/delete/{id}', 'AdminDash@removePosition');
 Route::post('/admin/events/positions/assign/{id}', 'AdminDash@assignPosition');
 Route::get('/admin/events/positions/unassign/{id}', 'AdminDash@unassignPosition');
 Route::post('/admin/events/positions/manual-assign/{id}', 'AdminDash@manualAssign');
-
-
+Route::get('/admin/events/edit/{id}', 'AdminDash@editEvent');
+Route::get('/admin/events/delete/{id}', 'AdminDash@deleteEvent');
 
 /*
 *   End Front Page Stuff

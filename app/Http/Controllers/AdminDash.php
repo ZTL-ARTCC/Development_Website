@@ -1480,7 +1480,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' edited the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/events/view?'.$event->id)->with('success', 'The event has been edited successfully.');
+        return redirect('/events/events?'.$event->id)->with('success', 'The event has been edited successfully.');
     }
 
     public function deleteEvent($id) {
@@ -1553,7 +1553,7 @@ class AdminDash extends Controller
             $audit->save();
         }
 
-        return redirect('/dashboard/controllers/events/view/'.$id)->with('success', 'The registration has been toggle successfully.');
+        return redirect('/admin/events?'.$id)->with('success', 'The registration has been toggle successfully.');
     }
 
     public function assignPosition(Request $request, $id) {
@@ -1660,7 +1660,7 @@ class AdminDash extends Controller
             $position->save();
         }
 
-        return redirect('/dashboard/controllers/events/view/'.$id)->with('success', 'The position preset has been loaded successfully.');
+        return redirect('/admin/events?'.$id)->with('success', 'The position preset has been loaded successfully.');
     }
 
     public function deletePositionPreset(Request $request) {
