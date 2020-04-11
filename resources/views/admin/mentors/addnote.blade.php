@@ -16,6 +16,10 @@
             <div class="col-sm-4">
                 <div class="form-group">
                  {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
+                
+                        {!! Form::select('controller', $controllers, null, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
+                  
+                    
                 </div>
             </div>
             <div class="col-sm-4">
