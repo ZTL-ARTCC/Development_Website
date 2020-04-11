@@ -1393,7 +1393,7 @@ class AdminDash extends Controller
     }
 
     public function newEvent() {
-        return view('dashboard.admin.events.new');
+        return view('admin.events.new');
     }
 
     public function saveNewEvent(Request $request) {
@@ -1434,12 +1434,12 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' created the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/dashboard/controllers/events/view/'.$event->id)->with('success', 'The event has been created successfully.');
+        return redirect('/admin/events'.$event->id)->with('success', 'The event has been created successfully.');
     }
 
     public function editEvent($id) {
         $event = Event::find($id);
-        return view('dashboard.admin.events.edit')->with('event', $event);
+        return view('admin.events.edit')->with('event', $event);
     }
 
     public function saveEvent(Request $request, $id) {
@@ -1480,7 +1480,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' edited the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/dashboard/controllers/events/view/'.$event->id)->with('success', 'The event has been edited successfully.');
+        return redirect('/events/view/'.$event->id)->with('success', 'The event has been edited successfully.');
     }
 
     public function deleteEvent($id) {
@@ -1504,7 +1504,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' deleted the event '.$name.'.';
         $audit->save();
 
-        return redirect('/dashboard/controllers/events')->with('success', 'The event has been deleted successfully.');
+        return redirect('/admin/events')->with('success', 'The event has been deleted successfully.');
     }
 
     public function addPosition(Request $request, $id) {

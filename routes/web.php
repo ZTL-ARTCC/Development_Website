@@ -58,6 +58,10 @@ Route::get('/admin/send', 'AdminDash@sendNewEmail');
 Route::post('/admin/send', 'AdminDash@sendEmail');
 Route::get('/admin/events', 'ControllerDash@showEvents');
 Route::get('/admin/docs', 'ControllerDash@showFiles');
+Route::get('/admin/events/new', 'AdminDash@newEvent');
+Route::post('/admin/events/new', 'AdminDash@saveNewEvent');
+Route::get('/admin/set-active/{id}', 'AdminDash@setEventActive');
+
 /*
 *   End Front Page Stuff
 */
