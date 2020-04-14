@@ -1,4 +1,28 @@
+@extends('layouts.master')
+
+@section('title')
+@parent
+| Controller Profile
+@stop
+
 @section('content')
+@if($user)
+
+<!-- User Info -->
+<div class="bg-image bg-image-bottom" style="background-image: url('/assets_new/img/photos/profile_bg_lp.png');">
+	<div class="bg-primary-dark-op py-30">
+		<div class="content content-full text-center">
+		<br />
+			<!-- Personal -->
+			<h1 class="h3 text-white font-w700 mb-10">Profile: {{{$user->full_name}}} ({{{$user->id}}})
+				
+			</h1>
+			<!-- END Personal -->
+		</div>
+	</div>
+</div>
+
+
 <div class="container-fluid" style="background-color:#F0F0F0;">
     &nbsp;
     <h2>Upload Profile</h2>
