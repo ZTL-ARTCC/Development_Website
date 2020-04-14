@@ -28,7 +28,11 @@
             </li>
         @endforeach
     </ul>
-    <p>Please note that positions can change at any time and the official positions will be assigned at the controller brief 30 minutes prior to the event.</p>
+    <p>Please note that positions can change at any time and the official positions will be assigned at the controller  @if($p->breif = null)
+                        30 minutes prior to the event.
+                    @else
+                       
+                    @endifbrief  {{ $event->breif}}z) minutes prior to the event..</p>
 @endif
 
 <br>

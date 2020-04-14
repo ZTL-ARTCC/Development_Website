@@ -1471,6 +1471,7 @@ class AdminDash extends Controller
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
         $event->banner_path = $public_url;
+        $event->breif =  $request->breif;
         $event->status = 0;
         $event->save();
 

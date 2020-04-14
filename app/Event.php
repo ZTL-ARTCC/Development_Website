@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     protected $table = 'events';
-    protected $fillable = ['id', 'name', 'description', 'date', 'start_time', 'end_time', 'banner_path', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'name', 'description', 'date', 'start_time', 'end_time', 'banner_path', 'status', 'created_at', 'updated_at', 'breif'];
 
     public function getDateEditAttribute() {
         $date = new Carbon($this->date);

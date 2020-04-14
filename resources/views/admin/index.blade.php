@@ -50,7 +50,7 @@
 									<i class="fa fa-fw fa-id-card mr-5"></i>Visiting Requests
 								</a>
 								@endif
-								@if(Auth::user()->hasRole('snrStaff'))
+								@if(Auth::user()->can('roster'))
 								<a class="dropdown-item" href="/admin/rostertidy">
 									<i class="fa fa-fw fa-trash mr-5"></i>Roster Activity Check
 								</a>
