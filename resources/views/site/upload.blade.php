@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-@if($user)
+
 
 <!-- User Info -->
 <div class="bg-image bg-image-bottom" style="background-image: url('/assets_new/img/photos/profile_bg_lp.png');">

@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-
+@if($user)
 <!-- Hero -->
 <div class="bg-image bg-image-bottom" style="background-image: url('/assets_new/img/photos/roster_lp_bg.jpg');">
 	<div class="bg-black-op-75">
@@ -463,4 +463,5 @@
 		</div>
 	@endif
 </div>
+@endif
 @endsection
