@@ -76,7 +76,7 @@ Route::post('/admin/feedback/save/{id}', 'AdminDash@saveFeedback');
 Route::post('/admin/feedback/hide/{id}', 'AdminDash@hideFeedback');
 Route::post('/admin/feedback/update/{id}', 'AdminDash@updateFeedback');
 Route::post('/admin/feedback/email/{id}', 'AdminDash@emailFeedback');
-
+Route::get('/admin/rostertidy/{year?}/{month?}', 'AdminDash@showRosterPurge');
 
 /*
 *   End Front Page Stuff

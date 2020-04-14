@@ -232,7 +232,7 @@ class AdminDash extends Controller
 
         $last_stats = ControllerLog::aggregateAllControllersByPosAndMonth($last_year, $last_month);
 
-        return view('dashboard.admin.roster.purge')->with('stats', $stats)->with('last_stats', $last_stats)->with('homec', $homec)->with('visitc', $visitc)
+        return view('admin.roster.rostertidy')->with('stats', $stats)->with('last_stats', $last_stats)->with('homec', $homec)->with('visitc', $visitc)
                                                    ->with('trainc', $trainc)->with('month', $month)->with('year', $year);
     }
 
@@ -1448,7 +1448,8 @@ class AdminDash extends Controller
             'date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'breif' => 'required'
         ]);
 
         $event = Event::find($id);
@@ -1474,7 +1475,6 @@ class AdminDash extends Controller
         $event->breif =  $request->breif;
         $event->status = 0;
         $event->save();
-
         $audit = new Audit;
         $audit->cid = Auth::id();
         $audit->ip = $_SERVER['REMOTE_ADDR'];

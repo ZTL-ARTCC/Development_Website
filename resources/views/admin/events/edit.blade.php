@@ -59,7 +59,7 @@
                 <div class="col-sm-6">
                     {!! Form::label('breif', 'Breif Time  (Zulu)', ['class' => 'form-label']) !!}
                     <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                        {!! Form::text('breif', $event->end_time, ['placeholder' => '00:00', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker3']) !!}
+                        {!! Form::text('breif', $event->breif, ['placeholder' => '00:00', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker3']) !!}
                     </div>
                 </div>
             </div>
