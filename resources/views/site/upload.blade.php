@@ -14,7 +14,7 @@
 		<div class="content content-full text-center">
 		<br />
 			<!-- Personal -->
-			<h1 class="h3 text-white font-w700 mb-10">Profile: {{{$user->full_name}}} ({{{$user->id}}})
+		
 				
 			</h1>
 			<!-- END Personal -->
