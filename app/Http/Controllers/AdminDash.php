@@ -1481,7 +1481,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name.' edited the event '.$event->name.'.';
         $audit->save();
 
-        return redirect('/events/events?'.$event->id)->with('success', 'The event has been edited successfully.');
+        return redirect('/events?'.$event->id)->with('success', 'The event has been edited successfully.');
     }
 
     public function deleteEvent($id) {
