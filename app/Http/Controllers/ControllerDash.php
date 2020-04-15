@@ -282,7 +282,7 @@ class ControllerDash extends Controller
 
     public function showFeedbackDetails($id) {
         $feedback = Feedback::find($id);
-        return view('dashboard.controllers.feedback')->with('feedback', $feedback);
+        return view('site.viewfeedback')->with('feedback', $feedback);
     }
 
     public function showEvents() {

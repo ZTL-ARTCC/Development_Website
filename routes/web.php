@@ -36,6 +36,7 @@ Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/event/{id}', 'FrontController@viewEvent');
 Route::get('/training/notes', 'TrainingDash@showNotes');
 Route::get('/events', 'ControllerDash@showEvents');
+Route::get('/feedback/{id}', 'ControllerDash@showFeedbackDetails');
 /* 
 * Admin roster, need to setup permission. Do this after everything else if complete!
 */
