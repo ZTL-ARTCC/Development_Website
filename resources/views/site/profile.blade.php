@@ -172,7 +172,7 @@
 						<table class="table table-borderless table-vcenter" style="font-size: 1.5em;">
                                 <tbody>
                                     <tr>
-                                        @if($user->del == 2
+                                        @if($user->del == 2)
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Atlanta Delivery Certification</span></td>
 										@elseif($user->del == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Delivery Certification</span></td>

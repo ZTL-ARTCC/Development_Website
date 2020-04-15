@@ -32,7 +32,7 @@ Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/event/{id}', 'FrontController@viewEvent');
 Route::get('/training/notes', 'TrainingDash@showNotes');
-
+Route::get('/profile/{id?}', 'FrontController@showProfile');
 
 Route::get('/feedback/{id}', 'ControllerDash@showFeedbackDetails');
 /* 
@@ -43,7 +43,7 @@ Route::prefix('')->middleware('auth')->group(function() {
     Route::get('/events', 'ControllerDash@showEvents');
     Route::get('/training/notes', 'TrainingDash@showNotes');
     Route::get('/event/{id}', 'FrontController@viewEvent');
-    Route::get('/profile/{id?}', 'FrontController@showProfile');
+    
     Route::get('/edit_pic/{id?}', 'AdminDash@profilepic');
 Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
 });
