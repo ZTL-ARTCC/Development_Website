@@ -172,19 +172,13 @@ class FrontController extends Controller
                 $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name_rating', 'id');
                
             } 
-            if ($id == null || !Entrust::can('profile'))
-            {
-                $id = Auth::id();
-            }
-    
-            $user = User::find($id);
-
+            
             $your_registration1 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 1)->first();
             $your_registration2 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 2)->first();
             $your_registration3 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 3)->first();
 
             return view('site.events')->with('event', $event)->with('positions', $positions)->with('registrations', $registrations)->with('presets', $presets)->with('controllers', $controllers)
-                                                            ->with('your_registration1', $your_registration1)->with('your_registration2', $your_registration2)->with('your_registration3', $your_registration3)->with('user'. $user);
+                                                            ->with('your_registration1', $your_registration1)->with('your_registration2', $your_registration2)->with('your_registration3', $your_registration3);
         }
     public function airportIndex() {
         $airports = Airport::orderBy('ltr_3', 'ASC')->get();

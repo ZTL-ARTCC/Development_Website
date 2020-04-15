@@ -42,8 +42,6 @@ Route::get('/feedback/{id}', 'ControllerDash@showFeedbackDetails');
 Route::prefix('')->middleware('auth')->group(function() {
     Route::get('/events', 'ControllerDash@showEvents');
     Route::get('/training/notes', 'TrainingDash@showNotes');
-    Route::get('/event/{id}', 'FrontController@viewEvent');
-    
     Route::get('/edit_pic/{id?}', 'AdminDash@profilepic');
 Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
 });
