@@ -42,7 +42,7 @@
 						<div class="dropdown">
 							<button type="button" class="btn-block-option dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</button>
 							<div class="dropdown-menu dropdown-menu-left" x-placement="top-end" style="position: absolute; transform: translate3d(73px, -2px, 0px); top: 0px; left: 0px; will-change: transform;">
-								<a class="dropdown-item" href="/admin/roster">
+								<a class="dropdown-item" href="/admin/roster#home">
 									<i class="fa fa-fw fa-address-book mr-5"></i>Manage Roster
 								</a>
 								@if(Auth::user()->can('roster'))
