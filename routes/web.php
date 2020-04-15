@@ -28,9 +28,6 @@ Route::get('/pilots/request-staffing', 'FrontController@showStaffRequest');
 Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
-Route::get('/edit_pic/{id?}', 'AdminDash@profilepic');
-Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
-Route::get('/profile/{id?}', 'FrontController@showProfile');
 Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
 Route::get('/event/{id}', 'FrontController@viewEvent');
@@ -46,6 +43,9 @@ Route::prefix('')->middleware('auth')->group(function() {
     Route::get('/events', 'ControllerDash@showEvents');
     Route::get('/training/notes', 'TrainingDash@showNotes');
     Route::get('/event/{id}', 'FrontController@viewEvent');
+    Route::get('/profile/{id?}', 'FrontController@showProfile');
+    Route::get('/edit_pic/{id?}', 'AdminDash@profilepic');
+Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
 });
 
 
