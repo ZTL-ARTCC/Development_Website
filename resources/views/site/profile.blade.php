@@ -130,7 +130,7 @@
 										@elseif($user->del == 1)
 										<td><span class="badge badge-pill badge-danger"><i class="fa fa-check-circle mr-5"></i>Minor Delivery Certification</span></td>
 										@elseif($user->del == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Minor Delivery Certification</span></td>
+											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Delivery Certification</span></td>
 										@endif
                                     </tr>
 									<tr>
@@ -139,7 +139,7 @@
 										@elseif($user->gnd == 1)
 										<td><span class="badge badge-pill badge-danger"><i class="fa fa-check-circle mr-5"></i>Minor Ground Certification</span></td>
 										@elseif($user->gnd == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Minor Ground Certification</span></td>
+											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Ground Certification</span></td>
 										@endif
                                     </tr>
 									<tr>
@@ -148,7 +148,7 @@
 										@elseif($user->twr == 1)
 										<td><span class="badge badge-pill badge-danger"><i class="fa fa-check-circle mr-5"></i>Minor Tower Certification</span></td>
 										@elseif($user->twr == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Minor Tower Certification</span></td>
+											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Tower Certification</span></td>
 										@endif
                                     </tr>
 									<tr>
@@ -157,7 +157,7 @@
 										@elseif($user->app == 1)
 										<td><span class="badge badge-pill badge-danger"><i class="fa fa-check-circle mr-5"></i>Minor TRACON Certification</span></td>
 										@elseif($user->app == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Minor TRACON Certification</span></td>
+											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>RACON Certification</span></td>
 										@endif
                                     </tr>
                                 </tbody>
@@ -172,39 +172,35 @@
 						<table class="table table-borderless table-vcenter" style="font-size: 1.5em;">
                                 <tbody>
                                     <tr>
-                                        @if($user->del == 1)
+                                        @if($user->del == 2)
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Atlanta Delivery Certification</span></td>
 										@elseif($user->del == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Delivery Certification</span></td>
-										@elseif($user->del == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Atlanta Delivery Certification</span></td>
+										
 										@endif
                                     </tr>
 									<tr>
-                                        @if($user->gnd == 1)
+                                        @if($user->gnd == 2)
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Atlanta Ground Certification</span></td>
 										@elseif($user->gnd == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Ground Certification</span></td>
-										@elseif($user->gnd == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Atlanta Ground Certification</span></td>
+										
 										@endif
                                     </tr>
 									<tr>
-                                        @if($user->twr == 1)
-											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Solo Atlanta Tower Certification</span></td>
+                                        @if($user->twr == 2)
+											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Atlanta Tower Certification</span></td>
 										@elseif($user->twr == 99)
-											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Certification</span></td>
-										@elseif($user->twr == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No Atlanta Tower Certification</span></td>
+											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Tower Certification</span></td>
+									
 										@endif
                                     </tr>
 									<tr>
-                                        @if($user->app == 1)
+                                        @if($user->app == 2)
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>A80 TRACON Certification</span></td>
 										@elseif($user->app == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo A80 TRACON Certification</span></td>
-										@elseif($user->app == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No A80 TRACON Certification</span></td>
+									
 										@endif
                                     </tr>
 									<tr>
@@ -212,8 +208,7 @@
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>ZTL Center Certification</span></td>
 										@elseif($user->ctr == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo ZTL Center Training</span></td>
-										@elseif($user->ctr == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No ZTL Center Certification</span></td>
+										
 										@endif
                                     </tr>
                                 </tbody>
