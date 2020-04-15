@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+@if($user == null)
 @if($user)
 
 <!-- User Info -->
