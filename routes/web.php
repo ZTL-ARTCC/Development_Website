@@ -49,8 +49,10 @@ Route::prefix('')->middleware('auth')->group(function() {
 
 
 Route::prefix('admin')->group(function() {
+    Route::get("/", 'AdminDash@index');
     Route::prefix('announcements')->middleware('permission:staff')->group(function() {
         Route::get('/', 'AdminDash@setAnnouncement');
+
     });
     Route::prefix('mentor')->middleware('permission:train')->group(function() {
         Route::post('/saveticket', 'MentorController@saveNote');
@@ -79,6 +81,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/', 'AdminDash@showActivityLog');
     });
     Route::prefix('events')->middleware('permission:events')->group(function() {
+        Route::get('/', 'ControllerDash@showEvents');
         Route::get('/admin/events/new', 'AdminDash@newEvent');
         Route::post('/new', 'AdminDash@saveNewEvent');
         Route::get('/set-active/{id}', 'AdminDash@setEventActive');
@@ -106,7 +109,7 @@ Route::prefix('admin')->group(function() {
 });
 Route::get('/mentoravi', 'Training\StudentSchController@showMentAvail');
 Route::get('/admin/mentor/manage_avi', 'Training\MentorSchController@showAvail');
-Route::get("/admin", 'AdminDash@index');
+
 
 
 Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
