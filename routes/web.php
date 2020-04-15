@@ -96,6 +96,7 @@ Route::prefix('admin')->group(function() {
     Route::prefix('show/visit')->middleware('permission:snrStaff')->group(function() {
         Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
     });
+});
 Route::get('/mentoravi', 'Training\StudentSchController@showMentAvail');
 Route::get('/admin/mentor/manage_avi', 'Training\MentorSchController@showAvail');
 Route::get("/admin", 'AdminDash@index');
