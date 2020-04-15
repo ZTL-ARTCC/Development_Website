@@ -6,7 +6,6 @@
 @stop
 
 @section('content')
-@if($user == null)
 @if($user)
 
 <!-- User Info -->
@@ -158,7 +157,7 @@
 										@elseif($user->app == 1)
 										<td><span class="badge badge-pill badge-danger"><i class="fa fa-check-circle mr-5"></i>Minor TRACON Certification</span></td>
 										@elseif($user->app == 0)
-											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>RACON Certification</span></td>
+											<td><span class="badge badge-pill badge-secondary"><i class="fa fa-times-circle mr-5"></i>No TRACON Certification</span></td>
 										@endif
                                     </tr>
                                 </tbody>
@@ -173,7 +172,7 @@
 						<table class="table table-borderless table-vcenter" style="font-size: 1.5em;">
                                 <tbody>
                                     <tr>
-                                        @if($user->del == 2)
+                                        @if($user->del == 2
 											<td><span class="badge badge-pill badge-success"><i class="fa fa-check-circle mr-5"></i>Atlanta Delivery Certification</span></td>
 										@elseif($user->del == 99)
 											<td><span class="badge badge-pill badge-warning"><i class="fa fa-times-circle mr-5"></i>Solo Atlanta Delivery Certification</span></td>
