@@ -13,84 +13,92 @@ class Airport extends Model
     public $fillable = ['id', 'name', 'ltr_4', 'ltr_3'];
     public $timestamps = false;
 
-    public function getMetarAttribute() {
+    public function getMetarAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
+        if (isset($airport)) {
             return $airport->metar;
         } else {
             return 'N/A';
         }
     }
 
-    public function getTafAttribute() {
+    public function getTafAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
+        if (isset($airport)) {
             return $airport->taf;
         } else {
             return 'N/A';
         }
     }
 
-    public function getVisualConditionsAttribute() {
+    public function getVisualConditionsAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
+        if (isset($airport)) {
             return $airport->visual_conditions;
         } else {
             return 'N/A';
         }
     }
 
-    public function getWindAttribute() {
+    public function getWindAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
+        if (isset($airport)) {
             return $airport->wind;
         } else {
             return 'N/A';
         }
     }
 
-    public function getAltimeterAttribute() {
+    public function getAltimeterAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
+        if (isset($airport)) {
             return $airport->altimeter;
         } else {
             return 'N/A';
         }
     }
 
-    public function getTemperatureDewpointAttribute() {
+    public function getTemperatureDewpointAttribute()
+    {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
-        if(isset($airport)) {
-            return $airport->temp.'/'.$airport->dp;
+        if (isset($airport)) {
+            return $airport->temp . '/' . $airport->dp;
         } else {
             return 'N/A';
         }
     }
 
-    public function getInboundTrafficAttribute() {
+    public function getInboundTrafficAttribute()
+    {
         $client = new Client();
-        $res = $client->get('http://api.vateud.net/online/arrivals/'.$this->ltr_4.'.json');
+        $res = $client->get('http://api.vateud.net/online/arrivals/' . $this->ltr_4 . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);
 
-        if($pilots) {
+        if ($pilots) {
             return collect($pilots);
         } else {
             return null;
         }
     }
 
-    public function getOutboundTrafficAttribute() {
+    public function getOutboundTrafficAttribute()
+    {
         $client = new Client();
-        $res = $client->get('http://api.vateud.net/online/departures/'.$this->ltr_4.'.json');
+        $res = $client->get('http://api.vateud.net/online/departures/' . $this->ltr_4 . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);
 
-        if($pilots) {
+        if ($pilots) {
             return collect($pilots);
         } else {
             return null;

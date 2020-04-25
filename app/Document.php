@@ -1,9 +1,11 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model {
+class Document extends Model
+{
 
     protected $table = 'files';
     protected $fillable = ['id', 'name', 'type', 'desc', 'path', 'created_at', 'updated_at'];
@@ -18,7 +20,8 @@ class Document extends Model {
         6 => 'Staff'
     ];
 
-    public function getWordTypeAttribute() {
+    public function getWordTypeAttribute()
+    {
         foreach (File::$WordType as $id => $wordType) {
             if ($this->type == $id) {
                 return $wordType;
