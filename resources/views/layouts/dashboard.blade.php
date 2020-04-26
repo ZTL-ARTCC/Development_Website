@@ -185,7 +185,7 @@ MAIN CONTENT LAYOUT
                         <a href="/dashboard/controllers/scenery"><i class="si si-cup"></i><span class="sidebar-mini-hide">Scenery</span></a>
                     </li>
                     <li>
-                        <a href="/profile"><i class="si si-cup"></i><span
+                        <a href="/dashboard/controllers/stats"><i class="si si-cup"></i><span
                                     class="sidebar-mini-hide">Statistics</span></a>
                     </li>
                     <li>

@@ -1,13 +1,5 @@
 @extends('layouts.dashboard')
 @section('content')
-@section('content')
-    <div class="container-fluid" style="background-color:#F0F0F0;">
-        &nbsp;
-        <h2>Events</h2>
-        &nbsp;
-    </div>
-    <br>
-
     <div class="container">
         @if(Auth::user()->can('events'))
             <a href="/dashboard/admin/events/new" class="btn btn-primary">New Event</a>

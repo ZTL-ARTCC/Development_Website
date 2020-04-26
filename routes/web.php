@@ -48,71 +48,7 @@ Route::prefix('')->middleware('auth')->group(function() {
 });
 
 
-Route::prefix('admin')->group(function() {
-    Route::get("/", 'AdminDash@index');
-    Route::prefix('announcements')->middleware('permission:staff')->group(function() {
-        Route::get('/', 'AdminDash@setAnnouncement');
 
-    });
-    Route::prefix('mentor')->middleware('permission:train')->group(function() {
-        Route::post('/saveticket', 'MentorController@saveNote');
-        Route::get('/students', 'MentorController@findStudents');
-        Route::post('/student', 'MentorController@findStudent');
-        Route::get('/student/{id}', 'MentorController@student');
-        Route::get('/addticket', 'TrainingDash@newTrainingTicket');
-
-    });
-    Route::prefix('roster')->middleware('permission:roster')->group(function() {
-        Route::get('/vatsim/{id}', 'RosterController@ajax_get_user_info');
-        Route::post('/{id}/controller', 'AdminController@setController');
-        Route::get('/', 'AdminDash@ShowRoster');
-        Route::get('/edit/{id}', 'AdminDash@editController');
-        Route::post('/edit/{id}', 'AdminDash@updateController');
-      
-    }); 
-    Route::prefix('rostertidy')->middleware('permission:snrStaff')->group(function() {
-        Route::get('/{year?}/{month?}', 'AdminDash@showRosterPurge');
-    });
-    Route::prefix('send')->middleware('permission:staff')->group(function() {
-        Route::get('/admin/send', 'AdminDash@sendNewEmail');
-        Route::post('/admin/send', 'AdminDash@sendEmail');
-    });
-    Route::prefix('activitylog')->middleware('permission:snrStaff')->group(function() {
-        Route::get('/', 'AdminDash@showActivityLog');
-    });
-    Route::prefix('events')->middleware('permission:events')->group(function() {
-        Route::get('/', 'ControllerDash@showEvents');
-        Route::get('/admin/events/new', 'AdminDash@newEvent');
-        Route::post('/new', 'AdminDash@saveNewEvent');
-        Route::get('/set-active/{id}', 'AdminDash@setEventActive');
-        Route::post('/edit/{id}', 'AdminDash@saveEvent');
-        Route::post('/positions/add/{id}', 'AdminDash@addPosition');
-        Route::get('/position/delete/{id}', 'AdminDash@removePosition');
-        Route::post('/positions/assign/{id}', 'AdminDash@assignPosition');
-        Route::get('/positions/unassign/{id}', 'AdminDash@unassignPosition');
-        Route::post('/positions/manual-assign/{id}', 'AdminDash@manualAssign');
-        Route::get('/edit/{id}', 'AdminDash@editEvent');
-        Route::get('/delete/{id}', 'AdminDash@deleteEvent');
-        Route::get('/hide/{id}', 'AdminDash@hideEvent');
-    });
-    Route::prefix('feedback')->middleware('permission:snrStaff')->group(function() {
-        Route::get('/', 'AdminDash@showFeedback');
-        Route::post('/save/{id}', 'AdminDash@saveFeedback');
-        Route::post('/hide/{id}', 'AdminDash@hideFeedback');
-        Route::post('/update/{id}', 'AdminDash@updateFeedback');
-        Route::post('/email/{id}', 'AdminDash@emailFeedback');
-      
-    });
-    Route::prefix('show/visit')->middleware('permission:snrStaff')->group(function() {
-        Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
-    });
-});
-Route::get('/mentoravi', 'Training\StudentSchController@showMentAvail');
-Route::get('/admin/mentor/manage_avi', 'Training\MentorSchController@showAvail');
-
-
-
-Route::get('/admin/show/visit', 'AdminDash@showVisitRequests');
 
 
 

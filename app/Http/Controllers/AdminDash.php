@@ -1499,7 +1499,7 @@ class AdminDash extends Controller
     public function editEvent($id)
     {
         $event = Event::find($id);
-        return view('admin.events.edit')->with('event', $event);
+        return view('dashboard.admin.events.edit')->with('event', $event);
     }
 
     public function saveEvent(Request $request, $id)
