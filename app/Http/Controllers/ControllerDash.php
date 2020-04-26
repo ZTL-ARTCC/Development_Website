@@ -233,7 +233,7 @@ class ControllerDash extends Controller
         $loa = File::where('type', 5)->orderBy('name', 'ASC')->get();
         $staff = File::where('type', 6)->orderBy('name', 'ASC')->get();
 
-        return view('admin.documents.index')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa)->with('staff', $staff);
+        return view('dashboard.controllers.files')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa)->with('staff', $staff);
     }
 
     public function showTickets()
@@ -308,7 +308,7 @@ class ControllerDash extends Controller
                 return strtotime($e->date);
             });
         }
-        return view('admin.events.index')->with('events', $events);
+        return view('dashboard.controllers.events.index')->with('events', $events);
     }
 
     public function viewEvent($id)

@@ -1,24 +1,20 @@
 @extends('layouts.dashboard')
-
-@section('title')
-Events
-@endsection
-
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Events</h2>
-    &nbsp;
-</div>
-<br>
+@section('content')
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>Events</h2>
+        &nbsp;
+    </div>
+    <br>
 
-<div class="container">
-    @if(Auth::user()->can('events'))
-        <a href="/dashboard/admin/events/new" class="btn btn-primary">New Event</a>
-        <br><br>
-    @endif
-    <table class="table table-bordered">
-        <thead>
+    <div class="container">
+        @if(Auth::user()->can('events'))
+            <a href="/dashboard/admin/events/new" class="btn btn-primary">New Event</a>
+            <br><br>
+        @endif
+        <table class="table table-bordered">
+            <thead>
             <tr>
                 <th scope="col">Event</th>
                 <th scope="col"><center>Date</center></th>
@@ -27,8 +23,8 @@ Events
                     <th scope="col"><center>Actions</center></th>
                 @endif
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @if($events->count() > 0)
                 @foreach($events as $e)
                     <tr>
@@ -61,7 +57,7 @@ Events
                     <td colspan="4">No events found.</td>
                 </tr>
             @endif
-        </tbody>
-    </table>
-</div>
-@endsection
+            </tbody>
+        </table>
+    </div>
+    @stop
