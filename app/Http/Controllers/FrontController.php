@@ -33,7 +33,7 @@ use Mail;
 use Response;
 use SimpleXMLElement;
 use Validation;
-
+use App\TrainingTicket;
 class FrontController extends Controller
 {
     public function home()
@@ -114,8 +114,33 @@ class FrontController extends Controller
 
     public function newProfilePic($id)
     {
+        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function ($t) {
+            return strtotime($t->date . ' ' . $t->start_time);
+        })->pluck('id');
+        if ($tickets_sort->count() != 0) {
+            $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
+            $last_training = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
+        } else {
+            $tickets = null;
+            $last_training = null;
+        }
+
+        if (Auth::user()->can('train')) {
+            $tickets_sort_t = TrainingTicket::where('trainer_id', Auth::id())->get()->sortByDesc(function ($t) {
+                return strtotime($t->date . ' ' . $t->start_time);
+            })->pluck('id');
+            if ($tickets_sort_t->count() != 0) {
+                $tickets_order_t = implode(',', array_fill(0, count($tickets_sort_t), '?'));
+                $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)->first();
+            } else {
+                $last_training_given = null;
+            }
+        } else {
+            $last_training_given = null;
+        }
         $user = User::find($id);
-        return view('site.upload')->with('user', $user);
+        return view('site.upload')->with('user', $user)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given);
     }
 
     public function eprof($id)
@@ -478,6 +503,31 @@ class FrontController extends Controller
         $user = User::find($id);
 
         $client = new Client();
+        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function($t) {
+            return strtotime($t->date.' '.$t->start_time);
+        })->pluck('id');
+        if($tickets_sort->count() != 0) {
+            $tickets_order = implode(',',array_fill(0, count($tickets_sort), '?'));
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
+            $last_training = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
+        } else {
+            $tickets = null;
+            $last_training = null;
+        }
+
+        if(Auth::user()->can('train')){
+            $tickets_sort_t = TrainingTicket::where('trainer_id', Auth::id())->get()->sortByDesc(function($t) {
+                return strtotime($t->date.' '.$t->start_time);
+            })->pluck('id');
+            if($tickets_sort_t->count() != 0) {
+                $tickets_order_t = implode(',',array_fill(0, count($tickets_sort_t), '?'));
+                $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)->first();
+            } else {
+                $last_training_given = null;
+            }
+        } else {
+            $last_training_given = null;
+        }
 
         $url = ("https://development.ztlartcc.org/storage/files/<?php echo $user->id ?>.jpg");
         $headers = get_headers($url);
@@ -492,7 +542,7 @@ class FrontController extends Controller
         $stats = ControllerLog::getControllerStats($id);
 
         return view('site.profile')->with('user', $user)->with('feedback', $feedback)
-            ->with('log', $log)->with('stats', $stats)->with('url_exist', $url_exist);
+            ->with('log', $log)->with('stats', $stats)->with('url_exist', $url_exist)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given);
     }
 
     public function showRunways()
