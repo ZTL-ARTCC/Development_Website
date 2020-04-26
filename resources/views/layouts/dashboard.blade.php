@@ -423,7 +423,9 @@ MAIN CONTENT LAYOUT
         </div>
         <!-- END Header Loader -->
     </header>
+
     @yield('content')
+
     <script type="text/javascript" src="{{ URL::to('js_dash/codebase.core.min.js')}}"></script>
     <script type="text/javascript" src="{{ URL::to('js_dash/codebase.app.min.js')}}"></script>
     <script type="text/javascript"

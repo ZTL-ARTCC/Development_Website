@@ -31,7 +31,7 @@ use Illuminate\Http\Request;
 use Mail;
 use SimpleXMLElement;
 use Response;
-
+use Illuminate\Cookie\CookieJar;
 class ControllerDash extends Controller
 {
     public function dash()

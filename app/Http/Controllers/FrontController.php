@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Cookie\CookieJar;
 use App\Airport;
 use App\ATC;
 use App\Bronze;
