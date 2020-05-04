@@ -189,15 +189,12 @@ MAIN CONTENT LAYOUT
                                     class="sidebar-mini-hide">Statistics</span></a>
                     </li>
                     <li>
-                        <a href="/profile"><i class="si si-cup"></i><span class="sidebar-mini-hide">Submit Controller Feedback</span></a>
+                        <a href="/dashboard/controllers/incident/report"><i class="si si-cup"></i><span class="sidebar-mini-hide">Incident Report</span></a>
                     </li>
 
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Training</span></li>
-                    <li>
-                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Access Moodel</span></a>
-                    </li>
                     <li>
                         <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Schedule a Training Session</span></a>
                     </li>
