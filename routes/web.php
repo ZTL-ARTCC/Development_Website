@@ -79,7 +79,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     Route::get('/', 'ControllerDash@dash');
 
     Route::prefix('controllers')->group(function() {
-      
+
+        Route::get('/mentoravi', 'TrainingController@showMentAvail');
+        Route::post('/mentoravi', 'TrainingController@saveSession');
+        Route::get('/trainingreq', 'TrainingController@showRequests');
+        Route::delete('/trainingreq/{id}/delete', 'TrainingController@cancelSession');
+        Route::get('/sessions_today', 'TrainingController@showsessions_today');
+
+
 
 
 
@@ -101,7 +108,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::post('/events/view/signup', 'ControllerDash@signupForEvent');
         Route::get('/events/view/{id}/un-signup', 'ControllerDash@unsignupForEvent');
         Route::get('/scenery', 'ControllerDash@sceneryIndex');
-
         Route::get('/scenery/view/{id}', 'ControllerDash@showScenery');
         Route::post('/scenery/search', 'ControllerDash@searchScenery');
         Route::post('/search-airport', 'ControllerDash@searchAirport');
@@ -139,8 +145,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::get('/mentor/avail', 'MentorController@showAvail');
             Route::post('/mentor/avail', 'MentorController@postAvail');
             Route::get('/mentor/requests', 'MentorController@showRequests');
-            Route::post('/mentor/requests/{id}/cancel', 'MentorController@cancelSession');  
-        
+            Route::post('/mentor/requests/{id}/cancel', 'MentorController@cancelSession');
+
         });
         Route::prefix('ots-center')->middleware('role:ins|atm|datm|ta|wm')->group(function() {
             Route::get('/', 'TrainingDash@otsCenter');
@@ -232,12 +238,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/visit/accept/save', 'AdminDash@storeVisitor');
             Route::post('/visit/reject/{id}', 'AdminDash@rejectVisitRequest');
             Route::get('/visit/requests/view/{id}', 'AdminDash@viewVisitRequest');
-			Route::get('/visit/remove/{id}', 'AdminDash@removeVisitor');
+            Route::get('/visit/remove/{id}', 'AdminDash@removeVisitor');
             Route::get('/visit-agreement/reject/{id}', 'AdminDash@disallowVisitReq');
             Route::post('/visit-agreement/permit', 'AdminDash@allowVisitReq');
             Route::get('/purge-assistant/{year?}/{month?}', 'AdminDash@showRosterPurge');
         });
-        Route::prefix('roster')->group(function() {
+        Route::prefix('roster')->middleware('permission:roster|train')->group(function() {
             Route::get('/edit/{id}', 'AdminDash@editController');
             Route::post('/edit/{id}', 'AdminDash@updateController');
         });

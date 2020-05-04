@@ -195,8 +195,27 @@ MAIN CONTENT LAYOUT
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Training</span></li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Access Moodel</span></a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Schedule a Training Session</span></a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Training Tickets</span></a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">OTS Center</span></a>
+                    </li>
 
-
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
+                                class="sidebar-mini-hidden">Administration</span></li>
+                    <li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Calendar/news</span></a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Airport Management</span></a>
                     </li>
                 </ul>
             </div>
@@ -345,7 +364,6 @@ MAIN CONTENT LAYOUT
                             <i class="si si-wrench mr-5"></i> Settings
                         </a>
                         <!-- END Side Overlay -->
-
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">
                             <i class="si si-logout mr-5"></i> Sign Out

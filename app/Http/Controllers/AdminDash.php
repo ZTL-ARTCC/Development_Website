@@ -1598,7 +1598,6 @@ class AdminDash extends Controller
     public function toggleRegistration($id)
     {
         $event = Event::find($id);
-
         if ($event->reg == 0) {
             $event->reg = 1;
             $event->save();

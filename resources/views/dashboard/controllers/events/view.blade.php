@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
+    <br><br><br><br><br><br>
     <div class="container">
         @if($event->banner_path != null)
             <div class="jumbotron">
