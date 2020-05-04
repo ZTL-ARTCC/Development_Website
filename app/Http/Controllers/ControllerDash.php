@@ -617,7 +617,7 @@ class ControllerDash extends Controller
         $incident->status = 0;
         $incident->save();
 
-        return redirect('/dashboard')->with('success', 'Your report has been submitted successfully.');
+        return redirect('/profile')->with('success', 'Your report has been submitted successfully.');
     }
 
     public function reportBug(Request $request)
