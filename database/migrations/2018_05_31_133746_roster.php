@@ -39,6 +39,10 @@ class Roster extends Migration
             $table->string('json_token', 2000)->nullable();
             $table->timestamps();
             $table->timestamp('added_to_facility')->nullable();
+            $table->integer('training_power')->default(0);
+            $table->integer('mentor_power')->default(0);
+            $table->integer('max')->default(0);
+            $table->string('path')->nullable();
         });
     }
 
