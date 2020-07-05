@@ -12,7 +12,7 @@
 			
 				<!-- Slideshow container -->
 			
-					<div class="bg-image" style="background-image: url('/assets_new/img/photos/hp-bg.jpg')">
+					<div class="bg-image" style="background-image: url('/assets_new/img/photos/fpage.jpg')">
 			
                     <div class="hero bg-black-op-25">
 					<div class="hero-inner">
@@ -30,7 +30,7 @@
 					</div>
                 </div>
 				@else
-				<div class="bg-image" style="background-image: url('/assets_new/img/photos/hp-bg.jpg')">
+				<div class="bg-image" style="background-image: url('/assets_new/img/photos/fpage.jpg')">
                     <div class="hero bg-black-op-25">
 					<div class="hero-inner">
                         <div class="content content-full text-center">
