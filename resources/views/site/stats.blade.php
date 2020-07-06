@@ -53,7 +53,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['month']))
-						{{{ $all_stats['month'] }}}
+						<?php echo round ($all_stats['month']) ?>
 						@else
 						0
 						@endif
@@ -71,7 +71,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['year']))
-						{{{ $all_stats['year'] }}}
+						<?php echo round ($all_stats['year'])?>
 						@else
 						0
 						@endif
@@ -88,7 +88,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['total']))
-						{{{ $all_stats['total'] }}}
+						<?php echo round ($all_stats['total'])?>
 						@else
 						0
 						@endif
