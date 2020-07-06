@@ -44,7 +44,7 @@
 	<!-- Quick Stats -->
 	<h3>Atlanta ARTCC Quick Statistics</h3>
 	<div class="row gutters-tiny">
-	
+
 		<div class="col-4 col-xl-4">
 			<a class="block block-link-pop text-right bg-gd-emerald">
 				<div class="block-content block-content-full clearfix border-black-op-b border-3x">
@@ -140,10 +140,10 @@
 												<td class="text-center">{{{$h->backwards_name}}}</td>
 												<td class="text-center">{{{$h->id}}}</td>
 												<td class="text-center">{{{$h->rating_short}}}</td>
-												<td class="text-center">{{{$stats[$h->id]->local_hrs}}}</td>
-												<td class="text-center">{{{$stats[$h->id]->approach_hrs}}}</td>
-												<td class="text-center">{{{$stats[$h->id]->enroute_hrs}}}</td>
-												<td class="text-center">{{{$stats[$h->id]->total_hrs}}}</td>
+												<td class="text-center">{{{$stats[$h->id]-><?php echo round (local_hrs)?>}}}</td>
+												<td class="text-center">{{{$stats[$h->id]-><?php echo round (approach_hrs)?>}}}</td>
+												<td class="text-center">{{{$stats[$h->id]-><?php echo round (enroute_hrs)?>}}}</td>
+												<td class="text-center">{{{$stats[$h->id]-><?php echo round (total_hrs)?>}}}</td>
 											</tr>
 											@endif
                                         @empty
@@ -154,7 +154,7 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 					<div class="tab-pane" id="visiting" role="tabpanel">
 						<h4 class="font-w400">Visiting Controllers</h4>
@@ -193,7 +193,7 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -204,7 +204,7 @@
 	<!-- END Home Controller & Visiting Controller Tabs -->
 
 	</div>
-		
+
 <!-- END Page Content -->
 
 
