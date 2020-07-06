@@ -8,7 +8,7 @@
 @section('content')
 
 <!-- Hero -->
-<div class="bg-image bg-image-bottom" style="background-image: url('/assets_new/img/photos/roster_lp_bg.jpg');">
+<div class="bg-image bg-image-bottom" style="background-image: url('/assets_new/img/photos/feedback.jpg');">
 	<div class="bg-black-op-75">
 		<div class="content content-center text-center">
 			<div class="pt-50 pb-20">
