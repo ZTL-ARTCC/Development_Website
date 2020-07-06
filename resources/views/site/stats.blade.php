@@ -140,10 +140,10 @@
 												<td class="text-center">{{{$h->backwards_name}}}</td>
 												<td class="text-center">{{{$h->id}}}</td>
 												<td class="text-center">{{{$h->rating_short}}}</td>
-												<td class="text-center">{{{$stats[$h->id]-><?php echo round (local_hrs)?>}}}</td>
-												<td class="text-center">{{{$stats[$h->id]-><?php echo round (approach_hrs)?>}}}</td>
-												<td class="text-center">{{{$stats[$h->id]-><?php echo round (enroute_hrs)?>}}}</td>
-												<td class="text-center">{{{$stats[$h->id]-><?php echo round (total_hrs)?>}}}</td>
+												<td class="text-center">{{{$stats[$h->id]->local_hrs}}}</td>
+												<td class="text-center">{{{$stats[$h->id]->approach_hrs}}}</td>
+												<td class="text-center">{{{$stats[$h->id]->enroute_hrs}}}</td>
+												<td class="text-center">{{{$stats[$h->id]->total_hrs}}}</td>
 											</tr>
 											@endif
                                         @empty
