@@ -71,9 +71,14 @@ class FrontController extends Controller
             $metar_last_updated = null;
         }
 
-        $controllers = ATC::get();
-        $last_update = ControllerLogUpdate::first();
-        $controllers_update = substr($last_update->created_at, -8, 5);
+        try {
+            $controllers = ATC::get();
+            $last_update = ControllerLogUpdate::first();
+            $controllers_update = substr($last_update->created_at, -8, 5);
+        } catch (Throwable $e) {
+            $last_update = 0;
+            $controllers_update = 0;
+        }
 
         $now = Carbon::now();
 
