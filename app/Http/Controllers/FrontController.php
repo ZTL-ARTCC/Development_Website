@@ -75,9 +75,9 @@ class FrontController extends Controller
             $controllers = ATC::get();
             $last_update = ControllerLogUpdate::first();
             $controllers_update = substr($last_update->created_at, -8, 5);
-        } catch (Throwable $e) {
-            $last_update = 0;
-            $controllers_update = 0;
+        } catch (\Exception $e) {
+            $last_update = null;
+            $controllers_update = null;
         }
 
         $now = Carbon::now();
@@ -105,6 +105,15 @@ class FrontController extends Controller
         $lastTop5 = ControllerLog::top5Controllers(date('Y-n', strtotime("first day of previous month")));
         $currentTop5 = ControllerLog::top5Controllers(date('Y-n'));
         $currentTop3 = ControllerLog::top3Controllers(date('Y-n'));
+        try {
+            $lastTop5 = ControllerLog::top5Controllers(date('Y-n', strtotime("first day of previous month")));
+            $currentTop5 = ControllerLog::top5Controllers(date('Y-n'));
+            $currentTop3 = ControllerLog::top3Controllers(date('Y-n'));
+        } catch (\Exception $e) {
+            $lastTop5 = null;
+            $currentTop5 =  null;
+            $currentTop3 =  null;
+        }
         return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)
             ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
             ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
