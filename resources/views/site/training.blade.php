@@ -19,7 +19,7 @@
 			</h1>
 			@if(Auth::user()->canTrain == 1)
 			<br />
-			<script id="setmore_script" type="text/javascript" src="training.ztlartcc.org"></script><a class="btn btn-hero btn-noborder btn-rounded btn-alt-primary js-appear-enabled animated fadeInUp" data-toggle="appear" data-class="animated fadeInUp" data-timeout="300" href="https://my.setmore.com/bookingpage/3598990c-a847-4107-81eb-de1794648684/"><i class="fa fa-calendar-plus-o mr-5"></i> Book a Training Session</a>
+			<href="https://training.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide">Book a Training Session</span></a>
 			@endif
 		</div>
 	</div>
