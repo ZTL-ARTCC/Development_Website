@@ -48,7 +48,7 @@
                             <p class="mt-5">
                                 <i class="si si-magnifier fa-3x text-white-op"></i>
                             </p>
-                            <p class="font-w600 text-white">VATUSA Main site</p>
+                            <p class="font-w600 text-white">VATUSA Main Site</p>
                         </div>
                     </a>
                 </div>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
 
-                            <h2 class="h3 font-w700 text-white mb-5">Upcomeing Events!</h2>
+                            <h2 class="h3 font-w700 text-white mb-5">Upcoming Events!</h2>
 
                         </div>
                     </a>
