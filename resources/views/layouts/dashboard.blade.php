@@ -196,23 +196,23 @@ MAIN CONTENT LAYOUT
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Training</span></li>
                     <li>
-                        <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com/bookingpage/3598990c-a847-4107-81eb-de1794648684">Schedule a Training Session</a>
+                        <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide">Book a Session</span></a>
                     </li>
                     <li>
                         <a href="/dashboard/training/tickets"><i class="si si-cup"></i><span class="sidebar-mini-hide">Training Tickets</span></a>
                     </li>
                     <li>
-                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">OTS Center</span></a>
+                        
                     </li>
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Administration</span></li>
                     <li>
                     <li>
-                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Calendar/news</span></a>
+                        
                     </li>
                     <li>
-                        <a href="/dashboard/training/moodle/login"><i class="si si-cup"></i><span class="sidebar-mini-hide">Airport Management</span></a>
+                        
                     </li>
                 </ul>
             </div>
