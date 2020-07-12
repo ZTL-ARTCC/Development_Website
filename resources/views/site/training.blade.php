@@ -6,7 +6,6 @@
 @stop
 
 
-
 @section('content')
 
 <!-- Hero -->
@@ -19,11 +18,11 @@
 			</h1>
 			@if(Auth::user()->canTrain == 1)
 			<br />
+
 			<href="https://training.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide">Book a Training Session</span></a>
 			@endif
 		</div>
 	</div>
 </div>
 <!-- END Hero -->
-<!--sorry benny-->
 @stop

@@ -35,8 +35,6 @@
 <!-- Page Content -->
 <div class="content content-full">
 
-<div class="row">
-
 
 <div class="block">
 				<ul class="nav nav-tabs nav-tabs-alt align-items-center" data-toggle="tabs" role="tablist">
@@ -67,7 +65,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+
 					@forelse($hcontrollers as $h)
 					<tr>
 						@if(Auth::check())
@@ -83,7 +81,7 @@
 						<td class="text-center">
 							@if($h->loa == '1') <span class="badge badge-info">Leave</span> @else <span class="badge badge-success">Active</span> @endif
 						</td>
-						
+
 						@if($h->hasRole('atm'))
 							<td class="text-center">ATM</td>
 						@elseif($h->hasRole('datm'))
@@ -104,17 +102,17 @@
 							<td class="text-center">AFE</td>
 						@else
 							<td class="text-center">Home Controller</td>
-						@endif	
+						@endif
 						<td class="text-center">{{{$h->rating_short}}}</td>
-						
+
 						<td class="text-center">@if($h->del == '0') <span class="badge badge-secondary">None</span> @elseif($h->del == '1') <span class="badge badge-warning">Minor</span> @elseif($h->del == '2')<span class="badge badge-success">Major</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->gnd == '0') <span class="badge badge-secondary">None</span> @elseif($h->gnd == '1') <span class="badge badge-warning">Minor</span> @elseif($h->gnd == '2')<span class="badge badge-success">Major</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->twr == '0') <span class="badge badge-secondary">None</span> @elseif($h->twr == '1') <span class="badge badge-warning">Minor</span> @elseif($h->twr == '2')<span class="badge badge-success">Major</span> @elseif($h->twr == '99') <span class="badge badge-warning">Solo</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->app == '0') <span class="badge badge-secondary">None</span> @elseif($h->app == '1') <span class="badge badge-warning">Minor</span> @elseif($h->app == '2') <span class="badge badge-success">Major</span> @elseif($h->app == '99') <span class="badge badge-warning">Solo</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->ctr == '0') <span class="badge badge-secondary">None</span> @elseif($h->ctr == '2') <span class="badge badge-warning">Training</span> @elseif($h->ctr == '1') <span class="badge badge-success">Major</span> @elseif($h->ctr == '99') <span class="badge badge-warning">Solo</span> @endif</td>
 					</tr>
 					@empty
@@ -122,7 +120,7 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 					<div class="tab-pane" id="visiting" role="tabpanel">
 						<h4 class="font-w400">Visiting Controllers</h4>
@@ -143,7 +141,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+
 					@forelse($vcontrollers as $h)
 					<tr>
 						@if(Auth::check())
@@ -161,16 +159,16 @@
 						</td>
 						<td class="text-center">Visiting Controller</td>
 						<td class="text-center">{{{$h->rating_short}}}</td>
-						
-											
+
+
 						<td class="text-center">@if($h->del == '0') <span class="badge badge-secondary">None</span> @elseif($h->del == '1') <span class="badge badge-warning">Minor</span> @elseif($h->del == '2')<span class="badge badge-success">Major</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->gnd == '0') <span class="badge badge-secondary">None</span> @elseif($h->gnd == '1') <span class="badge badge-warning">Minor</span> @elseif($h->gnd == '2')<span class="badge badge-success">Major</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->twr == '0') <span class="badge badge-secondary">None</span> @elseif($h->twr == '1') <span class="badge badge-warning">Minor</span> @elseif($h->twr == '2')<span class="badge badge-success">Major</span> @elseif($h->twr == '99') <span class="badge badge-warning">Solo</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->app == '0') <span class="badge badge-secondary">None</span> @elseif($h->app == '1') <span class="badge badge-warning">Minor</span> @elseif($h->app == '2') <span class="badge badge-success">Major</span> @elseif($h->app == '99') <span class="badge badge-warning">Solo</span>@endif</td>
-						
+
 						<td class="text-center">@if($h->ctr == '0') <span class="badge badge-secondary">None</span> @elseif($h->ctr == '2') <span class="badge badge-warning">Training</span> @elseif($h->ctr == '1') <span class="badge badge-success">Major</span> @elseif($h->ctr == '99') <span class="badge badge-warning">Solo</span> @endif</td>
 					</tr>
 					@empty
@@ -178,13 +176,13 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 	</div>
 	<!-- END Visiting Controller Roster -->
-	
-	
-	
+
+
+
 </div>
 
 <!-- END Page Content -->
