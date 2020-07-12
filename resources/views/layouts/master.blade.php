@@ -109,7 +109,7 @@
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i>{{Auth::user()->full_name}}</a>
                                 <ul>
                                     <li><a href="/profile">Profile</a></li>
-									<li><a href="/training/notes">My Training</a></li>
+									<li><a href="https://training.ztlartcc.org">My Training</a></li>
 									@if(Auth::user()->can('snrStaff') || Auth::user()->can('staff') || Auth::user()->can('mentor') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('docs'))
 									<li><a href="/admin/">Admin Center</a></li>
 									@endif
