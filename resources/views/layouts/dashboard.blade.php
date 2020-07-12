@@ -198,10 +198,7 @@ MAIN CONTENT LAYOUT
                     <li>
                         <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide">Book a Session</span></a>
                     </li>
-                    <li>
-                        <a href="/dashboard/training/tickets"><i class="si si-cup"></i><span class="sidebar-mini-hide">Training Tickets</span></a>
-                    </li>
-                    <li>
+                
                         
                     </li>
 
