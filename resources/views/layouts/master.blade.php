@@ -111,7 +111,7 @@
                                     <li><a href="/profile">Profile</a></li>
 									<li><a href="/training/notes">My Training</a></li>
 									@if(Auth::user()->can('snrStaff') || Auth::user()->can('staff') || Auth::user()->can('mentor') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('docs'))
-									<li><a href="/admin/">Admin Center</a></li>
+								
 									@endif
 									<li><a href="/logout">Logout</a></li>
 								</ul>
@@ -195,13 +195,13 @@
                                 <a class="dropdown-item" href="/training/notes">
                                     <i class="si si-graduation mr-5"></i> My Training
                                 </a>
-                               
+                                    <a class="dropdown-item" href="https://www.ids.ztlartcc.org">
+                                      <i class="si si-graduation mr-5"></i> IDS
+                                </a>
                                 <!-- Toggle Side Overlay -->
                                 <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
 								@if(Auth::user()->can('snrStaff') || Auth::user()->can('staff') || Auth::user()->can('train') || Auth::user()->can('scenery') || Auth::user()->can('events') || Auth::user()->can('files'))
 								<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin">
-                                    <i class="si si-wrench mr-5"></i> Admin Center
                                 </a>
 								@endif
                                 <!-- END Side Overlay -->
