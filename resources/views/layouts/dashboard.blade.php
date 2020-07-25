@@ -191,23 +191,25 @@ MAIN CONTENT LAYOUT
                     <li>
                         <a href="/dashboard/controllers/incident/report"><i class="si si-cup"></i><span class="sidebar-mini-hide">Incident Report</span></a>
                     </li>
-
+                </li>
+                    <a href="https://IDS.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide"> IDS</span></a>
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Training</span></li>
-                    <li>
-                        <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide">Book a Session</span></a>
+
+                       <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span
+                                    class="sidebar-mini-hide">Training Sessions</span></a>
                     </li>
-                
+                    <li>
+                    
+
+                    </li>
+
+                   
+                    <li>
                         
                     </li>
 
-                    <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
-                                class="sidebar-mini-hidden">Administration</span></li>
-                    <li>
-                    <li>
-                        
-                    </li>
                     <li>
                         
                     </li>
