@@ -85,7 +85,7 @@
                                 </div>
                             </div>
 
-                            <h2 class="h3 font-w700 text-white mb-5">Upcomeing Events!</h2>
+                            <h2 class="h3 font-w700 text-white mb-5">Upcoming Events!</h2>
 
                         </div>
                     </a>

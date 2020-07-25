@@ -196,16 +196,20 @@ MAIN CONTENT LAYOUT
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
                                 class="sidebar-mini-hidden">Training</span></li>
-                    <li>
+
                        <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span
                                     class="sidebar-mini-hide">Training Sessions</span></a>
                     </li>
                     <li>
                     
+
                     </li>
 
                    
                     <li>
+                        
+                    </li>
+
                     <li>
                         
                     </li>

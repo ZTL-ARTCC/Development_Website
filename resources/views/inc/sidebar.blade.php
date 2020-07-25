@@ -40,6 +40,8 @@
 
             <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
 
+            <script id="setmore_script" type="text/javascript" src="https://ids.ztlartcc.org/"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://ids.ztlartcc.org">IDS </a>
+            
         </div>
 
         @if(Auth::user()->canTrain == 1 || Auth::user()->can('train'))
@@ -56,9 +58,9 @@
 
             <div class="content">
 
-                <a class="nav-link" href="/dashboard/training/moodle/login" target="_blank">Access Moodle</a>
+                
 
-                <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com/bookingpage/3598990c-a847-4107-81eb-de1794648684">Schedule a Training Session</a>
+                <script id="setmore_script" type="text/javascript" src="https://training.ztlartcc.org/"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://training.ztlartcc.org/">Schedule a Training Session</a>
 
                 <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/info') }}" href="/dashboard/training/info">Training Information</a>
 
