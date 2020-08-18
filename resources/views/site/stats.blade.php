@@ -44,7 +44,7 @@
 	<!-- Quick Stats -->
 	<h3>Atlanta ARTCC Quick Statistics</h3>
 	<div class="row gutters-tiny">
-	
+
 		<div class="col-4 col-xl-4">
 			<a class="block block-link-pop text-right bg-gd-emerald">
 				<div class="block-content block-content-full clearfix border-black-op-b border-3x">
@@ -53,7 +53,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['month']))
-						{{{ $all_stats['month'] }}}
+						<?php echo round ($all_stats['month']) ?>
 						@else
 						0
 						@endif
@@ -71,7 +71,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['year']))
-						{{{ $all_stats['year'] }}}
+						<?php echo round ($all_stats['year'])?>
 						@else
 						0
 						@endif
@@ -88,7 +88,7 @@
 					</div>
 					<div class="font-size-h3 font-w600 text-white">
 						@if(!empty($all_stats['total']))
-						{{{ $all_stats['total'] }}}
+						<?php echo round ($all_stats['total'])?>
 						@else
 						0
 						@endif
@@ -154,7 +154,7 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 					<div class="tab-pane" id="visiting" role="tabpanel">
 						<h4 class="font-w400">Visiting Controllers</h4>
@@ -193,7 +193,7 @@
                                     </tbody>
                                 </table>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -204,7 +204,7 @@
 	<!-- END Home Controller & Visiting Controller Tabs -->
 
 	</div>
-		
+
 <!-- END Page Content -->
 
 

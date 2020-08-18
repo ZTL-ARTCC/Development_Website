@@ -17,7 +17,7 @@
                     <div class="hero bg-black-op-25">
 					<div class="hero-inner">
                         <div class="content content-full text-center">
-                                <h1 class="display-3 font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInDown">Welcome to Atlanta</h1>
+                                <h1 class="display-3 font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInDown">Welcome to the Atlanta ARTCC</h1>
                                 <h2 class="font-w400 text-white-op mb-50 invisible" data-toggle="appear" data-class="animated fadeInDown">Part of VATUSA and VATSIM</h2>
                                 <!--<a class="btn btn-hero btn-noborder btn-rounded btn-success mr-5 mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp" href="#">
                                     <i class="fa fa-info mr-10"></i> About Us
