@@ -8,119 +8,119 @@
 
         <!-- Page Content -->
         <div class="content">
-            <div class="row gutters-tiny invisible" data-toggle="appear">
-                <!-- Row #1 -->
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="/training/notes">
-                        <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
+            <div class="row gutters-tiny invisible" data-toggle"appear">
+            <!-- Row #1 -->
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="/training/notes">
+                    <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
 
-                            <p class="mt-5">
-                                <i class="si si-book-open fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">My Training</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="/events">
-                        <div class="block-content bg-gd-primary">
-                            <p class="mt-5">
-                                <i class="si si-plus fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">Events</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="/controller/feedback">
-                        <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
-
-                            <p class="mt-5">
-                                <i class="si si-bubbles fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">Submit Feedback</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="www.vatusa.net">
-                        <div class="block-content bg-gd-lake">
-                            <p class="mt-5">
-                                <i class="si si-magnifier fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">VATUSA Main site</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="/stats">
-                        <div class="block-content bg-gd-emerald">
-                            <p class="mt-5">
-                                <i class="si si-bar-chart fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">Statistics</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block text-center" href="javascript:void(0)">
-                        <div class="block-content bg-gd-corporate">
-                            <p class="mt-5">
-                                <i class="si si-settings fa-3x text-white-op"></i>
-                            </p>
-                            <p class="font-w600 text-white">Settings</p>
-                        </div>
-                    </a>
-                </div>
-                <!-- END Row #1 -->
+                        <p class="mt-5">
+                            <i class="si si-book-open fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">My Training</p>
+                    </div>
+                </a>
             </div>
-            <div class="row row-deck gutters-tiny invisible" data-toggle="appear">
-                <!-- Row #2 -->
-                <div class="col-xl-4">
-                    <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo24@2x.jpg');">
-                        <div class="block-content block-sticky-options pt-100 bg-black-op">
-                            <div class="block-options block-options-left text-white">
-                                <div class="block-options-item">
-                                    <i class="si si-book-open text-white-op"></i>
-                                </div>
-                            </div>
-
-                            <h2 class="h3 font-w700 text-white mb-5">Upcoming Events!</h2>
-
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo32@2x.jpg');">
-                        <div class="block-content block-sticky-options pt-100 bg-primary-dark-op">
-                            <div class="block-options block-options-left text-white">
-                                <div class="block-options-item">
-                                    <i class="si si-book-open text-white-op"></i>
-                                </div>
-                            </div>
-
-                            <h2 class="h3 font-w700 text-white mb-5">New News!</h2>
-
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo10@2x.jpg');">
-                        <div class="block-content block-sticky-options pt-100 bg-primary-op">
-
-
-                            <h2 class="h3 font-w700 text-white mb-5">Check Your Email!</h2>
-                            <h3 class="h5 text-white-op">{{{$user->email}}}</h3>
-                        </div>
-                    </a>
-                </div>
-                <!-- END Row #2 -->
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="/events">
+                    <div class="block-content bg-gd-primary">
+                        <p class="mt-5">
+                            <i class="si si-plus fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">Events</p>
+                    </div>
+                </a>
             </div>
-            <div class="row gutters-tiny invisible" data-toggle="appear">
-                <!-- Row #3 -->
-                <div class="col-xl-8 d-flex align-items-stretch">
-                    <div class="block block-themed block-mode-loading-inverse block-transparent bg-image w-100" style="background-image: url('assets/media/photos/photo34@2x.jpg');">
-                        <div class="block-header bg-black-op">
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="/controller/feedback">
+                    <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
+
+                        <p class="mt-5">
+                            <i class="si si-bubbles fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">Submit Feedback</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="www.vatusa.net">
+                    <div class="block-content bg-gd-lake">
+                        <p class="mt-5">
+                            <i class="si si-magnifier fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">VATUSA Main site</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="/stats">
+                    <div class="block-content bg-gd-emerald">
+                        <p class="mt-5">
+                            <i class="si si-bar-chart fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">Statistics</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+                <a class="block text-center" href="javascript:void(0)">
+                    <div class="block-content bg-gd-corporate">
+                        <p class="mt-5">
+                            <i class="si si-settings fa-3x text-white-op"></i>
+                        </p>
+                        <p class="font-w600 text-white">Settings</p>
+                    </div>
+                </a>
+            </div>
+            <!-- END Row #1 -->
+        </div>
+        <div class="row row-deck gutters-tiny invisible" data-toggle="appear">
+            <!-- Row #2 -->
+            <div class="col-xl-4">
+                <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo24@2x.jpg');">
+                    <div class="block-content block-sticky-options pt-100 bg-black-op">
+                        <div class="block-options block-options-left text-white">
+                            <div class="block-options-item">
+                                <i class="si si-book-open text-white-op"></i>
+                            </div>
+                        </div>
+
+                        <h2 class="h3 font-w700 text-white mb-5">Upcoming Events!</h2>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo32@2x.jpg');">
+                    <div class="block-content block-sticky-options pt-100 bg-primary-dark-op">
+                        <div class="block-options block-options-left text-white">
+                            <div class="block-options-item">
+                                <i class="si si-book-open text-white-op"></i>
+                            </div>
+                        </div>
+
+                        <h2 class="h3 font-w700 text-white mb-5">New News!</h2>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <a class="block block-transparent bg-image d-flex align-items-stretch" href="javascript:void(0)" style="background-image: url('assets/media/photos/photo10@2x.jpg');">
+                    <div class="block-content block-sticky-options pt-100 bg-primary-op">
+
+
+                        <h2 class="h3 font-w700 text-white mb-5">Check Your Email!</h2>
+                        <h3 class="h5 text-white-op">{{{$user->email}}}</h3>
+                    </div>
+                </a>
+            </div>
+            <!-- END Row #2 -->
+        </div>
+        <div class="row gutters-tiny invisible" data-toggle="appear">
+            <!-- Row #3 -->
+            <div class="col-xl-8 d-flex align-items-stretch">
+                <div class="block block-themed block-mode-loading-inverse block-transparent bg-image w-100" style="background-image: url('assets/media/photos/photo34@2x.jpg');">
+                    <div class="block-header bg-black-op">=
                             <div class="ribbon-box">Certifications</div>
                             <table class="table table-borderless table-vcenter" style="font-size: 1.5em;">
                                 <tbody>
@@ -224,7 +224,13 @@
                                 <div class="float-right mt-15 d-none d-sm-block">
                                     <i class="si si-book-open fa-2x text-success"></i>
                                 </div>
-                                <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="750">0</div>
+                                @if($personal_stats->total_hrs < 0)
+                                <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="{{ $personal_stats->total_hrs }}">
+                                    @else
+                                        0
+                                    @endif</div>
+
+                                </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-success-light">Hours This Month</div>
                             </div>
 
