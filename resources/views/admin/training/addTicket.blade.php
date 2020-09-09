@@ -52,7 +52,6 @@
                     {!! Form::select('position', [
                                                  7 => 'S1T1-DEL-1 (Theory)',
                         8 => 'S1P1-DEL-2',
-                        9 => 'S1P2-DEL-3',
                         10 => 'S1M1-DEL-4 (Live Network Monitoring – CLT)',
                         11 => 'S1T2-DEL-5 (Theory, ATL)',
                         12 => 'S1P3-DEL-6',
