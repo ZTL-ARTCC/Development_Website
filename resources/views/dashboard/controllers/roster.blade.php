@@ -37,7 +37,7 @@
         @endif
         <ul class="nav nav-tabs nav-justified" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" href="#home" role="tab" data-toggle="tab" style="color:black">Home Controllers</a>
+                <a class="nav-link active" href="#home" role="tab" data-toggle="tab" style="color:black">Home Controller</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#visit" role="tab" data-toggle="tab" style="color:black">Visiting Controllers</a>
