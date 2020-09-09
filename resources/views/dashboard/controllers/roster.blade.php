@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-sm-2">
-                <p>Minor Certifications:</p>
+                <p>Minor Certification:</p>
             </div>
             <div class="col-sm-2">
                 <i class="far fa-check-circle" style="color:green"></i>
