@@ -39,7 +39,7 @@
 <div class="block">
 				<ul class="nav nav-tabs nav-tabs-alt align-items-center" data-toggle="tabs" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" href="#home">Home Controllers</a>
+						<a class="nav-link active" href="#home">Home Controller</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#visiting">Visiting Controllers</a>
