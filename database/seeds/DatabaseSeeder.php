@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
             ControllerUpdateSeeder::class,
             FlightsWithinArtccSeeder::class,
             LaratrustSeeder::class,
-            OverflightUpdateSeeder::class,
-            PositionPresetSeeder::class,
             RolesSeeder::class,
             RosterSeeder::class,
             SoloCertsSeeder::class,
