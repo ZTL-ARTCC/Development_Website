@@ -15,11 +15,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         "KWRB", "KJQF", "KVUJ", "KINT", "KTRI", "KLZU", "KASN", "KHKY", "KPDK");
 
     return [
+        "id" => $faker->randomNumber(6),
         "fname" => $firstName,
         "lname" => $lastName,
         "initials" => substr($firstName, -1, 1).substr($firstName, -1, 1),
         "email" => $faker->email,
-        "rating_id" => $faker->numberBetween(0, 10),
+        "rating_id" => $faker->numberBetween(0, 4),
         "canTrain" => $faker->numberBetween(0, 1),
         "canEvents" => $faker->numberBetween(0, 1),
         "visitor" => $faker->numberBetween(0, 1),
@@ -32,7 +33,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         "twr" => $faker->numberBetween(0, 1),
         "app" => $faker->numberBetween(0, 1),
         "ctr" => $faker->numberBetween(0, 1),
-        "train_pwr" => $faker->randomNumber(6),
+        "train_pwr" => $faker->numberBetween(0, 1),
         "monitor_pwr" => $faker->numberBetween(0, 4),
         "opt" => $faker->numberBetween(0, 1),
         "remember_token" => $faker->text(100),
