@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AirportWeatherSeeder extends Seeder
+class VisitAgreementRejectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class AirportWeatherSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\AirportWeather::class, 100)->create();
+        factory(App\VisitRej::class, 100)->create();
     }
 }

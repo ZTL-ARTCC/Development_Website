@@ -12,13 +12,26 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            LaratrustSeeder::class,
-            PositionPresetSeeder::class,
-            ControllerUpdateSeeder::class,
-            OverflightUpdateSeeder::class,
-            AirportWeatherSeeder::class,
             AirportsSeeder::class,
-            AnnouncementSeeder::class
+            AirportWeatherSeeder::class,
+            AnnouncementSeeder::class,
+            AuditsSeeder::class,
+            BronzeMicSeeder::class,
+            CalendarSeeder::class,
+            ChatRoomSeeder::class,
+            ControllerLogSeeder::class,
+            ControllerUpdateSeeder::class,
+            FlightsWithinArtccSeeder::class,
+            LaratrustSeeder::class,
+            OverflightUpdateSeeder::class,
+            PositionPresetSeeder::class,
+            RolesSeeder::class,
+            RosterSeeder::class,
+            SoloCertsSeeder::class,
+            TrainingInfoSeeder::class,
+            TrainingTicketsSeeder::class,
+            VisitAgreementRejectSeeder::class,
+            VisitRequestSeeder::class
         ]);
     }
 }
