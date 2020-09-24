@@ -2,15 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class ControllerLogSeeder extends Seeder
-{
+class ControllerLogSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         factory(App\ControllerLog::class, 100)->create();
     }
 }

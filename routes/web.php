@@ -9,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,7 +54,7 @@ Route::prefix('')->middleware('auth')->group(function() {
 Route::get('/roster', 'RosterController@index');
 Route::get('/controllers/staff', 'RosterController@staffIndex');
 Route::get('/login', 'RosterController@login');
-Route::get('login', [ 'as' => 'login', 'uses' => 'RosterController@login']);
+Route::get('login', ['as' => 'login', 'uses' => 'RosterController@login']);
 Route::get('/logout', 'RosterController@logout');
 Route::get('/news/view/{id}', 'FrontController@showCalendarEvent');
 
@@ -274,6 +275,6 @@ Route::get('/discord/logout', 'DiscordController@logoutOfDiscord');
 *	Use this to grant yourself webmaster privileges. Should be disabled for security reasons.
 */
 Route::get('/laratrust', function() {
-	$user = App\User::find(1420055);
-	$user->attachRole('wm');
+    $user = App\User::find(1420055);
+    $user->attachRole('wm');
 });

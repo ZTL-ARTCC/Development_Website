@@ -7,17 +7,14 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ChatController extends Controller
-{
-    public function getMessages()
-    {
+class ChatController extends Controller {
+    public function getMessages() {
         $messages = Chat::where('deleted', 0)->orderBy('created_at', 'DESC')->get();
 
         return json_encode(['success' => true, 'messages' => $messages]);
     }
 
-    public function newMessage(Request $request)
-    {
+    public function newMessage(Request $request) {
         $time_now = Carbon::now();
         $time_format = $time_now->format('m/d/y H:i');
 
@@ -32,13 +29,13 @@ class ChatController extends Controller
         return json_encode(['success' => true]);
     }
 
-    public function deleteMessage(Request $request, $id)
-    {
+    public function deleteMessage(Request $request, $id) {
         $message = Chat::find($id);
         $requester = User::find($request->cid);
 
-        if ($request->cid == $message->cid || $requester->can('snrStaff'))
+        if ($request->cid == $message->cid || $requester->can('snrStaff')) {
             $message->deleted = 1;
+        }
 
         $message->save();
 

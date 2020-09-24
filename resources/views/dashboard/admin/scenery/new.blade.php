@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-New Scenery
+    New Scenery
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>New Scenery</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => 'AdminDash@storeScenery']) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>New Scenery</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => 'AdminDash@storeScenery']) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -70,10 +70,10 @@ New Scenery
             <div class="col-sm-1">
                 <button class="btn btn-success" type="submit">Submit</button>
             </div>
-    {!! Form::close() !!}
+            {!! Form::close() !!}
             <div class="col-sm-1">
                 <a href="/dashboard/admin/scenery" class="btn btn-danger">Cancel</a>
             </div>
         </div>
-</div>
+    </div>
 @endsection

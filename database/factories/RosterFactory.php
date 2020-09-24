@@ -5,20 +5,20 @@
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Carbon;
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function(Faker\Generator $faker) {
     $time = Carbon::now();
     $firstName = $faker->firstName;
     $lastName = $faker->lastName;
     $icaos = array("KATL", "KCLT",
-        "KBHM", "KGSP", "KAVL", "KGSO", "KTYS", "KCHA", "KFTY", "KRYY", "KAHN",
-        "KAGS", "KGMU", "KGYH", "KTCL", "KMXF", "KMGM", "KLSF", "KCSG", "KMCN",
-        "KWRB", "KJQF", "KVUJ", "KINT", "KTRI", "KLZU", "KASN", "KHKY", "KPDK");
+                   "KBHM", "KGSP", "KAVL", "KGSO", "KTYS", "KCHA", "KFTY", "KRYY", "KAHN",
+                   "KAGS", "KGMU", "KGYH", "KTCL", "KMXF", "KMGM", "KLSF", "KCSG", "KMCN",
+                   "KWRB", "KJQF", "KVUJ", "KINT", "KTRI", "KLZU", "KASN", "KHKY", "KPDK");
 
     return [
         "id" => $faker->randomNumber(6),
         "fname" => $firstName,
         "lname" => $lastName,
-        "initials" => substr($firstName, -1, 1).substr($firstName, -1, 1),
+        "initials" => substr($firstName, -1, 1) . substr($firstName, -1, 1),
         "email" => $faker->email,
         "rating_id" => $faker->numberBetween(0, 4),
         "canTrain" => $faker->numberBetween(0, 1),

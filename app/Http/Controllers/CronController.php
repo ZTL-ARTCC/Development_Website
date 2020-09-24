@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Http\Request;
 
-class CronController extends Controller
-{
-    public function index(Request $request)
-    {
+class CronController extends Controller {
+    public function index(Request $request) {
         $job = $request->j;
         $token = $request->t;
 
-        function command_exists($name)
-        {
+        function command_exists($name) {
             return array_has(Artisan::all(), $name);
         }
 

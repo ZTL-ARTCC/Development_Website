@@ -5,29 +5,31 @@ namespace App\Http\Controllers;
 use App\Opt;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use SimpleXMLElement;
 
-class RosterController extends Controller
-{
-    public function index()
-    {
+class RosterController extends Controller {
+    public function index() {
         $hcontrollers = User::where('visitor', '0')->where('status', '1')->orderBy('lname', 'ASC')->get();
-        $vcontrollers = User::where('visitor', '1')->where('status', '1')->where('visitor_from', '!=', 'ZJX')->orderBy('lname', 'ASC')->get();
-        $visagreecontrollers = User::where('visitor', '1')->where('visitor_from', 'ZJX')->orderBy('visitor_from', 'ASC')->orderBy('lname', 'ASC')->get();
+        $vcontrollers = User::where('visitor', '1')->where('status', '1')->where('visitor_from', '!=', 'ZJX')
+                            ->orderBy('lname', 'ASC')->get();
+        $visagreecontrollers =
+            User::where('visitor', '1')->where('visitor_from', 'ZJX')->orderBy('visitor_from', 'ASC')
+                ->orderBy('lname', 'ASC')->get();
 
-        return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)->with('visagreecontrollers', $visagreecontrollers);
+        return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)
+                                  ->with('visagreecontrollers', $visagreecontrollers);
     }
 
-    public function ajax_get_user_info($cid)
-    {
-        if (empty($cid) || !is_numeric($cid))
+    public function ajax_get_user_info($cid) {
+        if (empty($cid) || !is_numeric($cid)) {
             return Response::json(['error' => 'Invalid or empty cid given']);
+        }
         $client = new Client;
         $url = sprintf(Config::get('services.vatsim.url'), $cid);
         $result = $client->get($url);
@@ -52,8 +54,7 @@ class RosterController extends Controller
      * @return Response
      */
 
-    public function login()
-    {
+    public function login() {
         if (Auth::check()) {
             return redirect('/')->with('error', 'You are already logged in.');
         }
@@ -63,17 +64,21 @@ class RosterController extends Controller
                 header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility'));
                 exit;
             }
-        } elseif (Config::get('app.url') == 'https://development.ztlartcc.org') {
-            if (!Auth::check() && !isset($_GET['token'])) {
-                $_SESSION['redirect'] = Config::get('app.url');
-                header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility') . "&dev=1&url=2");
-                exit;
-            }
         } else {
-            if (!Auth::check() && !isset($_GET['token'])) {
-                $_SESSION['redirect'] = Config::get('app.url');
-                header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility') . "&dev=1&url=3");
-                exit;
+            if (Config::get('app.url') == 'https://development.ztlartcc.org') {
+                if (!Auth::check() && !isset($_GET['token'])) {
+                    $_SESSION['redirect'] = Config::get('app.url');
+                    header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility') .
+                           "&dev=1&url=2");
+                    exit;
+                }
+            } else {
+                if (!Auth::check() && !isset($_GET['token'])) {
+                    $_SESSION['redirect'] = Config::get('app.url');
+                    header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility') .
+                           "&dev=1&url=3");
+                    exit;
+                }
             }
         }
 
@@ -90,7 +95,8 @@ class RosterController extends Controller
             return redirect('/')->with('error', "Invalid Operation");
         }
 
-        $sig = $this->base64url_encode(hash_hmac($algorithms[$jwk['alg']], "$parts[0].$parts[1]", $this->base64url_decode($jwk['k']), true));
+        $sig = $this->base64url_encode(hash_hmac($algorithms[$jwk['alg']], "$parts[0].$parts[1]",
+                                                 $this->base64url_decode($jwk['k']), true));
 
         $signature = $this->base64url_decode($parts[1]);
         $json_token = json_decode($signature, true)['sig'];
@@ -126,7 +132,9 @@ class RosterController extends Controller
                     $userstatuscheck->rating_id = $res['intRating'];
                     $userstatuscheck->json_token = encrypt($json_token);
                     $client = new Client();
-                    $response = $client->request('GET', 'https://api.vatusa.net/v2/user/' . $res['cid'] . '?apikey=' . Config::get('vatusa.api_key'));
+                    $response = $client->request('GET',
+                                                 'https://api.vatusa.net/v2/user/' . $res['cid'] . '?apikey=' .
+                                                 Config::get('vatusa.api_key'));
                     $resu = json_decode($response->getBody());
                     if ($resu->flag_broadcastOptedIn == 1) {
                         if ($userstatuscheck->opt != 1) {
@@ -139,7 +147,9 @@ class RosterController extends Controller
                             $userstatuscheck->opt = 1;
                         }
                     } else {
-                        $user_opt = Opt::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')->where('option', 1)->first();
+                        $user_opt =
+                            Opt::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')
+                               ->where('option', 1)->first();
                         if ($userstatuscheck->opt != 0 && !isset($user_opt)) {
                             $opt = new Opt;
                             $opt->controller_id = $res['cid'];
@@ -170,179 +180,227 @@ class RosterController extends Controller
                             // Update the moodle user
                             // Makes sure the user isn't deleted in moodle and updates their email
                             DB::table('mdl_user')->where('id', $moodle->id)->update(['deleted' => 0]);
-                            DB::table('mdl_user')->where('id', $moodle->id)->update(['email' => $userstatuscheck->email]);
+                            DB::table('mdl_user')->where('id', $moodle->id)
+                              ->update(['email' => $userstatuscheck->email]);
 
                             // Check for mentor
-                            $old_mtr_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)->where('roleid', 15);
-                            if ($old_mtr_role)
+                            $old_mtr_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)
+                                              ->where('roleid', 15);
+                            if ($old_mtr_role) {
                                 $old_mtr_role->delete();
+                            }
                             if ($userstatuscheck->hasRole('mtr')) {
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 15,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => 15,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
                             }
 
                             // Check for staff
-                            $all_staff_roles = DB::table('mdl_role_assignments')->where('roleid', 16)->orWhere('roleid', 17)->get();
+                            $all_staff_roles =
+                                DB::table('mdl_role_assignments')->where('roleid', 16)->orWhere('roleid', 17)
+                                  ->get();
 
                             // Go through each staff role and find the one that matches, if any
                             $old_staff_role = null;
                             foreach ($all_staff_roles as $r) {
-                                if ($r->userid == $userstatuscheck->id)
+                                if ($r->userid == $userstatuscheck->id) {
                                     $old_staff_role = $r;
+                                }
                             }
 
                             // Delete the old role
-                            if ($old_staff_role)
+                            if ($old_staff_role) {
                                 DB::table('mdl_role_assignments')->where('id', $old_staff_role->id)->delete();
+                            }
 
                             if ($userstatuscheck->can('snrStaff')) {
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 17,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
-                            } elseif ($userstatuscheck->can('staff')) {
-                                $now = Carbon::now()->timestamp;
-                                DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 16,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => 17,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
+                            } else {
+                                if ($userstatuscheck->can('staff')) {
+                                    $now = Carbon::now()->timestamp;
+                                    DB::table('mdl_role_assignments')->insert([
+                                                                                  'roleid' => 16,
+                                                                                  'contextid' => 1,
+                                                                                  'userid' => $userstatuscheck->id,
+                                                                                  'modifierid' => 1,
+                                                                                  'timemodified' => $now
+                                                                              ]);
+                                }
                             }
 
                             //Assigns role in moodle database and adds the user to moodle
                             if ($rating_old != $userstatuscheck->rating_id) {
-                                $old_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)->where('roleid', '!=', 15)->where('roleid', '!=', 16)->where('roleid', '!=', 17);
+                                $old_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)
+                                              ->where('roleid', '!=', 15)->where('roleid', '!=', 16)
+                                              ->where('roleid', '!=', 17);
                                 $old_role->delete();
 
                                 if ($userstatuscheck->rating_id == 1) {
                                     $mdl_rating = 18;
-                                } elseif ($userstatuscheck->rating_id == 2) {
-                                    $mdl_rating = 9;
-                                } elseif ($userstatuscheck->rating_id == 3) {
-                                    $mdl_rating = 10;
-                                } elseif ($userstatuscheck->rating_id == 4) {
-                                    $mdl_rating = 11;
-                                } elseif ($userstatuscheck->rating_id == 5) {
-                                    $mdl_rating = 12;
-                                } elseif ($userstatuscheck->rating_id == 7 || $userstatuscheck->rating_id == 11 || $userstatuscheck->rating_id == 12) {
-                                    $mdl_rating = 13;
-                                } elseif ($userstatuscheck->rating_id == 8 || $userstatuscheck->rating_id == 10) {
-                                    $mdl_rating = 14;
                                 } else {
-                                    $mdl_rating = 0;
+                                    if ($userstatuscheck->rating_id == 2) {
+                                        $mdl_rating = 9;
+                                    } else {
+                                        if ($userstatuscheck->rating_id == 3) {
+                                            $mdl_rating = 10;
+                                        } else {
+                                            if ($userstatuscheck->rating_id == 4) {
+                                                $mdl_rating = 11;
+                                            } else {
+                                                if ($userstatuscheck->rating_id == 5) {
+                                                    $mdl_rating = 12;
+                                                } else {
+                                                    if ($userstatuscheck->rating_id == 7 ||
+                                                        $userstatuscheck->rating_id == 11 ||
+                                                        $userstatuscheck->rating_id == 12) {
+                                                        $mdl_rating = 13;
+                                                    } else {
+                                                        if ($userstatuscheck->rating_id == 8 ||
+                                                            $userstatuscheck->rating_id == 10) {
+                                                            $mdl_rating = 14;
+                                                        } else {
+                                                            $mdl_rating = 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => $mdl_rating,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => $mdl_rating,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
                             }
                         } else {
                             //Adds user to moodle database
                             DB::table('mdl_user')->insert([
-                                'id' => $userstatuscheck->id,
-                                'confirmed' => 1,
-                                'mnethostid' => 1,
-                                'username' => $userstatuscheck->id,
-                                'firstname' => $userstatuscheck->fname,
-                                'lastname' => $userstatuscheck->lname,
-                                'email' => $userstatuscheck->email
-                            ]);
+                                                              'id' => $userstatuscheck->id,
+                                                              'confirmed' => 1,
+                                                              'mnethostid' => 1,
+                                                              'username' => $userstatuscheck->id,
+                                                              'firstname' => $userstatuscheck->fname,
+                                                              'lastname' => $userstatuscheck->lname,
+                                                              'email' => $userstatuscheck->email
+                                                          ]);
 
                             // Check for mentor
                             if ($userstatuscheck->hasRole('mtr')) {
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 15,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => 15,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
                             }
 
                             // Check for staff
                             if ($userstatuscheck->can('snrStaff')) {
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 17,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
-                            } elseif ($userstatuscheck->can('staff')) {
-                                $now = Carbon::now()->timestamp;
-                                DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => 16,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => 17,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
+                            } else {
+                                if ($userstatuscheck->can('staff')) {
+                                    $now = Carbon::now()->timestamp;
+                                    DB::table('mdl_role_assignments')->insert([
+                                                                                  'roleid' => 16,
+                                                                                  'contextid' => 1,
+                                                                                  'userid' => $userstatuscheck->id,
+                                                                                  'modifierid' => 1,
+                                                                                  'timemodified' => $now
+                                                                              ]);
+                                }
                             }
 
                             //Assigns role in moodle database and adds the user to moodle
                             if ($rating_old != $userstatuscheck->rating_id) {
-                                $old_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)->where('roleid', '!=', 15)->where('roleid', '!=', 16)->where('roleid', '!=', 17);
+                                $old_role = DB::table('mdl_role_assignments')->where('userid', $userstatuscheck->id)
+                                              ->where('roleid', '!=', 15)->where('roleid', '!=', 16)
+                                              ->where('roleid', '!=', 17);
                                 $old_role->delete();
 
                                 if ($userstatuscheck->rating_id == 1) {
                                     $mdl_rating = 18;
-                                } elseif ($userstatuscheck->rating_id == 2) {
-                                    $mdl_rating = 9;
-                                } elseif ($userstatuscheck->rating_id == 3) {
-                                    $mdl_rating = 10;
-                                } elseif ($userstatuscheck->rating_id == 4) {
-                                    $mdl_rating = 11;
-                                } elseif ($userstatuscheck->rating_id == 5) {
-                                    $mdl_rating = 12;
-                                } elseif ($userstatuscheck->rating_id == 7 || $userstatuscheck->rating_id == 11 || $userstatuscheck->rating_id == 12) {
-                                    $mdl_rating = 13;
-                                } elseif ($userstatuscheck->rating_id == 8 || $userstatuscheck->rating_id == 10) {
-                                    $mdl_rating = 14;
                                 } else {
-                                    $mdl_rating = 0;
+                                    if ($userstatuscheck->rating_id == 2) {
+                                        $mdl_rating = 9;
+                                    } else {
+                                        if ($userstatuscheck->rating_id == 3) {
+                                            $mdl_rating = 10;
+                                        } else {
+                                            if ($userstatuscheck->rating_id == 4) {
+                                                $mdl_rating = 11;
+                                            } else {
+                                                if ($userstatuscheck->rating_id == 5) {
+                                                    $mdl_rating = 12;
+                                                } else {
+                                                    if ($userstatuscheck->rating_id == 7 ||
+                                                        $userstatuscheck->rating_id == 11 ||
+                                                        $userstatuscheck->rating_id == 12) {
+                                                        $mdl_rating = 13;
+                                                    } else {
+                                                        if ($userstatuscheck->rating_id == 8 ||
+                                                            $userstatuscheck->rating_id == 10) {
+                                                            $mdl_rating = 14;
+                                                        } else {
+                                                            $mdl_rating = 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
                                 $now = Carbon::now()->timestamp;
                                 DB::table('mdl_role_assignments')->insert([
-                                    'roleid' => $mdl_rating,
-                                    'contextid' => 1,
-                                    'userid' => $userstatuscheck->id,
-                                    'modifierid' => 1,
-                                    'timemodified' => $now
-                                ]);
+                                                                              'roleid' => $mdl_rating,
+                                                                              'contextid' => 1,
+                                                                              'userid' => $userstatuscheck->id,
+                                                                              'modifierid' => 1,
+                                                                              'timemodified' => $now
+                                                                          ]);
                             }
                         }
                     }
 
                     Auth::loginUsingId($res['cid'], true);
                 } else {
-                    return redirect('/')->with('error', 'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
+                    return redirect('/')->with('error',
+                                               'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
                 }
             } else {
-                return redirect('/')->with('error', 'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
+                return redirect('/')->with('error',
+                                           'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
             }
 
             if ($userstatuscheck->status == 0) {
-                return redirect('/')->with('success', 'You have been logged in successfully. Please note that you are on an LOA and should not control until off the LOA. If this is an error, please let the DATM know.');
+                return redirect('/')->with('success',
+                                           'You have been logged in successfully. Please note that you are on an LOA and should not control until off the LOA. If this is an error, please let the DATM know.');
             } else {
                 return redirect('/')->with('success', 'You have been logged in successfully.');
             }
@@ -351,88 +409,85 @@ class RosterController extends Controller
         }
     }
 
-    public function logout()
-    {
+    public function base64url_decode($data) {
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+
+    public function base64url_encode($data, $use_padding = false) {
+        $encoded = strtr(base64_encode($data), '+/', '-_');
+        return true === $use_padding ? $encoded : rtrim($encoded, '=');
+    }
+
+    public function logout() {
         if (!Auth::check()) {
             return redirect('/')->with('error', 'You are not logged in.');
         } else {
-            if (Config::get('app.moodle') == 1)
-                // Remove the user's Moodle password
+            if (Config::get('app.moodle') == 1) // Remove the user's Moodle password
+            {
                 DB::table('mdl_user')->where('id', Auth::id())->update(['password' => 'LOGGED OUT']);
+            }
 
             Auth::logout();
             return redirect('/')->with('success', 'You have been logged out successfully.');
         }
     }
 
-    public function base64url_encode($data, $use_padding = false)
-    {
-        $encoded = strtr(base64_encode($data), '+/', '-_');
-        return true === $use_padding ? $encoded : rtrim($encoded, '=');
-    }
-
-    public function base64url_decode($data)
-    {
-        return base64_decode(strtr($data, '-_', '+/'));
-    }
-
-    public function staffIndex()
-    {
+    public function staffIndex() {
         $users = User::with('roles')->get();
 
-        $atm = $users->filter(function ($user) {
+        $atm = $users->filter(function($user) {
             return $user->hasRole('atm');
         });
 
-        $datm = $users->filter(function ($user) {
+        $datm = $users->filter(function($user) {
             return $user->hasRole('datm');
         });
 
-        $ta = $users->filter(function ($user) {
+        $ta = $users->filter(function($user) {
             return $user->hasRole('ta');
         });
 
-        $ata = $users->filter(function ($user) {
+        $ata = $users->filter(function($user) {
             return $user->hasRole('ata');
         });
 
-        $wm = $users->filter(function ($user) {
+        $wm = $users->filter(function($user) {
             return $user->hasRole('wm');
         });
 
-        $awm = $users->filter(function ($user) {
+        $awm = $users->filter(function($user) {
             return $user->hasRole('awm');
         });
 
-        $ec = $users->filter(function ($user) {
+        $ec = $users->filter(function($user) {
             return $user->hasRole('ec');
         });
 
-        $aec = $users->filter(function ($user) {
+        $aec = $users->filter(function($user) {
             return $user->hasRole('aec');
         });
 
-        $fe = $users->filter(function ($user) {
+        $fe = $users->filter(function($user) {
             return $user->hasRole('fe');
         });
 
-        $afe = $users->filter(function ($user) {
+        $afe = $users->filter(function($user) {
             return $user->hasRole('afe');
         });
 
-        $ins = $users->filter(function ($user) {
+        $ins = $users->filter(function($user) {
             return $user->hasRole('ins');
         });
 
-        $mtr = $users->filter(function ($user) {
+        $mtr = $users->filter(function($user) {
             return $user->hasRole('mtr');
         });
 
         return view('site.staff')->with('atm', $atm)->with('datm', $datm)
-            ->with('ta', $ta)->with('ata', $ata)
-            ->with('wm', $wm)->with('awm', $awm)
-            ->with('ec', $ec)->with('aec', $aec)
-            ->with('fe', $fe)->with('afe', $afe)
-            ->with('ins', $ins)->with('mtr', $mtr);
+                                 ->with('ta', $ta)->with('ata', $ata)
+                                 ->with('wm', $wm)->with('awm', $awm)
+                                 ->with('ec', $ec)->with('aec', $aec)
+                                 ->with('fe', $fe)->with('afe', $afe)
+                                 ->with('ins', $ins)->with('mtr', $mtr);
     }
 }

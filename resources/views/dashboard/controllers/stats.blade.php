@@ -55,14 +55,14 @@
         <div class="row">
             <div class="col-sm-2">
                 <a class="btn btn-primary" href="/dashboard/controllers/stats/<?=$pyr?>/<?=$pm?>"><i
-                            class="fa fa-arrow-left"></i> Previous Month</a></li>
+                        class="fa fa-arrow-left"></i> Previous Month</a></li>
             </div>
             <div class="col-sm-8">
                 <center><h4>Showing Stats for <?=$mname?> 20<?=$year?></h4></center>
             </div>
             <div class="col-sm-2" align="right">
                 <a class="btn btn-primary" href="/dashboard/controllers/stats/<?=$nyr?>/<?=$nm?>">Next Month <i
-                            class="fa fa-arrow-right"></i></a>
+                        class="fa fa-arrow-right"></i></a>
             </div>
         </div>
         <br>

@@ -8,7 +8,8 @@
         <div class="card">
             <div class="card-header">
                 <h3>
-                    Pictures of scenery for <a href="{{ $scenery->link }}" target="_blank">{{ $scenery->airport }} by {{ $scenery->developer }}</a> for
+                    Pictures of scenery for <a href="{{ $scenery->link }}" target="_blank">{{ $scenery->airport }}
+                        by {{ $scenery->developer }}</a> for
                     @if($scenery->sim == 0)
                         FSX and P3D
                     @else

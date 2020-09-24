@@ -4,11 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Visitor extends Model
-{
-    protected $table = 'visit_requests';
-    protected $fillable = ['id', 'cid', 'name', 'email', 'rating', 'home', 'reason', 'status', 'updated_by', 'created_at', 'updated_at'];
-
+class Visitor extends Model {
     public static $RatingShort = [
         0 => 'N/A',
         1 => 'OBS', 2 => 'S1',
@@ -17,9 +13,11 @@ class Visitor extends Model
         8 => 'I1', 10 => 'I3',
         11 => 'SUP', 12 => 'ADM',
     ];
+    protected $table = 'visit_requests';
+    protected $fillable = ['id', 'cid', 'name', 'email', 'rating', 'home', 'reason', 'status', 'updated_by',
+                           'created_at', 'updated_at'];
 
-    public function getRatingShortAttribute()
-    {
+    public function getRatingShortAttribute() {
         foreach (Visitor::$RatingShort as $id => $Short) {
             if ($this->rating == $id) {
                 return $Short;

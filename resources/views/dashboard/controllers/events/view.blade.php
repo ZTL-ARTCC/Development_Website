@@ -37,7 +37,8 @@
                             <p>
                                 <i>Assign Positions:</i>
                                 <span class="float-right" data-toggle="modal" data-target="#manualAssign">
-                                    <button type="button" class="btn btn-success btn-sm pull-right" data-placement="top">Manual Assign</button>
+                                    <button type="button" class="btn btn-success btn-sm pull-right"
+                                            data-placement="top">Manual Assign</button>
                                 </span>
                             </p>
                             <table class="table">
@@ -73,17 +74,21 @@
                                             </td>
                                             <td>
                                             <span data-toggle="modal" data-target="#addrequest{{ $r->id }}">
-                                                <button type="button" class="btn btn-success btn-sm simple-tooltip" data-placement="top" data-toggle="tooltip" title="Assign Position"><i class="fas fa-check"></i></button>
+                                                <button type="button" class="btn btn-success btn-sm simple-tooltip"
+                                                        data-placement="top" data-toggle="tooltip"
+                                                        title="Assign Position"><i class="fas fa-check"></i></button>
                                             </span>
                                             </td>
                                         </tr>
 
-                                        <div class="modal fade" id="addrequest{{ $r->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="addrequest{{ $r->id }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Assign Position</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -116,8 +121,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button action="submit" class="btn btn-success">Assign Position</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button action="submit" class="btn btn-success">Assign
+                                                            Position
+                                                        </button>
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
@@ -142,9 +151,13 @@
                             Signup/Position Assignments
                             @if(Auth::user()->can('events'))
                                 @if($event->reg == 0)
-                                    <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-success btn-simple-tooltip float-right" data-toggle="tooltip" title="Open Registration"><i class="fas fa-check"></i></a>
+                                    <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}"
+                                       class="btn btn-success btn-simple-tooltip float-right" data-toggle="tooltip"
+                                       title="Open Registration"><i class="fas fa-check"></i></a>
                                 @else
-                                    <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}" class="btn btn-danger btn-simple-tooltip float-right" data-toggle="tooltip" title="Close Registration"><i class="fas fa-times"></i></a>
+                                    <a href="/dashboard/admin/events/toggle-reg/{{ $event->id }}"
+                                       class="btn btn-danger btn-simple-tooltip float-right" data-toggle="tooltip"
+                                       title="Close Registration"><i class="fas fa-times"></i></a>
                                 @endif
                             @endif
                         </h3>
@@ -172,7 +185,9 @@
                                                 @foreach($p->controller as $c)
                                                     <p>
                                                         @if(Auth::user()->can('events'))
-                                                            <a href="/dashboard/admin/events/positions/unassign/{{ $c->id }}" style="color:inherit" data-toggle="tooltip" title="Unassign Controller"><i class="fas fa-times"></i></a>
+                                                            <a href="/dashboard/admin/events/positions/unassign/{{ $c->id }}"
+                                                               style="color:inherit" data-toggle="tooltip"
+                                                               title="Unassign Controller"><i class="fas fa-times"></i></a>
                                                             &nbsp;
                                                         @endif
                                                         <b>
@@ -197,7 +212,9 @@
                                         </td>
                                         @if(Auth::user()->can('events'))
                                             <td>
-                                                <a href="/dashboard/admin/events/position/delete/{{ $p->id }}" class="btn btn-danger btn-sm simple-tooltip" data-toggle="tooltip" title="Remove Position"><i class="fas fa-times"></i></a>
+                                                <a href="/dashboard/admin/events/position/delete/{{ $p->id }}"
+                                                   class="btn btn-danger btn-sm simple-tooltip" data-toggle="tooltip"
+                                                   title="Remove Position"><i class="fas fa-times"></i></a>
                                             </td>
                                         @endif
                                     </tr>
@@ -210,7 +227,9 @@
                             </tbody>
                         </table>
                         <hr>
-                        <p><i>Select your requested position and put the time you're available (time in zulu formatted, 00:00; if you are available for the entire event, you can leave the time blank). Please note that your request may or may not be honored:</i></p>
+                        <p><i>Select your requested position and put the time you're available (time in zulu formatted,
+                                00:00; if you are available for the entire event, you can leave the time blank). Please
+                                note that your request may or may not be honored:</i></p>
                         @if($positions->count() > 0)
                             {!! Form::open(['action' => 'ControllerDash@signupForEvent']) !!}
                             @csrf
@@ -260,7 +279,8 @@
                                 <div class="form-group inline">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                     @if($your_registration1)
-                                        <a href="/dashboard/controllers/events/view/{{ $your_registration1->id }}/un-signup" class="btn btn-danger">Delete your Signup</a>
+                                        <a href="/dashboard/controllers/events/view/{{ $your_registration1->id }}/un-signup"
+                                           class="btn btn-danger">Delete your Signup</a>
                                     @endif
                                 </div>
                             @else
@@ -283,7 +303,8 @@
                                     {!! Form::text('name', null, ['placeholder' => 'New Position', 'class' => 'form-control']) !!}
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Add Position"><i class="fas fa-check"></i></button>
+                                    <button type="submit" class="btn btn-success simple-tooltip" data-toggle="tooltip"
+                                            title="Add Position"><i class="fas fa-check"></i></button>
                                 </div>
                             </div>
                             {!! Form::close() !!}
@@ -310,7 +331,8 @@
         @endif
 
         @if(Auth::user()->can('events'))
-            <div class="modal fade" id="savePreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="savePreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -333,7 +355,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="loadPreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="loadPreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -356,7 +379,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="removePreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="removePreset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -379,7 +403,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="manualAssign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="manualAssign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -426,4 +451,4 @@
             </div>
         @endif
     </div>
-    @stop
+@stop

@@ -45,9 +45,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,10 +64,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -75,9 +86,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,10 +105,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -105,9 +127,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -118,10 +146,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -135,9 +168,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -148,10 +187,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -165,9 +209,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -178,10 +228,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -195,9 +250,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -208,10 +269,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -225,9 +291,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col"><center>Description</center></th>
-                        <th scope="col"><center>Uploaded/Updated at</center></th>
-                        <th scope="col"><center>Actions</center></th>
+                        <th scope="col">
+                            <center>Description</center>
+                        </th>
+                        <th scope="col">
+                            <center>Uploaded/Updated at</center>
+                        </th>
+                        <th scope="col">
+                            <center>Actions</center>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -238,10 +310,15 @@
                                 <td>{{ $f->desc }}</td>
                                 <td>{{ $f->updated_at }}</td>
                                 <td>
-                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
+                                    <a href="{{ $f->path }}" target="_blank" class="btn btn-success simple-tooltip"
+                                       data-toggle="tooltip" title="Download"><i class="fas fa-download"></i></a>
                                     @if(Auth::user()->can('files'))
-                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}" class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}" class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i class="fas fa-times"></i></a>
+                                        <a href="/dashboard/admin/files/edit/{{ $f->id }}"
+                                           class="btn btn-warning simple-tooltip" data-toggle="tooltip" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href="/dashboard/admin/files/delete/{{ $f->id }}"
+                                           class="btn btn-danger simple-tooltip" data-toggle="tooltip" title="Delete"><i
+                                                class="fas fa-times"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -252,4 +329,4 @@
             </div>
         </div>
     </div>
-    @stop
+@stop

@@ -1,16 +1,16 @@
 @extends('layouts.master')
 @section('title')
-@parent
-| Instructing
+    @parent
+    | Instructing
 @stop
 @section('content')
-<div class="page-heading-two">
-    <div class="container">
-        <h2>Admin - Instructing - Add Training Note</h2>
+    <div class="page-heading-two">
+        <div class="container">
+            <h2>Admin - Instructing - Add Training Note</h2>
+        </div>
     </div>
-</div>
-<div class="container">
-    {!! Form::open(['action' => 'TrainingDash@saveNewTicket']) !!}
+    <div class="container">
+        {!! Form::open(['action' => 'TrainingDash@saveNewTicket']) !!}
         @csrf
         <div class="row">
             <div class="col-sm-4">
@@ -156,38 +156,38 @@
         <br>
         <button class="btn btn-success" action="submit">Submit Ticket</button>
         <a href="/dashboard/training/tickets" class="btn btn-danger">Cancel</a>
-    {!! Form::close() !!}
-</div>
-<script type="text/javascript">
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        format: 'L'
-    });
-});
-
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-
-$(function () {
-    $('#datetimepicker3').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-
-$(function () {
-    $('#datetimepicker4').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-</script>
-<script>
-    $(document).ready(function ($) {
-        $('#timepicker').datetimepicker({
-            format: 'hh:mm a'
+        {!! Form::close() !!}
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'L'
+            });
         });
-    });
-</script>
+
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function ($) {
+            $('#timepicker').datetimepicker({
+                format: 'hh:mm a'
+            });
+        });
+    </script>
 @endsection

@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class PositionPresets extends Migration
-{
+class PositionPresets extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('position_presets', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -33,8 +31,7 @@ class PositionPresets extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('position_presets');
         Schema::dropIfExists('preset_positions');
     }

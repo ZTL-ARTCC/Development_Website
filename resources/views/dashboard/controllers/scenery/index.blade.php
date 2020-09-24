@@ -49,9 +49,12 @@
                             <tr>
                                 <td>
                                     @if($s->image1)
-                                        <a href="/dashboard/controllers/scenery/view/{{ $s->id }}"><img src="{{ $s->image1 }}" width="100px"></img></a>
+                                        <a href="/dashboard/controllers/scenery/view/{{ $s->id }}"><img
+                                                src="{{ $s->image1 }}" width="100px"></img></a>
                                     @else
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" width="100px"></img>
+                                        <img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                            width="100px"></img>
                                     @endif
                                 </td>
                                 <td>{{ $s->airport }}</td>
@@ -87,9 +90,12 @@
                             <tr>
                                 <td>
                                     @if($s->image1)
-                                        <a href="/dashboard/controllers/scenery/view/{{ $s->id }}"><img src="{{ $s->image1 }}" width="100px"></img></a>
+                                        <a href="/dashboard/controllers/scenery/view/{{ $s->id }}"><img
+                                                src="{{ $s->image1 }}" width="100px"></img></a>
                                     @else
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" width="100px"></img>
+                                        <img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                            width="100px"></img>
                                     @endif
                                 </td>
                                 <td>{{ $s->airport }}</td>
@@ -143,4 +149,4 @@
             </div>
         </div>
     </div>
-    @stop
+@stop

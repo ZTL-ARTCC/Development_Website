@@ -23,27 +23,25 @@ use App\Pyrite;
 use App\Scenery;
 use App\TrainingTicket;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use SimpleXMLElement;
 
-class ControllerDash extends Controller
-{
-    public function dash()
-    {
+class ControllerDash extends Controller {
+    public function dash() {
         $now = Carbon::now();
 
-        $calendar = Calendar::where('type', '1')->where('visible', '1')->get()->filter(function ($news) use ($now) {
+        $calendar = Calendar::where('type', '1')->where('visible', '1')->get()->filter(function($news) use ($now) {
             return strtotime($news->date . ' ' . $news->time) > strtotime($now);
-        })->sortBy(function ($news) {
+        })->sortBy(function($news) {
             return strtotime($news->date . ' ' . $news->time);
         });
-        $news = Calendar::where('type', '2')->where('visible', '1')->get()->filter(function ($news) use ($now) {
+        $news = Calendar::where('type', '2')->where('visible', '1')->get()->filter(function($news) use ($now) {
             return strtotime($news->date . ' ' . $news->time) < strtotime($now);
-        })->sortByDesc(function ($news) {
+        })->sortByDesc(function($news) {
             return strtotime($news->date . ' ' . $news->time);
         });
         $announcement = Announcement::find(1);
@@ -59,62 +57,108 @@ class ControllerDash extends Controller
 
         if ($month == 1) {
             $month_words = 'January';
-        } elseif ($month == 2) {
-            $month_words = 'Febuary';
-        } elseif ($month == 3) {
-            $month_words = 'March';
-        } elseif ($month == 4) {
-            $month_words = 'April';
-        } elseif ($month == 5) {
-            $month_words = 'May';
-        } elseif ($month == 6) {
-            $month_words = 'June';
-        } elseif ($month == 7) {
-            $month_words = 'July';
-        } elseif ($month == 8) {
-            $month_words = 'August';
-        } elseif ($month == 9) {
-            $month_words = 'September';
-        } elseif ($month == 10) {
-            $month_words = 'October';
-        } elseif ($month == 11) {
-            $month_words = 'November';
-        } elseif ($month == 12 || $month == 0) {
-            $month_words = 'December';
+        } else {
+            if ($month == 2) {
+                $month_words = 'Febuary';
+            } else {
+                if ($month == 3) {
+                    $month_words = 'March';
+                } else {
+                    if ($month == 4) {
+                        $month_words = 'April';
+                    } else {
+                        if ($month == 5) {
+                            $month_words = 'May';
+                        } else {
+                            if ($month == 6) {
+                                $month_words = 'June';
+                            } else {
+                                if ($month == 7) {
+                                    $month_words = 'July';
+                                } else {
+                                    if ($month == 8) {
+                                        $month_words = 'August';
+                                    } else {
+                                        if ($month == 9) {
+                                            $month_words = 'September';
+                                        } else {
+                                            if ($month == 10) {
+                                                $month_words = 'October';
+                                            } else {
+                                                if ($month == 11) {
+                                                    $month_words = 'November';
+                                                } else {
+                                                    if ($month == 12 || $month == 0) {
+                                                        $month_words = 'December';
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if ($pmonth == 1) {
             $pmonth_words = 'January';
-        } elseif ($pmonth == 2) {
-            $pmonth_words = 'Febuary';
-        } elseif ($pmonth == 3) {
-            $pmonth_words = 'March';
-        } elseif ($pmonth == 4) {
-            $pmonth_words = 'April';
-        } elseif ($pmonth == 5) {
-            $pmonth_words = 'May';
-        } elseif ($pmonth == 6) {
-            $pmonth_words = 'June';
-        } elseif ($pmonth == 7) {
-            $pmonth_words = 'July';
-        } elseif ($pmonth == 8) {
-            $pmonth_words = 'August';
-        } elseif ($pmonth == 9) {
-            $pmonth_words = 'September';
-        } elseif ($pmonth == 10) {
-            $pmonth_words = 'October';
-        } elseif ($pmonth == 11 || $pmonth == -1) {
-            $pmonth_words = 'November';
-        } elseif ($pmonth == 12 || $pmonth == 0) {
-            $pmonth_words = 'December';
+        } else {
+            if ($pmonth == 2) {
+                $pmonth_words = 'Febuary';
+            } else {
+                if ($pmonth == 3) {
+                    $pmonth_words = 'March';
+                } else {
+                    if ($pmonth == 4) {
+                        $pmonth_words = 'April';
+                    } else {
+                        if ($pmonth == 5) {
+                            $pmonth_words = 'May';
+                        } else {
+                            if ($pmonth == 6) {
+                                $pmonth_words = 'June';
+                            } else {
+                                if ($pmonth == 7) {
+                                    $pmonth_words = 'July';
+                                } else {
+                                    if ($pmonth == 8) {
+                                        $pmonth_words = 'August';
+                                    } else {
+                                        if ($pmonth == 9) {
+                                            $pmonth_words = 'September';
+                                        } else {
+                                            if ($pmonth == 10) {
+                                                $pmonth_words = 'October';
+                                            } else {
+                                                if ($pmonth == 11 || $pmonth == -1) {
+                                                    $pmonth_words = 'November';
+                                                } else {
+                                                    if ($pmonth == 12 || $pmonth == 0) {
+                                                        $pmonth_words = 'December';
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if ($month < 1) {
             $year = substr($now->year, -2) - '1';
             if ($month == -1) {
                 $month = 11;
-            } elseif ($month == 0) {
-                $month = 12;
+            } else {
+                if ($month == 0) {
+                    $month = 12;
+                }
             }
         } else {
             $year = substr($now->year, -2);
@@ -125,8 +169,10 @@ class ControllerDash extends Controller
             $pyear = substr($now->year, -2) - '1';
             if ($pmonth == -1) {
                 $pmonth = 11;
-            } elseif ($pmonth == 0) {
-                $pmonth = 12;
+            } else {
+                if ($pmonth == 0) {
+                    $pmonth = 12;
+                }
             }
         } else {
             $pyear = substr($now->year, -2);
@@ -137,54 +183,63 @@ class ControllerDash extends Controller
         $controllers = ATC::get();
         $last_update = ControllerLogUpdate::first();
         $controllers_update = substr($last_update->created_at, -8, 5);
-        $events = Event::where('status', 1)->get()->filter(function ($e) use ($now) {
+        $events = Event::where('status', 1)->get()->filter(function($e) use ($now) {
             return strtotime($e->date . ' ' . $e->start_time) > strtotime($now);
-        })->sortBy(function ($e) {
+        })->sortBy(function($e) {
             return strtotime($e->date);
         });
 
         $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
         $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
 
-        return view('dashboard.dashboard')->with('calendar', $calendar)->with('news', $news)->with('announcement', $announcement)
-            ->with('winner', $winner)->with('pwinner', $pwinner)->with('month_words', $month_words)->with('pmonth_words', $pmonth_words)
-            ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
-            ->with('events', $events)
-            ->with('pyrite', $pyrite)->with('lyear', $lyear)
-            ->with('flights', $flights)->with('flights_update', $flights_update);
+        return view('dashboard.dashboard')->with('calendar', $calendar)->with('news', $news)
+                                          ->with('announcement', $announcement)
+                                          ->with('winner', $winner)->with('pwinner', $pwinner)
+                                          ->with('month_words', $month_words)->with('pmonth_words', $pmonth_words)
+                                          ->with('controllers', $controllers)
+                                          ->with('controllers_update', $controllers_update)
+                                          ->with('events', $events)
+                                          ->with('pyrite', $pyrite)->with('lyear', $lyear)
+                                          ->with('flights', $flights)->with('flights_update', $flights_update);
     }
 
-    public function showProfile($year = null, $month = null)
-    {
-        if ($year == null)
+    public function showProfile($year = null, $month = null) {
+        if ($year == null) {
             $year = date('y');
+        }
 
-        if ($month == null)
+        if ($month == null) {
             $month = date('n');
+        }
 
         $user_id = Auth::id();
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
-        $feedback = Feedback::where('controller_id', $user_id)->where('status', 1)->orderBy('updated_at', 'ASC')->paginate(10);
+        $feedback = Feedback::where('controller_id', $user_id)->where('status', 1)->orderBy('updated_at', 'ASC')
+                            ->paginate(10);
         $personal_stats = $stats[$user_id];
-        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function ($t) {
+        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function($t) {
             return strtotime($t->date . ' ' . $t->start_time);
         })->pluck('id');
         if ($tickets_sort->count() != 0) {
             $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
-            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
-            $last_training = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)
+                                     ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
+            $last_training = TrainingTicket::whereIn('id', $tickets_sort)
+                                           ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
         } else {
             $tickets = null;
             $last_training = null;
         }
 
         if (Auth::user()->can('train')) {
-            $tickets_sort_t = TrainingTicket::where('trainer_id', Auth::id())->get()->sortByDesc(function ($t) {
+            $tickets_sort_t = TrainingTicket::where('trainer_id', Auth::id())->get()->sortByDesc(function($t) {
                 return strtotime($t->date . ' ' . $t->start_time);
             })->pluck('id');
             if ($tickets_sort_t->count() != 0) {
                 $tickets_order_t = implode(',', array_fill(0, count($tickets_sort_t), '?'));
-                $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)->first();
+                $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)
+                                                     ->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)
+                                                     ->first();
             } else {
                 $last_training_given = null;
             }
@@ -194,35 +249,44 @@ class ControllerDash extends Controller
 
         $discord = DiscordUser::where('cid', Auth::id())->first();
 
-        return view('dashboard.controllers.profile')->with('personal_stats', $personal_stats)->with('feedback', $feedback)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given)->with('discord', $discord);
+        return view('dashboard.controllers.profile')->with('personal_stats', $personal_stats)
+                                                    ->with('feedback', $feedback)->with('tickets', $tickets)
+                                                    ->with('last_training', $last_training)
+                                                    ->with('last_training_given', $last_training_given)
+                                                    ->with('discord', $discord);
     }
 
-    public function showTicket($id)
-    {
+    public function showTicket($id) {
         $ticket = TrainingTicket::find($id);
         if (Auth::id() == $ticket->controller_id) {
             return view('dashboard.controllers.ticket')->with('ticket', $ticket);
         } else {
-            return redirect()->back()->with('error', 'You can only view your own tickets. If you are a trainer trying to view a ticket, please do that from the training section.');
+            return redirect()->back()->with('error',
+                                            'You can only view your own tickets. If you are a trainer trying to view a ticket, please do that from the training section.');
         }
     }
 
-    public function showTeamspeak()
-    {
+    public function showTeamspeak() {
         return view('dashboard.controllers.teamspeak');
     }
 
-    public function showRoster()
-    {
-        $hcontrollers = User::where('status', '!=', 2)->where('visitor', '0')->where('status', '1')->orWhere('status', '0')->orderBy('lname', 'ASC')->get();
-        $vcontrollers = User::where('status', '!=', 2)->where('visitor', '1')->where('status', '1')->orderBy('lname', 'ASC')->where('visitor_from', '!=', 'ZHU')->where('visitor_from', '!=', 'ZJX')->get();
-        $visagreecontrollers = User::where('status', '!=', 2)->where('visitor', '1')->where('visitor_from', 'ZHU')->orWhere('visitor_from', 'ZJX')->orderBy('visitor_from', 'ASC')->orderBy('lname', 'ASC')->get();
+    public function showRoster() {
+        $hcontrollers =
+            User::where('status', '!=', 2)->where('visitor', '0')->where('status', '1')->orWhere('status', '0')
+                ->orderBy('lname', 'ASC')->get();
+        $vcontrollers =
+            User::where('status', '!=', 2)->where('visitor', '1')->where('status', '1')->orderBy('lname', 'ASC')
+                ->where('visitor_from', '!=', 'ZHU')->where('visitor_from', '!=', 'ZJX')->get();
+        $visagreecontrollers = User::where('status', '!=', 2)->where('visitor', '1')->where('visitor_from', 'ZHU')
+                                   ->orWhere('visitor_from', 'ZJX')->orderBy('visitor_from', 'ASC')
+                                   ->orderBy('lname', 'ASC')->get();
 
-        return view('dashboard.controllers.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)->with('visagreecontrollers', $visagreecontrollers);
+        return view('dashboard.controllers.roster')->with('hcontrollers', $hcontrollers)
+                                                   ->with('vcontrollers', $vcontrollers)
+                                                   ->with('visagreecontrollers', $visagreecontrollers);
     }
 
-    public function showFiles()
-    {
+    public function showFiles() {
         $vrc = File::where('type', 0)->orderBy('name', 'ASC')->get();
         $vstars = File::where('type', 1)->orderBy('name', 'ASC')->get();
         $veram = File::where('type', 2)->orderBy('name', 'ASC')->get();
@@ -231,90 +295,90 @@ class ControllerDash extends Controller
         $loa = File::where('type', 5)->orderBy('name', 'ASC')->get();
         $staff = File::where('type', 6)->orderBy('name', 'ASC')->get();
 
-        return view('dashboard.controllers.files')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa)->with('staff', $staff);
+        return view('dashboard.controllers.files')->with('vrc', $vrc)->with('vstars', $vstars)
+                                                  ->with('veram', $veram)->with('vatis', $vatis)->with('sop', $sop)
+                                                  ->with('loa', $loa)->with('staff', $staff);
     }
 
-    public function showTickets()
-    {
+    public function showTickets() {
         return view('dashboard.controllers.tickets');
     }
 
-    public function showSuggestions()
-    {
+    public function showSuggestions() {
         return view('dashboard.controllers.suggestions');
     }
 
-    public function showATCast()
-    {
+    public function showATCast() {
         return view('dashboard.controllers.atcast');
     }
 
-    public function showStats($year = null, $month = null)
-    {
-        if ($year == null)
+    public function showStats($year = null, $month = null) {
+        if ($year == null) {
             $year = date('y');
+        }
 
-        if ($month == null)
+        if ($month == null) {
             $month = date('n');
+        }
 
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
         $all_stats = ControllerLog::getAllControllerStats();
 
         $homec = User::where('visitor', 0)->where('status', 1)->get();
         $visitc = User::where('visitor', 1)->where('status', 1)->get();
-        $agreevisitc = User::where('visitor', 1)->where('visitor_from', 'ZHU')->orWhere('visitor_from', 'ZJX')->where('status', 1)->get();
+        $agreevisitc = User::where('visitor', 1)->where('visitor_from', 'ZHU')->orWhere('visitor_from', 'ZJX')
+                           ->where('status', 1)->get();
 
-        $home = $homec->sortByDesc(function ($user) use ($stats) {
+        $home = $homec->sortByDesc(function($user) use ($stats) {
             return $stats[$user->id]->total_hrs;
         });
 
-        $visit = $visitc->sortByDesc(function ($user) use ($stats) {
+        $visit = $visitc->sortByDesc(function($user) use ($stats) {
             return $stats[$user->id]->total_hrs;
         });
 
-        $agreevisit = $agreevisitc->sortByDesc(function ($user) use ($stats) {
+        $agreevisit = $agreevisitc->sortByDesc(function($user) use ($stats) {
             return $stats[$user->id]->total_hrs;
         });
 
         return view('dashboard.controllers.stats')->with('all_stats', $all_stats)->with('year', $year)
-            ->with('month', $month)->with('stats', $stats)
-            ->with('home', $home)->with('visit', $visit)->with('agreevisit', $agreevisit);
+                                                  ->with('month', $month)->with('stats', $stats)
+                                                  ->with('home', $home)->with('visit', $visit)
+                                                  ->with('agreevisit', $agreevisit);
 
     }
 
-    public function showCalendarEvent($id)
-    {
+    public function showCalendarEvent($id) {
         $calendar = Calendar::find($id);
 
         return view('dashboard.controllers.calendar')->with('calendar', $calendar);
     }
 
-    public function showFeedbackDetails($id)
-    {
+    public function showFeedbackDetails($id) {
         $feedback = Feedback::find($id);
         return view('site.viewfeedback')->with('feedback', $feedback);
     }
 
-    public function showEvents()
-    {
+    public function showEvents() {
         if (Auth::user()->can('events')) {
-            $events = Event::where('status', 0)->orWhere('status', 1)->get()->sortByDesc(function ($e) {
+            $events = Event::where('status', 0)->orWhere('status', 1)->get()->sortByDesc(function($e) {
                 return strtotime($e->date);
             });
         } else {
-            $events = Event::where('status', 1)->get()->sortByDesc(function ($e) {
+            $events = Event::where('status', 1)->get()->sortByDesc(function($e) {
                 return strtotime($e->date);
             });
         }
         return view('dashboard.controllers.events.index')->with('events', $events);
     }
 
-    public function viewEvent($id)
-    {
+    public function viewEvent($id) {
         $event = Event::find($id);
         $positions = EventPosition::where('event_id', $event->id)->orderBy('created_at', 'ASC')->get();
         if (Auth::user()->can('events')) {
-            $registrations = EventRegistration::where('event_id', $event->id)->where('status', 0)->orderBy('created_at', 'ASC')->get();
+            $registrations =
+                EventRegistration::where('event_id', $event->id)->where('status', 0)->orderBy('created_at', 'ASC')
+                                 ->get();
             $presets = PositionPreset::get()->pluck('name', 'id');
             $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name_rating', 'id');
         } else {
@@ -323,16 +387,23 @@ class ControllerDash extends Controller
             $controllers = null;
         }
 
-        $your_registration1 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 1)->first();
-        $your_registration2 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 2)->first();
-        $your_registration3 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())->where('choice_number', 3)->first();
+        $your_registration1 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
+                                               ->where('choice_number', 1)->first();
+        $your_registration2 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
+                                               ->where('choice_number', 2)->first();
+        $your_registration3 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
+                                               ->where('choice_number', 3)->first();
 
-        return view('dashboard.controllers.events.view')->with('event', $event)->with('positions', $positions)->with('registrations', $registrations)->with('presets', $presets)->with('controllers', $controllers)
-            ->with('your_registration1', $your_registration1)->with('your_registration2', $your_registration2)->with('your_registration3', $your_registration3);
+        return view('dashboard.controllers.events.view')->with('event', $event)->with('positions', $positions)
+                                                        ->with('registrations', $registrations)
+                                                        ->with('presets', $presets)
+                                                        ->with('controllers', $controllers)
+                                                        ->with('your_registration1', $your_registration1)
+                                                        ->with('your_registration2', $your_registration2)
+                                                        ->with('your_registration3', $your_registration3);
     }
 
-    public function signupForEvent(Request $request)
-    {
+    public function signupForEvent(Request $request) {
         $id = $request->event_id;
         if ($request->num1 != null) {
             if ($request->yr1 != null) {
@@ -429,11 +500,11 @@ class ControllerDash extends Controller
             }
         }
 
-        return redirect('/dashboard/controllers/events/view/' . $id)->with('success', 'Your event registration has been saved successfully.');
+        return redirect('/dashboard/controllers/events/view/' . $id)->with('success',
+                                                                           'Your event registration has been saved successfully.');
     }
 
-    public function unsignupForEvent($id)
-    {
+    public function unsignupForEvent($id) {
         // Get the position request to be deleted
         $request = EventRegistration::find($id);
 
@@ -444,55 +515,59 @@ class ControllerDash extends Controller
         return redirect()->back()->with('success', 'Your registration has been removed successfully.');
     }
 
-    public function sceneryIndex(Request $request)
-    {
+    public function sceneryIndex(Request $request) {
         if ($request->search == null) {
             $scenery = Scenery::orderBy('airport', 'ASC')->get();
         } else {
-            $scenery = Scenery::where('airport', $request->search)->orWhere('developer', $request->search)->orderBy('airport', 'ASC')->get();
+            $scenery = Scenery::where('airport', $request->search)->orWhere('developer', $request->search)
+                              ->orderBy('airport', 'ASC')->get();
         }
 
         $fsx = $scenery->where('sim', 0);
         $xp = $scenery->where('sim', 1);
         $afcad = $scenery->where('sim', 2);
 
-        return view('dashboard.controllers.scenery.index')->with('fsx', $fsx)->with('xp', $xp)->with('afcad', $afcad);
+        return view('dashboard.controllers.scenery.index')->with('fsx', $fsx)->with('xp', $xp)
+                                                          ->with('afcad', $afcad);
     }
 
-    public function searchScenery(Request $request)
-    {
+    public function searchScenery(Request $request) {
         return redirect('/dashboard/controllers/scenery?search=' . $request->search);
     }
 
-    public function showScenery($id)
-    {
+    public function showScenery($id) {
         $scenery = Scenery::find($id);
 
         return view('dashboard.controllers.scenery.show')->with('scenery', $scenery);
     }
 
-    public function searchAirport(Request $request)
-    {
+    public function searchAirport(Request $request) {
         $apt = $request->apt;
         return redirect('/dashboard/controllers/search-airport/search?apt=' . $apt);
     }
 
-    public function searchAirportResult(Request $request)
-    {
+    public function searchAirportResult(Request $request) {
         $apt = $request->apt;
         if (strlen($apt) == 3) {
             $apt_s = 'k' . strtolower($apt);
-        } elseif (strlen($apt) == 4) {
-            $apt_s = strtolower($apt);
         } else {
-            return redirect()->back()->with('error', 'You either did not search for an airport or the airport ID is too long.');
+            if (strlen($apt) == 4) {
+                $apt_s = strtolower($apt);
+            } else {
+                return redirect()->back()->with('error',
+                                                'You either did not search for an airport or the airport ID is too long.');
+            }
         }
 
         $apt_r = strtoupper($apt_s);
 
         $client = new Client;
-        $response_metar = $client->request('GET', 'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' . $apt_s);
-        $response_taf = $client->request('GET', 'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' . $apt_s);
+        $response_metar = $client->request('GET',
+                                           'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                                           $apt_s);
+        $response_taf = $client->request('GET',
+                                         'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                                         $apt_s);
 
         $root_metar = new SimpleXMLElement($response_metar->getBody());
         $root_taf = new SimpleXMLElement($response_taf->getBody());
@@ -532,28 +607,35 @@ class ControllerDash extends Controller
         $status = $res->getStatusCode();
         if ($status == 404) {
             $charts = null;
-        } elseif (json_decode($res->getBody()) != '[]') {
-            $charts = collect(json_decode($res->getBody())->$apt_r);
-            $min = $charts->where('chart_code', 'MIN');
-            $hot = $charts->where('chart_code', 'HOT');
-            $lah = $charts->where('chart_code', 'LAH');
-            $apd = $charts->where('chart_code', 'APD');
-            $iap = $charts->where('chart_code', 'IAP');
-            $dp = $charts->where('chart_code', 'DP');
-            $star = $charts->where('chart_code', 'STAR');
-            $cvfp = $charts->where('chart_code', 'CVFP');
         } else {
-            $charts = null;
+            if (json_decode($res->getBody()) != '[]') {
+                $charts = collect(json_decode($res->getBody())->$apt_r);
+                $min = $charts->where('chart_code', 'MIN');
+                $hot = $charts->where('chart_code', 'HOT');
+                $lah = $charts->where('chart_code', 'LAH');
+                $apd = $charts->where('chart_code', 'APD');
+                $iap = $charts->where('chart_code', 'IAP');
+                $dp = $charts->where('chart_code', 'DP');
+                $star = $charts->where('chart_code', 'STAR');
+                $cvfp = $charts->where('chart_code', 'CVFP');
+            } else {
+                $charts = null;
+            }
         }
 
-        return view('dashboard.controllers.airport')->with('apt_r', $apt_r)->with('metar', $metar)->with('taf', $taf)->with('visual_conditions', $visual_conditions)->with('pilots_a', $pilots_a)->with('pilots_d', $pilots_d)
-            ->with('charts', $charts)->with('min', $min)->with('hot', $hot)->with('lah', $lah)->with('apd', $apd)->with('iap', $iap)->with('dp', $dp)->with('star', $star)->with('cvfp', $cvfp);
+        return view('dashboard.controllers.airport')->with('apt_r', $apt_r)->with('metar', $metar)
+                                                    ->with('taf', $taf)
+                                                    ->with('visual_conditions', $visual_conditions)
+                                                    ->with('pilots_a', $pilots_a)->with('pilots_d', $pilots_d)
+                                                    ->with('charts', $charts)->with('min', $min)->with('hot', $hot)
+                                                    ->with('lah', $lah)->with('apd', $apd)->with('iap', $iap)
+                                                    ->with('dp', $dp)->with('star', $star)->with('cvfp', $cvfp);
     }
 
-    public function optIn(Request $request)
-    {
+    public function optIn(Request $request) {
         if ($request->opt != 1 || $request->privacy != 1) {
-            return redirect()->back()->with('error', 'You have not been opted in. You must select both checkboxes if you would like to continue.');
+            return redirect()->back()->with('error',
+                                            'You have not been opted in. You must select both checkboxes if you would like to continue.');
         }
 
         $opt = new Opt;
@@ -567,11 +649,11 @@ class ControllerDash extends Controller
         $user->opt = 1;
         $user->save();
 
-        return redirect()->back()->with('success', 'You have been opted in successfully and will now receive broadcast emails from the vZTL ARTCC.');
+        return redirect()->back()->with('success',
+                                        'You have been opted in successfully and will now receive broadcast emails from the vZTL ARTCC.');
     }
 
-    public function optOut()
-    {
+    public function optOut() {
         $opt = new Opt;
         $opt->controller_id = Auth::id();
         $opt->option = 0;
@@ -583,25 +665,24 @@ class ControllerDash extends Controller
         $user->opt = 0;
         $user->save();
 
-        return redirect()->back()->with('success', 'You have been opted out successfully and will no longer receive broadcast emails from the vZTL ARTCC.');
+        return redirect()->back()->with('success',
+                                        'You have been opted out successfully and will no longer receive broadcast emails from the vZTL ARTCC.');
     }
 
-    public function incidentReport()
-    {
+    public function incidentReport() {
         $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         return view('dashboard.controllers.incident_report')->with('controllers', $controllers);
     }
 
-    public function submitIncidentReport(Request $request)
-    {
+    public function submitIncidentReport(Request $request) {
         $validator = $request->validate([
-            'controller_id' => 'required',
-            'controller_callsign' => 'required',
-            'reporter_callsign' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'description' => 'required'
-        ]);
+                                            'controller_id' => 'required',
+                                            'controller_callsign' => 'required',
+                                            'reporter_callsign' => 'required',
+                                            'date' => 'required',
+                                            'time' => 'required',
+                                            'description' => 'required'
+                                        ]);
 
         $incident = new Incident;
         $incident->controller_id = $request->controller_id;
@@ -618,21 +699,22 @@ class ControllerDash extends Controller
         return redirect('/profile')->with('success', 'Your report has been submitted successfully.');
     }
 
-    public function reportBug(Request $request)
-    {
+    public function reportBug(Request $request) {
         $validator = $request->validate([
-            'desc' => 'required'
-        ]);
+                                            'desc' => 'required'
+                                        ]);
         $reporter = User::find(Auth::id());
         $url = $request->url;
         $error = $request->error;
         $desc = $request->desc;
 
-        Mail::send('emails.bug', ['reporter' => $reporter, 'url' => $url, 'error' => $error, 'desc' => $desc], function ($m) use ($reporter) {
-            $m->from('bugs@notams.ztlartcc.org', 'vZTL ARTCC Bugs')->replyTo($reporter->email, $reporter->full_name);
-            $m->subject('New Bug Report');
-            $m->to('wm@ztlartcc.org');
-        });
+        Mail::send('emails.bug', ['reporter' => $reporter, 'url' => $url, 'error' => $error, 'desc' => $desc],
+            function($m) use ($reporter) {
+                $m->from('bugs@notams.ztlartcc.org', 'vZTL ARTCC Bugs')
+                  ->replyTo($reporter->email, $reporter->full_name);
+                $m->subject('New Bug Report');
+                $m->to('wm@ztlartcc.org');
+            });
 
         return redirect()->back()->with('success', 'Your bug has been reported successfully.');
     }

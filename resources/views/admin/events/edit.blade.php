@@ -1,25 +1,25 @@
 @extends('layouts.master')
 
 @section('title')
-@parent
-| Events
+    @parent
+    | Events
 @stop
 
 @section('content')
-<div class="bg-gd-dusk">
-	<div class="bg-black-op-25">
-		<div class="content content-top content-full text-center">
-			<h1 class="h3 text-white font-w700 mb-10">
-				Administrator Center
-			</h1>
-			<h2 class="h4 font-w400 text-white-op">Atlanta ARTCC</h2>
-		</div>
-	</div>
-</div>
+    <div class="bg-gd-dusk">
+        <div class="bg-black-op-25">
+            <div class="content content-top content-full text-center">
+                <h1 class="h3 text-white font-w700 mb-10">
+                    Administrator Center
+                </h1>
+                <h2 class="h4 font-w400 text-white-op">Atlanta ARTCC</h2>
+            </div>
+        </div>
+    </div>
 
-<br>
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@saveEvent', $event->id], 'files' => 'true']) !!}
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@saveEvent', $event->id], 'files' => 'true']) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -74,31 +74,31 @@
         </div>
         <button class="btn btn-success" type="submit">Save Event</button>
         <a class="btn btn-danger" href="/admin/events">Cancel</a>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'article-ckeditor' );
-</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('article-ckeditor');
+    </script>
 
-<script type="text/javascript">
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        format: 'L'
-    });
-});
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'L'
+            });
+        });
 
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        format: 'HH:mm'
-    });
-});
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
 
-$(function () {
-    $('#datetimepicker3').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-</script>
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+    </script>
 @endsection

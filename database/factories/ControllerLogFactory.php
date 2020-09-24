@@ -5,7 +5,7 @@
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Carbon;
 
-$factory->define(App\ControllerLog::class, function (Faker\Generator $faker) {
+$factory->define(App\ControllerLog::class, function(Faker\Generator $faker) {
     $time = Carbon::now();
 
     return [

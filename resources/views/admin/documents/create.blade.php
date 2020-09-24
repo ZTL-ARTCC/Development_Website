@@ -1,22 +1,22 @@
 @extends('layouts.master')
 
 @section('title')
-@parent
-| Documents
+    @parent
+    | Documents
 @stop
 
 @section('content')
 
-<div class="page-heading-two">
-    <div class="container">
-        <h2>Document - Add</h2>
+    <div class="page-heading-two">
+        <div class="container">
+            <h2>Document - Add</h2>
+        </div>
     </div>
-</div>
-    
-<div class="container">
-	<div class="row">
-        <div class="col-sm-12">
-            {{Form::open(['action'=>'DocumentController@store', 'files' => true])}}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                {{Form::open(['action'=>'DocumentController@store', 'files' => true])}}
                 <div class="form-group">
                     {{Form::label('name', 'Document Name:', ['class'=>'control-label'])}}
                     {{Form::text('name', null, ['class'=>'form-control'])}}
@@ -36,9 +36,9 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
-            {{Form::close()}}
+                {{Form::close()}}
+            </div>
         </div>
     </div>
-</div>
 
 @stop

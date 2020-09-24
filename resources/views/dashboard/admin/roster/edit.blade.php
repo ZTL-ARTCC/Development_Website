@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Update Controller
+    Update Controller
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Update {{ $user->full_name }} ({{ $user->id }})</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>Update {{ $user->full_name }} ({{ $user->id }})</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -190,7 +190,7 @@ Update Controller
                         <div class="col-sm-6">
                             {!! Form::label('max_minor_del', 'Train Minor DEL') !!}
                             {!! Form::checkbox('max_minor_del', 1, true) !!}
-                           
+
                             {!! Form::label('max_minor_gnd', 'Train Minor GND') !!}
                             {!! Form::checkbox('max_minor_gnd', 1, true) !!}
 
@@ -359,7 +359,8 @@ Update Controller
                             @if($user->visitor_from != 'ZJX' && $user->visitor_from != 'ZHU')
                                 <a href="/dashboard/admin/roster/visit/remove/{{ $user->id }}">(Remove from Roster)</a>
                             @else
-                                <a href="/dashboard/admin/roster/visit-agreement/reject/{{ $user->id }}">(Disallow from Visiting)</a>
+                                <a href="/dashboard/admin/roster/visit-agreement/reject/{{ $user->id }}">(Disallow from
+                                    Visiting)</a>
                             @endif
                         @else
                             {!! Form::label('visitor', 'Visitor?') !!}
@@ -437,10 +438,10 @@ Update Controller
             <div class="col-sm-1">
                 <button class="btn btn-success" type="submit">Save</button>
             </div>
-    {!! Form::close() !!}
+            {!! Form::close() !!}
             <div class="col-sm-1">
                 <a href="{{ url()->previous() }}" class="btn btn-danger">Cancel</a>
             </div>
         </div>
-</div>
+    </div>
 @endsection

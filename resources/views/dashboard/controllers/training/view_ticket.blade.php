@@ -6,7 +6,8 @@
 <br>
 
 <div class="container">
-    <a class="btn btn-primary" href="/dashboard/training/tickets?id={{ $ticket->controller_id }}"><i class="fas fa-arrow-left"></i> Back</a>
+    <a class="btn btn-primary" href="/dashboard/training/tickets?id={{ $ticket->controller_id }}"><i
+            class="fas fa-arrow-left"></i> Back</a>
     @if(Auth::id() == $ticket->trainer_id || Auth::user()->can('snrStaff'))
         <a class="btn btn-warning" href="/dashboard/training/tickets/edit/{{ $ticket->id }}">Edit Ticket</a>
     @endif

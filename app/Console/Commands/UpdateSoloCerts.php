@@ -9,8 +9,7 @@ use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class UpdateSoloCerts extends Command
-{
+class UpdateSoloCerts extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -30,8 +29,7 @@ class UpdateSoloCerts extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -40,14 +38,13 @@ class UpdateSoloCerts extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         $client = new Client();
         $res = $client->request('GET', 'https://api.vatusa.net/v2/solo');
         $solo_certs = json_decode($res->getBody());
 
-        foreach($solo_certs as $s) {
-            if(! ($s === true || $s === false)) {
+        foreach ($solo_certs as $s) {
+            if (!($s === true || $s === false)) {
                 if ($s->position == 'ATL_CTR') {
                     $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
                     if (!$current_cert) {
@@ -62,22 +59,24 @@ class UpdateSoloCerts extends Command
                         $user->ctr = 99;
                         $user->save();
                     }
-                } elseif (substr($s->position, -3) == 'APP') {
-                    $hcontrol = User::where('visitor', 0)->get();
-                    foreach ($hcontrol as $h) {
-                        if ($s->cid == $h->id) {
-                            $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
-                            if (!$current_cert) {
-                                $cert = new SoloCert;
-                                $cert->cid = $s->cid;
-                                $cert->pos = 1;
-                                $cert->expiration = $s->expires;
-                                $cert->status = 0;
-                                $cert->save();
+                } else {
+                    if (substr($s->position, -3) == 'APP') {
+                        $hcontrol = User::where('visitor', 0)->get();
+                        foreach ($hcontrol as $h) {
+                            if ($s->cid == $h->id) {
+                                $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                if (!$current_cert) {
+                                    $cert = new SoloCert;
+                                    $cert->cid = $s->cid;
+                                    $cert->pos = 1;
+                                    $cert->expiration = $s->expires;
+                                    $cert->status = 0;
+                                    $cert->save();
 
-                                $user = $h;
-                                $user->app = 99;
-                                $user->save();
+                                    $user = $h;
+                                    $user->app = 99;
+                                    $user->save();
+                                }
                             }
                         }
                     }
@@ -89,22 +88,27 @@ class UpdateSoloCerts extends Command
         $today = substr($today, 0, 10);
         $certs = SoloCert::get();
 
-        foreach($certs as $c) {
-            if($c->expiration <= $today && $c->status == 0) {
-                Mail::send('emails.solo_expire', ['c' => $c], function($message){
-                    $message->from('solocerts@notams.ztlartcc.org', 'ZTL Solo Certifications')->subject('Solo Certification Expired');
+        foreach ($certs as $c) {
+            if ($c->expiration <= $today && $c->status == 0) {
+                Mail::send('emails.solo_expire', ['c' => $c], function($message) {
+                    $message->from('solocerts@notams.ztlartcc.org', 'ZTL Solo Certifications')
+                            ->subject('Solo Certification Expired');
                     $message->to('ta@ztlartcc.org');
                 });
                 $c->status = 1;
 
                 $user = User::find($c->cid);
 
-                if($c->pos == 0) {
+                if ($c->pos == 0) {
                     $user->twr = 0;
-                } elseif($c->pos == 1) {
-                    $user->app = 0;
-                } elseif($c->pos == 2) {
-                    $user->ctr = 0;
+                } else {
+                    if ($c->pos == 1) {
+                        $user->app = 0;
+                    } else {
+                        if ($c->pos == 2) {
+                            $user->ctr = 0;
+                        }
+                    }
                 }
                 $user->save();
                 $c->save();

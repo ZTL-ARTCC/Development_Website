@@ -1,23 +1,23 @@
 @extends('layouts.master')
 
 @section('title')
-@parent| Administrator Center @stop
+    @parent| Administrator Center @stop
 
 @section('content')
 
-<!-- Hero -->
-<div class="bg-gd-dusk">
-	<div class="bg-black-op-25">
-		<div class="content content-top content-full text-center">
-			<h1 class="h3 text-white font-w700 mb-10">
-				Administrator Center
-			</h1>
-			<h2 class="h4 font-w400 text-white-op">Atlanta ARTCC</h2>
-		</div>
-	</div>
-</div>
-<div class="container">
-    {!! Form::open(['action' => 'AdminDash@sendEmail']) !!}
+    <!-- Hero -->
+    <div class="bg-gd-dusk">
+        <div class="bg-black-op-25">
+            <div class="content content-top content-full text-center">
+                <h1 class="h3 text-white font-w700 mb-10">
+                    Administrator Center
+                </h1>
+                <h2 class="h4 font-w400 text-white-op">Atlanta ARTCC</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {!! Form::open(['action' => 'AdminDash@sendEmail']) !!}
         @csrf
         <div class="row">
             <div class="col-sm-4">
@@ -72,10 +72,10 @@
             {!! Form::textarea('message', null, ['id' => 'article-ckeditor', 'placeholder' => 'Message (Required)', 'class' => 'form-control']) !!}
         </div>
         <button class="btn btn-success" type="submit">Send</button>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'article-ckeditor' );
-</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('article-ckeditor');
+    </script>

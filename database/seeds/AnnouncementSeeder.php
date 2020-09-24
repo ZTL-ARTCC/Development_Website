@@ -2,15 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class AnnouncementSeeder extends Seeder
-{
+class AnnouncementSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         factory(App\Announcement::class, 100)->create();
     }
 }

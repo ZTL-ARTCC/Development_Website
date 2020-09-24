@@ -4,9 +4,8 @@ namespace App\Console\Commands\TeamSpeak;
 
 use App\Libraries\TeamSpeak;
 
-class TeamSpeakManager extends TeamSpeakCommand
-{
-   /**
+class TeamSpeakManager extends TeamSpeakCommand {
+    /**
      * The console command name.
      *
      * @var string
@@ -18,25 +17,25 @@ class TeamSpeakManager extends TeamSpeakCommand
      * @var string
      */
     protected $description = 'TeamSpeak Management script.';
+
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
-    {
-     
-            $tscon = TeamSpeak::run('ZTL Management Bot');
-            $clients = $tscon->clientList();
-            foreach ($clients as $client) {
-                $member = TeamSpeak::checkClientRegistration($client);
-             
-                    $this->currentMember = $client['client_database_id'];
-                    // perform the necessary checks on the client
-                   
-                        TeamSpeak::checkClientIdleTime($client, $member);
-                    }
-              
-  
+    public function handle() {
+
+        $tscon = TeamSpeak::run('ZTL Management Bot');
+        $clients = $tscon->clientList();
+        foreach ($clients as $client) {
+            $member = TeamSpeak::checkClientRegistration($client);
+
+            $this->currentMember = $client['client_database_id'];
+            // perform the necessary checks on the client
+
+            TeamSpeak::checkClientIdleTime($client, $member);
+        }
+
+
     }
-    }
+}

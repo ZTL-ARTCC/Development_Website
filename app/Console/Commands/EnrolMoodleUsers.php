@@ -4,11 +4,10 @@ namespace App\Console\Commands;
 
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
-class EnrolMoodleUsers extends Command
-{
+class EnrolMoodleUsers extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -28,8 +27,7 @@ class EnrolMoodleUsers extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -38,48 +36,50 @@ class EnrolMoodleUsers extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         $controllers = User::where('status', '!=', 2)->get();
 
-        foreach($controllers as $c) {
+        foreach ($controllers as $c) {
             $now = Carbon::now()->timestamp;
 
             // If the user isn't in moodle, add them now...role will be done later
             $m_user = DB::table('mdl_user')->where('id', $c->id)->first();
 
-            if(! $m_user) {
+            if (!$m_user) {
                 //Adds user to moodle database
                 DB::table('mdl_user')->insert([
-                    'id' => $c->id,
-                    'confirmed' => 1,
-                    'mnethostid' => 1,
-                    'username' => $c->id,
-                    'firstname' => $c->fname,
-                    'lastname' => $c->lname,
-                    'email' => $c->email
-                ]);
+                                                  'id' => $c->id,
+                                                  'confirmed' => 1,
+                                                  'mnethostid' => 1,
+                                                  'username' => $c->id,
+                                                  'firstname' => $c->fname,
+                                                  'lastname' => $c->lname,
+                                                  'email' => $c->email
+                                              ]);
             }
 
             // Determines which courses should be added for the controller
-            if($c->visitor == 1)
+            if ($c->visitor == 1) {
                 $courses = DB::table('moodle_course_assignments')->where('isVisitor', 1)->get();
-            else
+            } else {
                 $courses = DB::table('moodle_course_assignments')->where('rating_id', '<=', $c->rating_id)->get();
+            }
 
-            foreach($courses as $course) {
-                $enrolment = DB::table('mdl_user_enrolments')->where('userid', $c->id)->where('enrolid', $course->mdl_enrol_id)->first();
+            foreach ($courses as $course) {
+                $enrolment = DB::table('mdl_user_enrolments')->where('userid', $c->id)
+                               ->where('enrolid', $course->mdl_enrol_id)->first();
 
-                if(! $enrolment)
+                if (!$enrolment) {
                     DB::table('mdl_user_enrolments')->insert([
-                        'status' => 0,
-                        'enrolid' => $course->mdl_enrol_id,
-                        'userid' => $c->id,
-                        'timestart' => $now,
-                        'timeend' => 0,
-                        'timecreated' => $now,
-                        'timemodified' => $now
-                    ]);
+                                                                 'status' => 0,
+                                                                 'enrolid' => $course->mdl_enrol_id,
+                                                                 'userid' => $c->id,
+                                                                 'timestart' => $now,
+                                                                 'timeend' => 0,
+                                                                 'timecreated' => $now,
+                                                                 'timemodified' => $now
+                                                             ]);
+                }
             }
         }
     }

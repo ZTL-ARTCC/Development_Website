@@ -4,11 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
-{
-    protected $table = 'files';
-    protected $fillable = ['id', 'name', 'type', 'desc', 'path', 'created_at', 'updated_at'];
-
+class File extends Model {
     public static $WordType = [
         0 => 'VRC',
         1 => 'vSTARS',
@@ -18,9 +14,10 @@ class File extends Model
         5 => 'LOAs',
         6 => 'Staff'
     ];
+    protected $table = 'files';
+    protected $fillable = ['id', 'name', 'type', 'desc', 'path', 'created_at', 'updated_at'];
 
-    public function getWordTypeAttribute()
-    {
+    public function getWordTypeAttribute() {
         foreach (File::$WordType as $id => $wordType) {
             if ($this->type == $id) {
                 return $wordType;

@@ -4,13 +4,12 @@ namespace App\Console\Commands;
 
 use App\Airport;
 use App\Metar;
-use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use SimpleXMLElement;
 
-class FetchMetar extends Command
-{
+class FetchMetar extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -30,8 +29,7 @@ class FetchMetar extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -40,25 +38,28 @@ class FetchMetar extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         $airports_icao = Airport::get()->pluck('ltr_4');
         $airports_full = Airport::get();
         $airports = $airports_icao->toArray();
 
         $client = new Client;
-        $response_metars = $client->request('GET', 'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString='.implode(',', $airports));
-        $response_tafs = $client->request('GET', 'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString='.implode(',', $airports));
+        $response_metars = $client->request('GET',
+                                            'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                                            implode(',', $airports));
+        $response_tafs = $client->request('GET',
+                                          'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                                          implode(',', $airports));
 
         $root_metars = new SimpleXMLElement($response_metars->getBody());
         $root_tafs = new SimpleXMLElement($response_tafs->getBody());
 
         $i = 0;
-		
-		DB::table('airport_weather')->truncate();
-        foreach($root_metars->data->children() as $metar) {
-			$airport = new Metar;
-			$airport->icao = $metar->station_id->__toString();
+
+        DB::table('airport_weather')->truncate();
+        foreach ($root_metars->data->children() as $metar) {
+            $airport = new Metar;
+            $airport->icao = $metar->station_id->__toString();
 
             $wind = 'CALM';
 
@@ -69,8 +70,8 @@ class FetchMetar extends Command
             }
 
             if ($winds > 0 && $metar->wind_speed_kt->__toString() > 0) {
-                if($metar->wind_speed_kt->__toString() < 10) {
-                    $windspeed = '0'.$metar->wind_speed_kt->__toString();
+                if ($metar->wind_speed_kt->__toString() < 10) {
+                    $windspeed = '0' . $metar->wind_speed_kt->__toString();
                 } else {
                     $windspeed = $metar->wind_speed_kt->__toString();
                 }
@@ -92,7 +93,7 @@ class FetchMetar extends Command
             $i++;
         }
 
-        foreach($root_tafs->data->children() as $taf) {
+        foreach ($root_tafs->data->children() as $taf) {
             $airport = Metar::where('icao', $taf->station_id)->first();
             $airport->taf = $taf->raw_text->__toString();
             $airport->save();

@@ -5,14 +5,12 @@ namespace App;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
 
-class Airport extends Model
-{
+class Airport extends Model {
     public $table = 'airports';
     public $fillable = ['id', 'name', 'ltr_4', 'ltr_3'];
     public $timestamps = false;
 
-    public function getMetarAttribute()
-    {
+    public function getMetarAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -22,8 +20,7 @@ class Airport extends Model
         }
     }
 
-    public function getTafAttribute()
-    {
+    public function getTafAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -33,8 +30,7 @@ class Airport extends Model
         }
     }
 
-    public function getVisualConditionsAttribute()
-    {
+    public function getVisualConditionsAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -44,8 +40,7 @@ class Airport extends Model
         }
     }
 
-    public function getWindAttribute()
-    {
+    public function getWindAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -55,8 +50,7 @@ class Airport extends Model
         }
     }
 
-    public function getAltimeterAttribute()
-    {
+    public function getAltimeterAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -66,8 +60,7 @@ class Airport extends Model
         }
     }
 
-    public function getTemperatureDewpointAttribute()
-    {
+    public function getTemperatureDewpointAttribute() {
         $airport = Metar::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
@@ -77,8 +70,7 @@ class Airport extends Model
         }
     }
 
-    public function getInboundTrafficAttribute()
-    {
+    public function getInboundTrafficAttribute() {
         $client = new Client();
         $res = $client->get('http://api.vateud.net/online/arrivals/' . $this->ltr_4 . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);
@@ -90,8 +82,7 @@ class Airport extends Model
         }
     }
 
-    public function getOutboundTrafficAttribute()
-    {
+    public function getOutboundTrafficAttribute() {
         $client = new Client();
         $res = $client->get('http://api.vateud.net/online/departures/' . $this->ltr_4 . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);

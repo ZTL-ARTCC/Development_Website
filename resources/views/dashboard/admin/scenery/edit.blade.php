@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Edit Scenery
+    Edit Scenery
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Edit Scenery</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@saveScenery', $scenery->id]]) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>Edit Scenery</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@saveScenery', $scenery->id]]) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -58,10 +58,10 @@ Edit Scenery
             <div class="col-sm-1">
                 <button class="btn btn-success" type="submit">Save</button>
             </div>
-    {!! Form::close() !!}
+            {!! Form::close() !!}
             <div class="col-sm-1">
                 <a href="/dashboard/admin/scenery" class="btn btn-danger">Cancel</a>
             </div>
         </div>
-</div>
+    </div>
 @endsection

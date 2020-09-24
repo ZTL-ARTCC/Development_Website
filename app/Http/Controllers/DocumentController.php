@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use App\Document;
 use Illuminate\Support\Facades\Input;
 
-class DocumentController extends Controller
-{
+class DocumentController extends Controller {
 
     /**
      * Display a listing of the document with admin controls
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         $Documents = Document::all();
-        $byType = function ($type) {
-            return function ($Document) use ($type) {
+        $byType = function($type) {
+            return function($Document) use ($type) {
                 return $Document->type == $type;
             };
         };
@@ -38,8 +36,7 @@ class DocumentController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
+    public function create() {
         return View('admin.documents.create');
     }
 
@@ -49,8 +46,7 @@ class DocumentController extends Controller
      *
      * @return Response
      */
-    public function store()
-    {
+    public function store() {
         $file = Input::file('file');
 
         $file->move(config('app.documentsPath'), $file->getClientOriginalName());
@@ -61,7 +57,8 @@ class DocumentController extends Controller
         $document->url = $relativePath;
         $document->save();
 
-        ActivityLog::create(['note' => 'Created Document: ' . Input::get('name'), 'user_id' => Auth::id(), 'log_state' => 1, 'log_type' => 3]);
+        ActivityLog::create(['note' => 'Created Document: ' . Input::get('name'), 'user_id' => Auth::id(),
+                             'log_state' => 1, 'log_type' => 3]);
 
         return Redirect::action('DocumentController@index')->with('message', 'Document successfully created!');
     }
@@ -73,8 +70,7 @@ class DocumentController extends Controller
      * @param int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $Document = Document::find($id);
         return View('admin.documents.edit')->with('Document', $Document);
     }
@@ -86,8 +82,7 @@ class DocumentController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update($id)
-    {
+    public function update($id) {
         $file = Input::file('file');
         $Document = Document::find($id);
 
@@ -100,7 +95,8 @@ class DocumentController extends Controller
         $Document->fill(Input::except('file'));
         $Document->save();
 
-        ActivityLog::create(['note' => 'Updated Document: ' . Input::get('name'), 'user_id' => Auth::id(), 'log_state' => 2, 'log_type' => 3]);
+        ActivityLog::create(['note' => 'Updated Document: ' . Input::get('name'), 'user_id' => Auth::id(),
+                             'log_state' => 2, 'log_type' => 3]);
 
         return Redirect::action('DocumentController@index')->withMessage('Document successfully saved!');
     }
@@ -112,10 +108,10 @@ class DocumentController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $document = Document::find($id);
-        ActivityLog::create(['note' => 'Deleted Document: ' . $document->name, 'user_id' => Auth::id(), 'log_state' => 3, 'log_type' => 3]);
+        ActivityLog::create(['note' => 'Deleted Document: ' . $document->name, 'user_id' => Auth::id(),
+                             'log_state' => 3, 'log_type' => 3]);
 
         Document::destroy($id);
 

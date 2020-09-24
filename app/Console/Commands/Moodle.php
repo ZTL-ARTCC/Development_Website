@@ -3,11 +3,10 @@
 namespace App\Console\Commands;
 
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
-class Moodle extends Command
-{
+class Moodle extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -27,8 +26,7 @@ class Moodle extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -37,20 +35,19 @@ class Moodle extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         $users = User::get();
-        foreach($users as $u) {
+        foreach ($users as $u) {
             DB::table('mdl_user')->insert([
-                 'id' => $u->id,
-                 'confirmed' => 1,
-                 'mnethostid' => 1,
-                 'username' => $u->id,
-                 'firstname' => $u->fname,
-                 'lastname' => $u->lname,
-                 'email' => $u->email
-             ]);
+                                              'id' => $u->id,
+                                              'confirmed' => 1,
+                                              'mnethostid' => 1,
+                                              'username' => $u->id,
+                                              'firstname' => $u->fname,
+                                              'lastname' => $u->lname,
+                                              'email' => $u->email
+                                          ]);
         }
-        
+
     }
 }

@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
-    public function index()
-        {
-            if(Auth::user()->can('ATM') ||
+    public function index() {
+        if (Auth::user()->can('ATM') ||
             Auth::user()->can('DATM') ||
             Auth::user()->can('TA') ||
             Auth::user()->can('ATA') ||
@@ -16,12 +15,12 @@ class AdminController extends Controller {
             Auth::user()->can('FE') ||
             Auth::user()->can('AFE') ||
             Auth::user()->can('EC') ||
-            Auth::user()->can('AEC') 
-            ){
-                return View::make('site.home');
-            }
-            return View::make('admin.home');
+            Auth::user()->can('AEC')
+        ) {
+            return View::make('site.home');
         }
-    
+        return View::make('admin.home');
     }
+
+}
     

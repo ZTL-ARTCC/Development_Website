@@ -149,7 +149,7 @@ MAIN CONTENT LAYOUT
                         <a class="link-effect font-w700" href="index.html">
                             <i class="si si-fire text-primary"></i>
                             <span class="font-size-xl text-dual-primary-dark">ZTL</span><span
-                                    class="font-size-xl text-primary">Dashboard</span>
+                                class="font-size-xl text-primary">Dashboard</span>
                         </a>
                     </div>
                     <!-- END Logo -->
@@ -170,48 +170,52 @@ MAIN CONTENT LAYOUT
                     </li>
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span
-                                class="sidebar-mini-hidden">User Interface</span></li>
+                            class="sidebar-mini-hidden">User Interface</span></li>
                     <li>
                         <a href="/dashboard/controllers/roster"><i class="si si-cup"></i><span
-                                    class="sidebar-mini-hide">Roster</span></a>
+                                class="sidebar-mini-hide">Roster</span></a>
                     </li>
                     <li>
-                        <a href="/dashboard/controllers/events"><i class="si si-cup"></i><span class="sidebar-mini-hide">Events</span></a>
+                        <a href="/dashboard/controllers/events"><i class="si si-cup"></i><span
+                                class="sidebar-mini-hide">Events</span></a>
                     </li>
                     <li>
                         <a href="/dashboard/controllers/files"><i class="si si-cup"></i><span class="sidebar-mini-hide">Files</span></a>
                     </li>
                     <li>
-                        <a href="/dashboard/controllers/scenery"><i class="si si-cup"></i><span class="sidebar-mini-hide">Scenery</span></a>
+                        <a href="/dashboard/controllers/scenery"><i class="si si-cup"></i><span
+                                class="sidebar-mini-hide">Scenery</span></a>
                     </li>
                     <li>
                         <a href="/dashboard/controllers/stats"><i class="si si-cup"></i><span
-                                    class="sidebar-mini-hide">Statistics</span></a>
+                                class="sidebar-mini-hide">Statistics</span></a>
                     </li>
                     <li>
-                        <a href="/dashboard/controllers/incident/report"><i class="si si-cup"></i><span class="sidebar-mini-hide">Incident Report</span></a>
+                        <a href="/dashboard/controllers/incident/report"><i class="si si-cup"></i><span
+                                class="sidebar-mini-hide">Incident Report</span></a>
                     </li>
-                </li>
-                    <a href="https://IDS.ztlartcc.org"><i class="si si-cup"></i><span class="sidebar-mini-hide"> IDS</span></a>
+                    </li>
+                    <a href="https://IDS.ztlartcc.org"><i class="si si-cup"></i><span
+                            class="sidebar-mini-hide"> IDS</span></a>
 
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span
-                                class="sidebar-mini-hidden">Training</span></li>
+                            class="sidebar-mini-hidden">Training</span></li>
 
-                       <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span
-                                    class="sidebar-mini-hide">Training Sessions</span></a>
+                    <a href="https://training.ztlartcc.org"><i class="si si-cup"></i><span
+                            class="sidebar-mini-hide">Training Sessions</span></a>
                     </li>
                     <li>
-                    
+
 
                     </li>
 
-                   
+
                     <li>
-                        
+
                     </li>
 
                     <li>
-                        
+
                     </li>
                 </ul>
             </div>

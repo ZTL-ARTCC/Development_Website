@@ -2,15 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class VisitAgreementRejectSeeder extends Seeder
-{
+class VisitAgreementRejectSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         factory(App\VisitRej::class, 100)->create();
     }
 }

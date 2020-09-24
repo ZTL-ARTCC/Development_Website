@@ -5,8 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class TrainingRequest extends Model
-{
+class TrainingRequest extends Model {
 
     public static $PosReq = [
         1 => 'Minor Delivery',
@@ -77,26 +76,67 @@ class TrainingRequest extends Model
     protected $table = 'training_controller_requests';
 
     protected $fillable = array('controller_id', 'position_id', 'date', 'request_begin', 'request_end', 'comments',
-        'accepted', 'mentor', 'session_begin', 'session_end', 'complete');
+                                'accepted', 'mentor', 'session_begin', 'session_end', 'complete');
 
+    public static function minD() {
+        return static::getForPositionNotCompleted('1');
+    }
 
-    public function controller()
-    {
+    public static function getForPositionNotCompleted($position) {
+        return static::query()
+                     ->where('position', $position)
+                     ->where('complete', '0')
+                     ->where(function($query) {
+                         $query->where('date', '>', Carbon::now())
+                               ->orWhere('accepted', '1');
+                     })->get();
+    }
+
+    public static function minG() {
+        return static::getForPositionNotCompleted('2');
+    }
+
+    public static function minT() {
+        return static::getForPositionNotCompleted('3');
+    }
+
+    public static function minA() {
+        return static::getForPositionNotCompleted('4');
+    }
+
+    public static function majD() {
+        return static::getForPositionNotCompleted('5');
+    }
+
+    public static function majG() {
+        return static::getForPositionNotCompleted('6');
+    }
+
+    public static function majT() {
+        return static::getForPositionNotCompleted('7');
+    }
+
+    public static function majA() {
+        return static::getForPositionNotCompleted('8');
+    }
+
+    public static function ctr() {
+        return static::getForPositionNotCompleted('9');
+    }
+
+    public function controller() {
         return $this->hasOne('User', 'id', 'controller_id');
     }
 
-    public function instructor()
-    {
+    public function instructor() {
         return $this->hasOne('User', 'id', 'mentor_id');
     }
 
-    public function Trainee()
-    {
+    public function Trainee() {
         return $this->hasOne('User', 'id', 'trainee_id');
     }
 
-    public function getPosReqAttribute()
-    {
+    public function getPosReqAttribute() {
         foreach (TrainingRequest::$PosReq as $id => $request) {
             if ($this->position_id == $id) {
                 return $request;
@@ -106,8 +146,7 @@ class TrainingRequest extends Model
         return "";
     }
 
-    public function getTimeStartAttribute()
-    {
+    public function getTimeStartAttribute() {
         foreach (TrainingRequest::$TimeStart as $id => $start) {
             if ($this->request_begin == $id) {
                 return $start;
@@ -117,8 +156,7 @@ class TrainingRequest extends Model
         return "";
     }
 
-    public function getTimeEndAttribute()
-    {
+    public function getTimeEndAttribute() {
         foreach (TrainingRequest::$TimeEnd as $id => $end) {
             if ($this->request_end == $id) {
                 return $end;
@@ -126,61 +164,5 @@ class TrainingRequest extends Model
         }
 
         return "";
-    }
-
-    public static function getForPositionNotCompleted($position)
-    {
-        return static::query()
-            ->where('position', $position)
-            ->where('complete', '0')
-            ->where(function ($query) {
-                $query->where('date', '>', Carbon::now())
-                    ->orWhere('accepted', '1');
-            })->get();
-    }
-
-    public static function minD()
-    {
-        return static::getForPositionNotCompleted('1');
-    }
-
-    public static function minG()
-    {
-        return static::getForPositionNotCompleted('2');
-    }
-
-    public static function minT()
-    {
-        return static::getForPositionNotCompleted('3');
-    }
-
-    public static function minA()
-    {
-        return static::getForPositionNotCompleted('4');
-    }
-
-    public static function majD()
-    {
-        return static::getForPositionNotCompleted('5');
-    }
-
-    public static function majG()
-    {
-        return static::getForPositionNotCompleted('6');
-    }
-
-    public static function majT()
-    {
-        return static::getForPositionNotCompleted('7');
-    }
-
-    public static function majA()
-    {
-        return static::getForPositionNotCompleted('8');
-    }
-
-    public static function ctr()
-    {
-        return static::getForPositionNotCompleted('9');
     }
 }

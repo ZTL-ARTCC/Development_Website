@@ -1,41 +1,41 @@
 @extends('layouts.master')
 
 @section('title')
-@parent
-| Edit Controller | Administrator Center
+    @parent
+    | Edit Controller | Administrator Center
 @stop
 
 @section('content')
 
-<!-- Hero -->
-<div class="bg-gd-dusk">
-	<div class="bg-black-op-25">
-		<div class="content content-top content-full text-center">
-			<h1 class="h3 text-white font-w700 mb-10">
-				Edit Controller
-			</h1>
-			<h2 class="h4 font-w400 text-white-op">Atlanta ARTCC Administrator Center</h2>
-		</div>
-	</div>
-</div>
-<!-- END Hero -->
+    <!-- Hero -->
+    <div class="bg-gd-dusk">
+        <div class="bg-black-op-25">
+            <div class="content content-top content-full text-center">
+                <h1 class="h3 text-white font-w700 mb-10">
+                    Edit Controller
+                </h1>
+                <h2 class="h4 font-w400 text-white-op">Atlanta ARTCC Administrator Center</h2>
+            </div>
+        </div>
+    </div>
+    <!-- END Hero -->
 
-<!-- Breadcrumb -->
-<div class="bg-body-light border-b">
-	<div class="content py-5 text-center">
-		<nav class="breadcrumb bg-body-light mb-0">
-			<a class="breadcrumb-item" href="/">Home</a>
-			<a class="breadcrumb-item" href="/admin">Administrator Center</a>
-			<a class="breadcrumb-item" href="/admin/roster">Manage Roster</a>
-			<span class="breadcrumb-item active">Edit Controller</span>
-		</nav>
-	</div>
-</div>
-<!-- END Breadcrumb -->
+    <!-- Breadcrumb -->
+    <div class="bg-body-light border-b">
+        <div class="content py-5 text-center">
+            <nav class="breadcrumb bg-body-light mb-0">
+                <a class="breadcrumb-item" href="/">Home</a>
+                <a class="breadcrumb-item" href="/admin">Administrator Center</a>
+                <a class="breadcrumb-item" href="/admin/roster">Manage Roster</a>
+                <span class="breadcrumb-item active">Edit Controller</span>
+            </nav>
+        </div>
+    </div>
+    <!-- END Breadcrumb -->
 
-<!-- Main Content -->
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
+    <!-- Main Content -->
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -213,7 +213,7 @@
                         <div class="col-sm-6">
                             {!! Form::label('max_minor_del', 'Train Minor DEL') !!}
                             {!! Form::checkbox('max_minor_del', 1, true) !!}
-                           
+
                             {!! Form::label('max_minor_gnd', 'Train Minor GND') !!}
                             {!! Form::checkbox('max_minor_gnd', 1, true) !!}
 
@@ -382,7 +382,8 @@
                             @if($user->visitor_from != 'ZJX' && $user->visitor_from != 'ZHU')
                                 <a href="/dashboard/admin/roster/visit/remove/{{ $user->id }}">(Remove from Roster)</a>
                             @else
-                                <a href="/dashboard/admin/roster/visit-agreement/reject/{{ $user->id }}">(Disallow from Visiting)</a>
+                                <a href="/dashboard/admin/roster/visit-agreement/reject/{{ $user->id }}">(Disallow from
+                                    Visiting)</a>
                             @endif
                         @else
                             {!! Form::label('visitor', 'Visitor?') !!}
@@ -460,12 +461,12 @@
             <div class="col-sm-1">
                 <button class="btn btn-success" type="submit">Save</button>
             </div>
-    {!! Form::close() !!}
+            {!! Form::close() !!}
             <div class="col-sm-1">
                 <a href="{{ url()->previous() }}" class="btn btn-danger">Cancel</a>
             </div>
         </div>
-</div>
+    </div>
 @endsection
 
 

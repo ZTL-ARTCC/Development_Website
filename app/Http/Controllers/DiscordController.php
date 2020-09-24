@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\ControllerLog;
 use App\DiscordUser;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
-class DiscordController extends Controller
-{
-    public function returnDiscordInfo(Request $request)
-    {
+class DiscordController extends Controller {
+    public function returnDiscordInfo(Request $request) {
         if ($request->key == Config::get('discord.bot_api_key')) {
             $data = DiscordUser::get();
 
@@ -28,20 +26,21 @@ class DiscordController extends Controller
         }
     }
 
-    public function loginToDiscord()
-    {
+    public function loginToDiscord() {
         $discordUser = DiscordUser::where('cid', Auth::id())->first();
-        if ($discordUser)
+        if ($discordUser) {
             return redirect()->back()->with('error', 'Your discord account is already linked.');
+        }
 
-        return redirect('https://discordapp.com/api/oauth2/authorize' . '?response_type=code&scope=identify&client_id=' . Config::get('discord.client_id'));
+        return redirect('https://discordapp.com/api/oauth2/authorize' .
+                        '?response_type=code&scope=identify&client_id=' . Config::get('discord.client_id'));
     }
 
-    public function completeDiscordLogin(Request $request)
-    {
+    public function completeDiscordLogin(Request $request) {
         $code = $request->code;
-        if (!$code)
+        if (!$code) {
             return redirect('/')->with('error', 'No response code found for discord login.');
+        }
 
         $client = new Client();
         $response = $client->request('POST', 'https://discordapp.com/api/oauth2/token', [
@@ -85,14 +84,15 @@ class DiscordController extends Controller
         return redirect('/dashboard/controllers/profile')->with('success', 'Discord profile linked successfully.');
     }
 
-    public function logoutOfDiscord()
-    {
+    public function logoutOfDiscord() {
         $discord = DiscordUser::where('cid', Auth::id())->first();
-        if (!$discord)
+        if (!$discord) {
             return redirect()->back()->with('error', 'You are not logged into discord');
+        }
 
         $discord->delete();
 
-        return redirect('/dashboard/controllers/profile')->with('success', 'You have been logged out of Discord successfully.');
+        return redirect('/dashboard/controllers/profile')->with('success',
+                                                                'You have been logged out of Discord successfully.');
     }
 }

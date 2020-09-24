@@ -8,8 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TeamSpeak3_Adapter_ServerQuery_Exception;
 
-abstract class TeamSpeakCommand extends Command
-{
+abstract class TeamSpeakCommand extends Command {
     /**
      * @var TeamSpeakDaemon|TeamSpeakManager The console command object, used by static event-driven functions.
      */
@@ -30,8 +29,7 @@ abstract class TeamSpeakCommand extends Command
      * @param OutputInterface $output
      * @return int
      */
-    public function run(InputInterface $input, OutputInterface $output)
-    {
+    public function run(InputInterface $input, OutputInterface $output) {
         self::$command = $this;
 
         return parent::run($input, $output);
@@ -43,12 +41,12 @@ abstract class TeamSpeakCommand extends Command
      * @param TeamSpeak3_Adapter_ServerQuery_Exception $e
      * @param Account $account
      */
-  
+
 
     /**
      * Handling for all exceptions.
      *
      * @param Exception $e
      */
-  
+
 }
