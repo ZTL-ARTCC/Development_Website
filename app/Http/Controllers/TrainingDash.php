@@ -20,11 +20,6 @@ class TrainingDash extends Controller {
         return view('dashboard.training.atcast');
     }
 
-    public function moodleLogin() {
-        Auth::user()->enrolInMoodleCourses();
-        return view('dashboard.training.moodle');
-    }
-
     public function showNotes() {
         $id = Auth::id();
         $user = User::find($id);

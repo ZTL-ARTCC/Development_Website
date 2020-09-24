@@ -19,8 +19,7 @@ class Kernel extends ConsoleKernel {
         '\App\Console\Commands\EventEmails',
         '\App\Console\Commands\ARTCCOverflights',
         '\App\Console\Commands\RosterRemovalWarn',
-        '\App\Console\Commands\UpdateDiscordUsers',
-        '\App\Console\Commands\DeleteMoodleUsers',
+        '\App\Console\Commands\UpdateDiscordUsers'
     ];
 
     /**
@@ -36,7 +35,6 @@ class Kernel extends ConsoleKernel {
         $schedule->command('Overflights:GetOverflights')->everyFiveMinutes();
         $schedule->command('Weather:UpdateWeather')->everyFiveMinutes();
         $schedule->command('OnlineControllers:GetControllers')->everyMinute();
-        $schedule->command('Moodle:DeleteUsers')->dailyAt('00:15');
         $schedule->command('RosterUpdate:VisitAgreement')->dailyAt('00:30');
         $schedule->command('Event:SendEventReminder')->dailyAt('00:30')->timezone('America/New_York');
         $schedule->command('RosterRemoval:Warning')->monthlyOn('5', '00:30');
