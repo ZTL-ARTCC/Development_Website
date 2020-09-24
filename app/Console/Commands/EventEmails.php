@@ -2,14 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Artisan;
-use App\User;
 use App\Event;
-use App\EventPosition;
 use App\EventRegistration;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class EventEmails extends Command
 {

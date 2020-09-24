@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Artisan;
-use Config;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 
 class CronController extends Controller

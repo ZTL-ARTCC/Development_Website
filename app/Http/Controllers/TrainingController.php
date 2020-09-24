@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\MentorAvail;
 use App\User;
-use Mail;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 
 class TrainingController extends Controller
 {

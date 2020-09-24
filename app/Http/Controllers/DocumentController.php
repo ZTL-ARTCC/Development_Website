@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Document, Illuminate\Support\Facades\Input;
+use App\Document;
+use Illuminate\Support\Facades\Input;
 
 class DocumentController extends Controller
 {

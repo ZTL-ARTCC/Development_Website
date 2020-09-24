@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\TrainingRequest;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class MentorAvail extends Model
 {

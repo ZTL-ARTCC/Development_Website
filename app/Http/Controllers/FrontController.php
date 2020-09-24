@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Cookie\CookieJar;
 use App\Airport;
 use App\ATC;
-use App\Bronze;
 use App\Calendar;
 use App\ControllerLog;
 use App\ControllerLogUpdate;
@@ -17,23 +15,20 @@ use App\Http\Controllers\toArray;
 use App\Metar;
 use App\Overflight;
 use App\OverflightUpdate;
-use App\Permission;
-use App\Role;
+use App\PositionPreset;
 use App\Scenery;
+use App\TrainingTicket;
 use App\User;
 use App\Visitor;
 use Carbon\Carbon;
-use App\PositionPreset;
-use Config;
+use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Mail;
-use Response;
+use Illuminate\Support\Facades\Mail;
 use SimpleXMLElement;
-use Validation;
-use App\TrainingTicket;
+
 class FrontController extends Controller
 {
     public function home()

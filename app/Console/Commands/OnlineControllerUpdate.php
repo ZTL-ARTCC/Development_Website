@@ -8,8 +8,6 @@ use App\ControllerLogUpdate;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class OnlineControllerUpdate extends Command
 {

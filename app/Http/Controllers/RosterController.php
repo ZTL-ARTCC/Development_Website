@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Opt;
-use App\Role;
 use App\User;
 use Carbon\Carbon;
-use Config;
-use DB;
-use Eloquent\Collection;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
-use Illuminate\Database\Eloquent;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Log;
-use Session;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
+use SimpleXMLElement;
 
 class RosterController extends Controller
 {
@@ -33,7 +29,7 @@ class RosterController extends Controller
         if (empty($cid) || !is_numeric($cid))
             return Response::json(['error' => 'Invalid or empty cid given']);
         $client = new Client;
-        $url = sprintf(\Config::get('services.vatsim.url'), $cid);
+        $url = sprintf(Config::get('services.vatsim.url'), $cid);
         $result = $client->get($url);
         $xml = new SimpleXMLElement($result->getBody());
         $res = [

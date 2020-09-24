@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Airport;
 use App\Metar;
-use DB;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use SimpleXMLElement;

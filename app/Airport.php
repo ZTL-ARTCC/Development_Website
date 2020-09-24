@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\deserialization;
-use App\Metar;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
 

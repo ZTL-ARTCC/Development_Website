@@ -3,8 +3,6 @@
 namespace App\Console\Commands\TeamSpeak;
 
 use App\Libraries\TeamSpeak;
-use Exception;
-use TeamSpeak3_Adapter_ServerQuery_Exception;
 
 class TeamSpeakManager extends TeamSpeakCommand
 {

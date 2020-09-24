@@ -6,8 +6,8 @@ use App\SoloCert;
 use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use Mail;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class UpdateSoloCerts extends Command
 {

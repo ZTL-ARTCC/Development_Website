@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\EventRegistration;
 use Illuminate\Database\Eloquent\Model;
 
 class EventPosition extends Model

@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\User;
-use Config;
-use DB;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 
 class DeleteMoodleUsers extends Command

@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use App\Overflight;
 use App\OverflightUpdate;
-use Config;
-use DB;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use SimpleXMLElement;

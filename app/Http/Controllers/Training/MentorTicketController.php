@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers\Training;
 
-use App\Http\Controllers\Controller;
-use App\MentorAvai;
 use App\Audit;
+use App\Http\Controllers\Controller;
 use App\Ots;
-use App\PublicTrainingInfo;
-use App\PublicTrainingInfoPdf;
-use App\TrainingInfo;
 use App\TrainingTicket;
 use App\User;
-use Auth;
-use Carbon\Carbon;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Mail;
-class MentorController extends Controller
+use Illuminate\Support\Facades\Mail;
+
+class MentorTicketController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function __invoke(Request $request)
     {

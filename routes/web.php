@@ -9,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+
 /*
 *   Front Page Stuff
 */
@@ -30,15 +32,13 @@ Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('/documents', 'FrontController@showFiles');
 Route::get('/staff', 'RosterController@staffIndex');
-
 Route::get('/training/notes', 'TrainingDash@showNotes');
 Route::get('/profile/{id?}', 'FrontController@showProfile');
-
 Route::get('/feedback/{id}', 'ControllerDash@showFeedbackDetails');
-/* 
-* Admin roster, need to setup permission. Do this after everything else if complete!
-*/
 
+/*
+* Admin roster, need to setup permissions.
+*/
 Route::prefix('')->middleware('auth')->group(function() {
     Route::get('/events', 'ControllerDash@showEvents');
     Route::get('/training/notes', 'TrainingDash@showNotes');
@@ -46,18 +46,6 @@ Route::prefix('')->middleware('auth')->group(function() {
     Route::post('edit_pic/{id?}', 'AdminDash@editprofilepic');
     Route::get('/event/{id}', 'FrontController@viewEvent');
 });
-
-
-
-
-
-
-
-
-
-/*
-*   End Front Page Stuff
-*/
 
 /*
 *   Roster, Login/Logout
@@ -68,9 +56,6 @@ Route::get('/login', 'RosterController@login');
 Route::get('login', [ 'as' => 'login', 'uses' => 'RosterController@login']);
 Route::get('/logout', 'RosterController@logout');
 Route::get('/news/view/{id}', 'FrontController@showCalendarEvent');
-/*
-*   End Roster
-*/
 
 /*
 *   Controller Dashboard
@@ -85,13 +70,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/trainingreq', 'TrainingController@showRequests');
         Route::delete('/trainingreq/{id}/delete', 'TrainingController@cancelSession');
         Route::get('/sessions_today', 'TrainingController@showsessions_today');
-
-
-
-
-
-
-
         Route::get('/teamspeak', 'ControllerDash@showTeamspeak');
         Route::get('/calendar/view/{id}', 'ControllerDash@showCalendarEvent');
         Route::get('/roster', 'ControllerDash@showRoster');
@@ -276,9 +254,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         });
     });
 });
-/*
-*   End Controller Dashboard
-*/
 
 /*
 *   Discord API
@@ -287,29 +262,18 @@ Route::get('/discord-api', 'DiscordController@returnDiscordInfo');
 Route::get('/discord/login', 'DiscordController@loginToDiscord');
 Route::get('/discord/login/verify', 'DiscordController@completeDiscordLogin');
 Route::get('/discord/logout', 'DiscordController@logoutOfDiscord');
-/*
-*   End Discord API
-*/
 
 /*
 *   Cron Jobs
 *   URL: https://ztlv2.team-stringer.com/cron-job/run?j=[Cron Job]&t=[Token]
 */
 //Route::get('/cron-job/run', 'CronController@index');
-/*
-*   End Cron Job
-*/
 
 /*
 *	Webmaster Permission Grant
 *	Use this to grant yourself webmaster privileges. Should be disabled for security reasons.
 */
-
 Route::get('/laratrust', function() {
 	$user = App\User::find(1420055);
 	$user->attachRole('wm');
 });
-
-/*
-*	End Webmaster Permission Grant
-*/

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\PublicTrainingInfoPdf;
 use Illuminate\Database\Eloquent\Model;
 
 class PublicTrainingInfo extends Model

@@ -5,13 +5,9 @@ namespace App\Console\Commands;
 use App\EventRegistration;
 use App\User;
 use App\VisitRej;
-use Config;
-use DB;
-use Eloquent\Collection;
+use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent;
-use Illuminate\Http\Request;
 
 class VisitAgreement extends Command
 {

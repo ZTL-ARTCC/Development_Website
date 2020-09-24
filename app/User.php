@@ -3,11 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\CotrollerLog;
-use App\MoodleEnrol;
-use App\User;
-use Config;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;

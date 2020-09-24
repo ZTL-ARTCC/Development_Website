@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvai;
 use App\Audit;
+use App\MentorAvail;
 use App\Ots;
 use App\PublicTrainingInfo;
 use App\PublicTrainingInfoPdf;
 use App\TrainingInfo;
 use App\TrainingTicket;
 use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Mail;
-use App\MentorAvail;
+use Illuminate\Support\Facades\Mail;
 
 class TrainingDash extends Controller
 {

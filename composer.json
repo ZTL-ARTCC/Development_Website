@@ -18,7 +18,10 @@
         "planetteamspeak/ts3-php-framework": "1.1.33",
         "santigarcor/laratrust": "5.0.*",
         "spatie/laravel-cookie-consent": "^2.12",
-        "unisharp/laravel-ckeditor": "^4.7"
+        "unisharp/laravel-ckeditor": "^4.7",
+        "ext-simplexml": "*",
+      "ext-json": "*",
+      "ext-http": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

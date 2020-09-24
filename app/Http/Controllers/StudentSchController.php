@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Training;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\MentorAvail;
-use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
 
-class SchController extends Controller
+class StudentSchController extends Controller
 {
     public function showMentAvail()
     {

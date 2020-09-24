@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 
 class Moodle extends Command

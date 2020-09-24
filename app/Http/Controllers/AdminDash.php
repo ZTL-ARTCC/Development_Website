@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Airport;
-use App\Audit;
 use App\Announcement;
+use App\Audit;
 use App\Bronze;
 use App\Calendar;
 use App\ControllerLog;
@@ -23,15 +23,14 @@ use App\SoloCert;
 use App\User;
 use App\Visitor;
 use App\VisitRej;
-use Artisan;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use Carbon\Carbon;
-use Config;
+use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Mail;
-use Storage;
+use Illuminate\Support\Facades\Mail;
 
 class AdminDash extends Controller
 {

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\MentorAvail;
-use App\User;
-use Auth;
-use App\TrainingInfo;
 use App\TrainingTicket;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;

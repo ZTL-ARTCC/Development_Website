@@ -23,15 +23,13 @@ use App\Pyrite;
 use App\Scenery;
 use App\TrainingTicket;
 use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use DB;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use SimpleXMLElement;
-use Response;
-use Illuminate\Cookie\CookieJar;
+
 class ControllerDash extends Controller
 {
     public function dash()

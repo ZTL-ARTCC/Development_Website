@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DiscordUser;
 use App\ControllerLog;
+use App\DiscordUser;
 use App\User;
-use Auth;
-use Config;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
