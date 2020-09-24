@@ -1,10 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class AnnouncementSeeder extends Seeder
+class AirportWeatherSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +11,6 @@ class AnnouncementSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Announcement::class, 100)->create();
+        factory(App\AirportWeather::class, 100)->create();
     }
 }
