@@ -3,15 +3,30 @@
 namespace App\Models;
 
 use App\TrainingInfo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\TrainingInformation
+ *
  * @property int $id
  * @property int $number
  * @property int $section
  * @property string $info
  * @property string $created_at
  * @property string $updated_at
+ * @property-read mixed $default_new_number
+ * @property-read mixed $new_numbers
+ * @method static Builder|TrainingInformation newModelQuery()
+ * @method static Builder|TrainingInformation newQuery()
+ * @method static Builder|TrainingInformation query()
+ * @method static Builder|TrainingInformation whereCreatedAt($value)
+ * @method static Builder|TrainingInformation whereId($value)
+ * @method static Builder|TrainingInformation whereInfo($value)
+ * @method static Builder|TrainingInformation whereNumber($value)
+ * @method static Builder|TrainingInformation whereSection($value)
+ * @method static Builder|TrainingInformation whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class TrainingInformation extends Model {
     /**

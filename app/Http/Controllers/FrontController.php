@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Airport;
-use App\ATC;
-use App\Calendar;
-use App\ControllerLog;
-use App\ControllerLogUpdate;
-use App\Event;
-use App\EventPosition;
-use App\EventRegistration;
-use App\Feedback;
-use App\File;
 use App\Http\Controllers\toArray;
-use App\Metar;
-use App\Overflight;
-use App\OverflightUpdate;
-use App\PositionPreset;
-use App\Scenery;
-use App\TrainingTicket;
-use App\User;
-use App\Visitor;
+use App\Models\Airport;
+use App\Models\AirportWeather;
+use App\Models\ArtccFlight;
+use App\Models\ArtccFlightUpdate;
+use App\Models\Calendar;
+use App\Models\ControllerLog;
+use App\Models\ControllerLogUpdate;
+use App\Models\Event;
+use App\Models\EventPosition;
+use App\Models\EventRegistration;
+use App\Models\Feedback;
+use App\Models\File;
+use App\Models\OnlineAtc;
+use App\Models\PositionPreset;
+use App\Models\Scenery;
+use App\Models\TrainingTicket;
+use App\Models\User;
+use App\Models\VisitorRequest;
 use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
@@ -34,7 +34,7 @@ use SimpleXMLElement;
 class FrontController extends Controller {
     public function home() {
 
-        $atc = ATC::get();
+        $atc = OnlineAtc::get();
         if ($atc) {
             $atl_ctr = 0;
             $atl_app = 0;
@@ -66,7 +66,7 @@ class FrontController extends Controller {
         }
 
         $airports = Airport::where('front_pg', 1)->orderBy('ltr_4', 'ASC')->get();
-        $metar_update = Metar::first();
+        $metar_update = AirportWeather::first();
         if ($metar_update != null) {
             $metar_last_updated = substr($metar_update, -10, 5);
         } else {
@@ -74,7 +74,7 @@ class FrontController extends Controller {
         }
 
         try {
-            $controllers = ATC::get();
+            $controllers = OnlineAtc::get();
             $last_update = ControllerLogUpdate::first();
             $controllers_update = substr($last_update->created_at, -8, 5);
         } catch (Exception $e) {
@@ -102,8 +102,8 @@ class FrontController extends Controller {
             return strtotime($e->date);
         });
 
-        $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
-        $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
+        $flights = ArtccFlight::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
+        $flights_update = substr(ArtccFlightUpdate::first()->updated_at, -8, 5);
 
         try {
             $lastTop5 = ControllerLog::top5Controllers(date('Y-n', strtotime("first day of previous month")));
@@ -446,7 +446,7 @@ class FrontController extends Controller {
                                         ]);
 
 
-        $visit = new Visitor;
+        $visit = new VisitorRequest();
         if ($visit->rating != 1) {
             $visit->cid = $request->cid;
             $visit->name = $request->name;
@@ -591,16 +591,16 @@ class FrontController extends Controller {
     }
 
     public function showRunways() {
-        $kmco = Metar::find('KMCO');
-        $kcae = Metar::find('KMCO');
-        $kchs = Metar::find('KMCO');
-        $kdab = Metar::find('KMCO');
-        $kjax = Metar::find('KMCO');
-        $kmyr = Metar::find('KMCO');
-        $kpns = Metar::find('KMCO');
-        $ksav = Metar::find('KMCO');
-        $ksfb = Metar::find('KMCO');
-        $ktlh = Metar::find('KMCO');
+        $kmco = AirportWeather::find('KMCO');
+        $kcae = AirportWeather::find('KMCO');
+        $kchs = AirportWeather::find('KMCO');
+        $kdab = AirportWeather::find('KMCO');
+        $kjax = AirportWeather::find('KMCO');
+        $kmyr = AirportWeather::find('KMCO');
+        $kpns = AirportWeather::find('KMCO');
+        $ksav = AirportWeather::find('KMCO');
+        $ksfb = AirportWeather::find('KMCO');
+        $ktlh = AirportWeather::find('KMCO');
 
         return view('site.runway')->with('kmco', $kmco)->with('kcae', $kcae)->with('kchs', $kchs)
                                   ->with('kdab', $kdab)->with('kjax', $kjax)->with('kmyr', $kmyr)

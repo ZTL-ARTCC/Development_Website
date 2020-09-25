@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\RosterSpot
+ *
  * @property int $id
  * @property string $first_name
  * @property string $last_name
@@ -35,6 +38,45 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $mentor_power
  * @property int $max
  * @property string $path
+ * @property string $fname
+ * @property string $lname
+ * @property int $rating_id
+ * @property int $canTrain
+ * @property int $canEvents
+ * @method static Builder|RosterSpot newModelQuery()
+ * @method static Builder|RosterSpot newQuery()
+ * @method static Builder|RosterSpot query()
+ * @method static Builder|RosterSpot whereApiExempt($value)
+ * @method static Builder|RosterSpot whereApp($value)
+ * @method static Builder|RosterSpot whereCanEvents($value)
+ * @method static Builder|RosterSpot whereCanTrain($value)
+ * @method static Builder|RosterSpot whereCreatedAt($value)
+ * @method static Builder|RosterSpot whereCtr($value)
+ * @method static Builder|RosterSpot whereDel($value)
+ * @method static Builder|RosterSpot whereEmail($value)
+ * @method static Builder|RosterSpot whereFname($value)
+ * @method static Builder|RosterSpot whereGnd($value)
+ * @method static Builder|RosterSpot whereId($value)
+ * @method static Builder|RosterSpot whereInitials($value)
+ * @method static Builder|RosterSpot whereJsonToken($value)
+ * @method static Builder|RosterSpot whereLname($value)
+ * @method static Builder|RosterSpot whereLoa($value)
+ * @method static Builder|RosterSpot whereMax($value)
+ * @method static Builder|RosterSpot whereMentorPower($value)
+ * @method static Builder|RosterSpot whereMonitorPwr($value)
+ * @method static Builder|RosterSpot whereOpt($value)
+ * @method static Builder|RosterSpot wherePath($value)
+ * @method static Builder|RosterSpot whereRatingId($value)
+ * @method static Builder|RosterSpot whereRememberToken($value)
+ * @method static Builder|RosterSpot whereStatus($value)
+ * @method static Builder|RosterSpot whereTimeAddedToFacility($value)
+ * @method static Builder|RosterSpot whereTrainPwr($value)
+ * @method static Builder|RosterSpot whereTrainingPower($value)
+ * @method static Builder|RosterSpot whereTwr($value)
+ * @method static Builder|RosterSpot whereUpdatedAt($value)
+ * @method static Builder|RosterSpot whereVisitor($value)
+ * @method static Builder|RosterSpot whereVisitorFrom($value)
+ * @mixin \Eloquent
  */
 class RosterSpot extends Model {
     /**

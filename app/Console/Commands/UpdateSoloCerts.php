@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\SoloCert;
-use App\User;
+use App\Models\SoloCertification;
+use App\Models\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -46,9 +46,9 @@ class UpdateSoloCerts extends Command {
         foreach ($solo_certs as $s) {
             if (!($s === true || $s === false)) {
                 if ($s->position == 'ATL_CTR') {
-                    $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                    $current_cert = SoloCertification::where('cid', $s->cid)->where('status', 0)->first();
                     if (!$current_cert) {
-                        $cert = new SoloCert;
+                        $cert = new SoloCertification;
                         $cert->cid = $s->cid;
                         $cert->pos = 2;
                         $cert->expiration = $s->expires;
@@ -64,9 +64,9 @@ class UpdateSoloCerts extends Command {
                         $hcontrol = User::where('visitor', 0)->get();
                         foreach ($hcontrol as $h) {
                             if ($s->cid == $h->id) {
-                                $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                $current_cert = SoloCertification::where('cid', $s->cid)->where('status', 0)->first();
                                 if (!$current_cert) {
-                                    $cert = new SoloCert;
+                                    $cert = new SoloCertification;
                                     $cert->cid = $s->cid;
                                     $cert->pos = 1;
                                     $cert->expiration = $s->expires;
@@ -86,7 +86,7 @@ class UpdateSoloCerts extends Command {
 
         $today = strval(Carbon::now()->subDay());
         $today = substr($today, 0, 10);
-        $certs = SoloCert::get();
+        $certs = SoloCertification::get();
 
         foreach ($certs as $c) {
             if ($c->expiration <= $today && $c->status == 0) {

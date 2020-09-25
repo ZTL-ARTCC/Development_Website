@@ -6,6 +6,18 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class TrainingRequest extends Model {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'training_controller_requests';
+
+    /**
+     * @var array
+     */
+    protected $fillable = array('controller_id', 'position_id', 'date', 'request_begin', 'request_end', 'comments',
+                                'accepted', 'mentor', 'session_begin', 'session_end', 'complete');
 
     public static $PosReq = [
         1 => 'Minor Delivery',
@@ -73,11 +85,6 @@ class TrainingRequest extends Model {
         '23:00' => '23:00', '23:15' => '23:15', '23:30' => '23:30', '23:45' => '23:45',
     ];
 
-    protected $table = 'training_controller_requests';
-
-    protected $fillable = array('controller_id', 'position_id', 'date', 'request_begin', 'request_end', 'comments',
-                                'accepted', 'mentor', 'session_begin', 'session_end', 'complete');
-
     public static function minD() {
         return static::getForPositionNotCompleted('1');
     }
@@ -125,15 +132,15 @@ class TrainingRequest extends Model {
     }
 
     public function controller() {
-        return $this->hasOne('User', 'id', 'controller_id');
+        return $this->hasOne('App\Model\User', 'id', 'controller_id');
     }
 
     public function instructor() {
-        return $this->hasOne('User', 'id', 'mentor_id');
+        return $this->hasOne('App\Model\User', 'id', 'mentor_id');
     }
 
     public function Trainee() {
-        return $this->hasOne('User', 'id', 'trainee_id');
+        return $this->hasOne('App\Model\User', 'id', 'trainee_id');
     }
 
     public function getPosReqAttribute() {

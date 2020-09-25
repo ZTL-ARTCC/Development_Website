@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Event;
-use App\EventRegistration;
-use App\User;
+use App\Models\Event;
+use App\Models\EventRegistration;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;

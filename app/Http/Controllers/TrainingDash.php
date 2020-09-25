@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Audit;
-use App\MentorAvailable;
-use App\Ots;
-use App\PublicTrainingInfo;
-use App\PublicTrainingInfoPdf;
-use App\TrainingInfo;
-use App\TrainingTicket;
-use App\User;
+use App\Models\Audit;
+use App\Models\MentorAvailable;
+use App\Models\OtsRecommendation;
+use App\Models\PublicTrainingInformation;
+use App\Models\PublicTrainingInformationPdf;
+use App\Models\TrainingInformation;
+use App\Models\TrainingTicket;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 
 class TrainingDash extends Controller {
@@ -70,16 +71,16 @@ class TrainingDash extends Controller {
     }
 
     public function trainingInfo() {
-        $info_minor_gnd = TrainingInfo::where('section', 0)->orderBy('number', 'ASC')->get();
-        $info_minor_lcl = TrainingInfo::where('section', 1)->orderBy('number', 'ASC')->get();
-        $info_minor_app = TrainingInfo::where('section', 2)->orderBy('number', 'ASC')->get();
-        $info_major_gnd = TrainingInfo::where('section', 3)->orderBy('number', 'ASC')->get();
-        $info_major_lcl = TrainingInfo::where('section', 4)->orderBy('number', 'ASC')->get();
-        $info_major_app = TrainingInfo::where('section', 5)->orderBy('number', 'ASC')->get();
-        $info_ctr = TrainingInfo::where('section', 6)->orderBy('number', 'ASC')->get();
+        $info_minor_gnd = TrainingInformation::where('section', 0)->orderBy('number', 'ASC')->get();
+        $info_minor_lcl = TrainingInformation::where('section', 1)->orderBy('number', 'ASC')->get();
+        $info_minor_app = TrainingInformation::where('section', 2)->orderBy('number', 'ASC')->get();
+        $info_major_gnd = TrainingInformation::where('section', 3)->orderBy('number', 'ASC')->get();
+        $info_major_lcl = TrainingInformation::where('section', 4)->orderBy('number', 'ASC')->get();
+        $info_major_app = TrainingInformation::where('section', 5)->orderBy('number', 'ASC')->get();
+        $info_ctr = TrainingInformation::where('section', 6)->orderBy('number', 'ASC')->get();
 
-        $public_sections = PublicTrainingInfo::orderBy('order', 'ASC')->get();
-        $public_sections_count = count(PublicTrainingInfo::get());
+        $public_sections = PublicTrainingInformation::orderBy('order', 'ASC')->get();
+        $public_sections_count = count(PublicTrainingInformation::get());
         $public_sections_order = array();
         $i = 0;
         foreach (range(0, $public_sections_count) as $p) {
@@ -101,7 +102,7 @@ class TrainingDash extends Controller {
     }
 
     public function addInfo(Request $request, $section) {
-        $replacing = TrainingInfo::where('number', '>', $request->number)->where('section', $section)->get();
+        $replacing = TrainingInformation::where('number', '>', $request->number)->where('section', $section)->get();
         if ($replacing != null) {
             foreach ($replacing as $r) {
                 $new = $r->number + 1;
@@ -109,7 +110,7 @@ class TrainingDash extends Controller {
                 $r->save();
             }
         }
-        $info = new TrainingInfo;
+        $info = new TrainingInformation();
         $info->number = $request->number + 1;
         $info->section = $request->section;
         $info->info = $request->info;
@@ -118,8 +119,8 @@ class TrainingDash extends Controller {
     }
 
     public function deleteInfo($id) {
-        $info = TrainingInfo::find($id);
-        $other_info = TrainingInfo::where('number', '>', $info->number)->get();
+        $info = TrainingInformation::find($id);
+        $other_info = TrainingInformation::where('number', '>', $info->number)->get();
         foreach ($other_info as $o) {
             $o->number = $o->number - 1;
             $o->save();
@@ -134,15 +135,15 @@ class TrainingDash extends Controller {
                                'order' => 'required'
                            ]);
 
-        if ($request->order < count(PublicTrainingInfo::get())) {
-            $change_order = PublicTrainingInfo::where('order', '>=', $request->order)->get();
+        if ($request->order < count(PublicTrainingInformation::get())) {
+            $change_order = PublicTrainingInformation::where('order', '>=', $request->order)->get();
             foreach ($change_order as $c) {
                 $c->order = $c->order + 1;
                 $c->save();
             }
         }
 
-        $info = new PublicTrainingInfo;
+        $info = new PublicTrainingInformation();
         $info->name = $request->name;
         $info->order = $request->order;
         $info->save();
@@ -183,17 +184,17 @@ class TrainingDash extends Controller {
     }
 
     public function removePublicInfoSection($id) {
-        $section = PublicTrainingInfo::find($id);
+        $section = PublicTrainingInformation::find($id);
         $order = $section->order;
         $section->delete();
 
-        $order_updates = PublicTrainingInfo::where('order', '>', $order)->get();
+        $order_updates = PublicTrainingInformation::where('order', '>', $order)->get();
         foreach ($order_updates as $o) {
             $o->order = $o->order - 1;
             $o->save();
         }
 
-        $pdfs = PublicTrainingInfoPdf::where('section_id', $id)->get();
+        $pdfs = PublicTrainingInformationPdf::where('section_id', $id)->get();
         foreach ($pdfs as $p) {
             $p->delete();
         }
@@ -213,7 +214,7 @@ class TrainingDash extends Controller {
         );
         $public_url = '/storage/training_info/' . $time . '.' . $ext;
 
-        $pdf = new PublicTrainingInfoPdf;
+        $pdf = new PublicTrainingInformationPdf();
         $pdf->section_id = $section_id;
         $pdf->pdf_path = $public_url;
         $pdf->save();
@@ -222,7 +223,7 @@ class TrainingDash extends Controller {
     }
 
     public function removePublicPdf($id) {
-        $pdf = PublicTrainingInfoPdf::find($id);
+        $pdf = PublicTrainingInformationPdf::find($id);
         $pdf->delete();
 
         return redirect('/dashboard/training/info')->with('success', 'The PDF was removed successfully.');
@@ -300,7 +301,7 @@ class TrainingDash extends Controller {
         $controller = User::find($ticket->controller_id);
         $trainer = User::find($ticket->trainer_id);
         if ($request->ots == 1) {
-            $ots = new Ots;
+            $ots = new OtsRecommendation();
             $ots->controller_id = $ticket->controller_id;
             $ots->recommender_id = $ticket->trainer_id;
             $ots->position = $ticket->position;
@@ -362,7 +363,7 @@ class TrainingDash extends Controller {
             $ticket->ins_comments = $request->trainer_comments;
             $ticket->save();
 
-            $audit = new Audit;
+            $audit = new Audit();
             $audit->cid = Auth::id();
             $audit->ip = $_SERVER['REMOTE_ADDR'];
             $audit->what = Auth::user()->full_name . ' edited a training ticket for ' .
@@ -398,9 +399,9 @@ class TrainingDash extends Controller {
     }
 
     public function otsCenter() {
-        $ots_new = Ots::where('status', 0)->orderBy('created_at', 'DSC')->paginate(25);
-        $ots_accepted = Ots::where('status', 1)->orderBy('created_at', 'DSC')->paginate(25);
-        $ots_complete = Ots::where('status', 2)->orWhere('status', 3)->orderBy('created_at', 'DSC')->paginate(25);
+        $ots_new = OtsRecommendation::where('status', 0)->orderBy('created_at', 'DSC')->paginate(25);
+        $ots_accepted = OtsRecommendation::where('status', 1)->orderBy('created_at', 'DSC')->paginate(25);
+        $ots_complete = OtsRecommendation::where('status', 2)->orWhere('status', 3)->orderBy('created_at', 'DSC')->paginate(25);
         $instructors = User::orderBy('lname', 'ASC')->get()->filter(function($user) {
             return $user->hasRole('ins');
         })->pluck('full_name', 'id');
@@ -410,7 +411,7 @@ class TrainingDash extends Controller {
     }
 
     public function acceptRecommendation($id) {
-        $ots = Ots::find($id);
+        $ots = OtsRecommendation::find($id);
         $ots->status = 1;
         $ots->ins_id = Auth::id();
         $ots->save();
@@ -431,7 +432,7 @@ class TrainingDash extends Controller {
         if (!Auth::user()->can('snrStaff')) {
             return redirect()->back()->with('error', 'Only the TA can reject OTS recommendations.');
         } else {
-            $ots = Ots::find($id);
+            $ots = OtsRecommendation::find($id);
             $ots->delete();
 
             return redirect()->back()->with('success', 'The OTS recommendation has been rejected successfully.');
@@ -442,7 +443,7 @@ class TrainingDash extends Controller {
         if (!Auth::user()->can('snrStaff')) {
             return redirect()->back()->with('error', 'Only the TA can assign OTS recommendations to instructors.');
         } else {
-            $ots = Ots::find($id);
+            $ots = OtsRecommendation::find($id);
             $ots->status = 1;
             $ots->ins_id = $request->ins;
             $ots->save();
@@ -477,7 +478,7 @@ class TrainingDash extends Controller {
                                             'ots_report' => 'required'
                                         ]);
 
-        $ots = Ots::find($id);
+        $ots = OtsRecommendation::find($id);
 
         if ($ots->ins_id == Auth::id() || Auth::user()->can('snrStaff')) {
             $ext = $request->file('ots_report')->getClientOriginalExtension();
@@ -505,7 +506,7 @@ class TrainingDash extends Controller {
     }
 
     public function otsCancel($id) {
-        $ots = Ots::find($id);
+        $ots = OtsRecommendation::find($id);
         $ots->ins_id = null;
         $ots->status = 0;
         $ots->save();

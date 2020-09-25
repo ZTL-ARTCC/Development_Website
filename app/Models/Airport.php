@@ -3,14 +3,35 @@
 namespace App\Models;
 
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\Airport
+ *
  * @property int $id
  * @property string $name
  * @property boolean $front_page
  * @property string $icao
  * @property string $iata
+ * @property int $front_pg
+ * @property-read mixed $altimeter
+ * @property-read mixed $inbound_traffic
+ * @property-read mixed $metar
+ * @property-read mixed $outbound_traffic
+ * @property-read mixed $taf
+ * @property-read mixed $temperature_dewpoint
+ * @property-read mixed $visual_conditions
+ * @property-read mixed $wind
+ * @method static Builder|Airport newModelQuery()
+ * @method static Builder|Airport newQuery()
+ * @method static Builder|Airport query()
+ * @method static Builder|Airport whereFrontPg($value)
+ * @method static Builder|Airport whereIata($value)
+ * @method static Builder|Airport whereIcao($value)
+ * @method static Builder|Airport whereId($value)
+ * @method static Builder|Airport whereName($value)
+ * @mixin \Eloquent
  */
 class Airport extends Model {
     /**
@@ -19,7 +40,7 @@ class Airport extends Model {
     protected $fillable = ['name', 'front_page', 'icao', 'iata'];
 
     public function getMetarAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->metar;
@@ -29,7 +50,7 @@ class Airport extends Model {
     }
 
     public function getTafAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->taf;
@@ -39,7 +60,7 @@ class Airport extends Model {
     }
 
     public function getVisualConditionsAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->visual_conditions;
@@ -49,7 +70,7 @@ class Airport extends Model {
     }
 
     public function getWindAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->wind;
@@ -59,7 +80,7 @@ class Airport extends Model {
     }
 
     public function getAltimeterAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->altimeter;
@@ -69,7 +90,7 @@ class Airport extends Model {
     }
 
     public function getTemperatureDewpointAttribute() {
-        $airport = Metar::where('icao', $this->ltr_4)->first();
+        $airport = AirportWeather::where('icao', $this->ltr_4)->first();
 
         if (isset($airport)) {
             return $airport->temp . '/' . $airport->dp;

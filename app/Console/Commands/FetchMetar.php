@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Airport;
-use App\Metar;
+use App\Models\Airport;
+use App\Models\AirportWeather;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -58,7 +58,7 @@ class FetchMetar extends Command {
 
         DB::table('airport_weather')->truncate();
         foreach ($root_metars->data->children() as $metar) {
-            $airport = new Metar;
+            $airport = new AirportWeather();
             $airport->icao = $metar->station_id->__toString();
 
             $wind = 'CALM';
@@ -94,7 +94,7 @@ class FetchMetar extends Command {
         }
 
         foreach ($root_tafs->data->children() as $taf) {
-            $airport = Metar::where('icao', $taf->station_id)->first();
+            $airport = AirportWeather::where('icao', $taf->station_id)->first();
             $airport->taf = $taf->raw_text->__toString();
             $airport->save();
 

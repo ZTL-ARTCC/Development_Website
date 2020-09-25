@@ -2,15 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\EventRegistration;
-use App\User;
-use Artisan;
-use Config;
-use DB;
-use Eloquent\Collection;
+use App\Models\EventRegistration;
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Mail;
+use Illuminate\Support\Facades\Config;
 
 class RosterUpdate extends Command {
     /**

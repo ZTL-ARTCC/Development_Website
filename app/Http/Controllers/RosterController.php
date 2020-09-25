@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Opt;
-use App\User;
-use Carbon\Carbon;
+use App\Models\GdprCompliance;
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use SimpleXMLElement;
@@ -138,7 +136,7 @@ class RosterController extends Controller {
                     $resu = json_decode($response->getBody());
                     if ($resu->flag_broadcastOptedIn == 1) {
                         if ($userstatuscheck->opt != 1) {
-                            $opt = new Opt;
+                            $opt = new GdprCompliance();
                             $opt->controller_id = $res['cid'];
                             $opt->ip_address = '0.0.0.0';
                             $opt->means = 'VATUSA API';
@@ -148,10 +146,10 @@ class RosterController extends Controller {
                         }
                     } else {
                         $user_opt =
-                            Opt::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')
+                            GdprCompliance::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')
                                ->where('option', 1)->first();
                         if ($userstatuscheck->opt != 0 && !isset($user_opt)) {
-                            $opt = new Opt;
+                            $opt = new GdprCompliance();
                             $opt->controller_id = $res['cid'];
                             $opt->ip_address = '0.0.0.0';
                             $opt->means = 'VATUSA API';

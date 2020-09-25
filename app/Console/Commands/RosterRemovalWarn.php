@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\ControllerLog;
-use App\TrainingTicket;
-use App\User;
+use App\Models\ControllerLog;
+use App\Models\TrainingTicket;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class RosterRemovalWarn extends Command {
     /**

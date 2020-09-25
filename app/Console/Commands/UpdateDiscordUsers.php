@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\ControllerLog;
-use App\DiscordUser;
-use App\User;
+use App\Models\ControllerLog;
+use App\Models\DiscordUser;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class UpdateDiscordUsers extends Command {

@@ -2,14 +2,26 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\PublicTrainingInformationPdf
+ *
  * @property int $id
  * @property int $section_id
  * @property string $pdf_path
  * @property string $created_at
  * @property string $updated_at
+ * @method static Builder|PublicTrainingInformationPdf newModelQuery()
+ * @method static Builder|PublicTrainingInformationPdf newQuery()
+ * @method static Builder|PublicTrainingInformationPdf query()
+ * @method static Builder|PublicTrainingInformationPdf whereCreatedAt($value)
+ * @method static Builder|PublicTrainingInformationPdf whereId($value)
+ * @method static Builder|PublicTrainingInformationPdf wherePdfPath($value)
+ * @method static Builder|PublicTrainingInformationPdf whereSectionId($value)
+ * @method static Builder|PublicTrainingInformationPdf whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class PublicTrainingInformationPdf extends Model {
     /**

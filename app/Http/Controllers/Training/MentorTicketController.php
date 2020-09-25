@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Training;
 
-use App\Audit;
 use App\Http\Controllers\Controller;
-use App\Ots;
-use App\TrainingTicket;
-use App\User;
+use App\Models\Audit;
+use App\Models\OtsRecommendation;
+use App\Models\TrainingTicket;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -64,7 +64,7 @@ class MentorTicketController extends Controller {
         $trainer = User::find($ticket->trainer_id);
 
         if ($request->ots == 1) {
-            $ots = new Ots;
+            $ots = new OtsRecommendation();
             $ots->controller_id = $ticket->controller_id;
             $ots->recommender_id = $ticket->trainer_id;
             $ots->position = $ticket->position;
@@ -81,7 +81,7 @@ class MentorTicketController extends Controller {
                 $m->to($controller->email)->cc('ta@ztlartcc.org');
             });
 
-        $audit = new Audit;
+        $audit = new Audit();
         $audit->cid = Auth::id();
         $audit->ip = $_SERVER['REMOTE_ADDR'];
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' .

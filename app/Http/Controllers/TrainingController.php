@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvailable;
-use App\User;
+use App\Models\MentorAvailable;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 class TrainingController extends Controller {
     public function cancelSession($id) {

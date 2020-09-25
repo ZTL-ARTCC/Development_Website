@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Visitor;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\VisitorRequest
+ *
  * @property int $id
  * @property int $requester_cid
  * @property string $name
@@ -17,6 +20,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $updated_by
  * @property string $created_at
  * @property string $updated_at
+ * @property int $cid
+ * @property-read mixed $rating_short
+ * @method static Builder|VisitorRequest newModelQuery()
+ * @method static Builder|VisitorRequest newQuery()
+ * @method static Builder|VisitorRequest query()
+ * @method static Builder|VisitorRequest whereCid($value)
+ * @method static Builder|VisitorRequest whereCreatedAt($value)
+ * @method static Builder|VisitorRequest whereEmail($value)
+ * @method static Builder|VisitorRequest whereHome($value)
+ * @method static Builder|VisitorRequest whereId($value)
+ * @method static Builder|VisitorRequest whereName($value)
+ * @method static Builder|VisitorRequest whereRating($value)
+ * @method static Builder|VisitorRequest whereReason($value)
+ * @method static Builder|VisitorRequest whereStatus($value)
+ * @method static Builder|VisitorRequest whereUpdatedAt($value)
+ * @method static Builder|VisitorRequest whereUpdatedBy($value)
+ * @mixin \Eloquent
  */
 class VisitorRequest extends Model {
     /**

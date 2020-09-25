@@ -23,6 +23,7 @@
       "ext-json": "*"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.8",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "krlove/eloquent-model-generator": "^1.3",

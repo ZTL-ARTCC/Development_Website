@@ -3,14 +3,26 @@
 namespace App\Models;
 
 use App\PublicTrainingInfoPdf;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\PublicTrainingInformation
+ *
  * @property int $id
  * @property string $name
  * @property int $order
  * @property string $created_at
  * @property string $updated_at
+ * @method static Builder|PublicTrainingInformation newModelQuery()
+ * @method static Builder|PublicTrainingInformation newQuery()
+ * @method static Builder|PublicTrainingInformation query()
+ * @method static Builder|PublicTrainingInformation whereCreatedAt($value)
+ * @method static Builder|PublicTrainingInformation whereId($value)
+ * @method static Builder|PublicTrainingInformation whereName($value)
+ * @method static Builder|PublicTrainingInformation whereOrder($value)
+ * @method static Builder|PublicTrainingInformation whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class PublicTrainingInformation extends Model {
     /**

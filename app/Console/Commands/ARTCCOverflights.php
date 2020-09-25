@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Overflight;
-use App\OverflightUpdate;
+use App\Models\ArtccFlight;
+use App\Models\ArtccFlightUpdate;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
@@ -50,7 +50,7 @@ class ARTCCOverflights extends Command {
             $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid=' . $r->cid);
             $res = new SimpleXMLElement($response->getBody());
             $pilot_name = $res->user->name_first . ' ' . $res->user->name_last;
-            $flight = new Overflight;
+            $flight = new ArtccFlight();
             $flight->pilot_cid = $r->cid;
             $flight->pilot_name = $pilot_name;
             $flight->callsign = $r->callsign;
@@ -61,9 +61,9 @@ class ARTCCOverflights extends Command {
             $flight->save();
         }
 
-        $update = OverflightUpdate::first();
+        $update = ArtccFlightUpdate::first();
         $update->delete();
-        $u = new OverflightUpdate;
+        $u = new ArtccFlightUpdate();
         $u->save();
     }
 }

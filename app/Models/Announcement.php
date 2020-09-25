@@ -3,14 +3,29 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\Announcement
+ *
  * @property int $id
  * @property string $body
  * @property int $creator_cid
  * @property string $created_at
  * @property string $updated_at
+ * @property int $staff_member
+ * @property-read mixed $staff_name
+ * @property-read mixed $update_time
+ * @method static Builder|Announcement newModelQuery()
+ * @method static Builder|Announcement newQuery()
+ * @method static Builder|Announcement query()
+ * @method static Builder|Announcement whereBody($value)
+ * @method static Builder|Announcement whereCreatedAt($value)
+ * @method static Builder|Announcement whereId($value)
+ * @method static Builder|Announcement whereStaffMember($value)
+ * @method static Builder|Announcement whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Announcement extends Model {
     /**

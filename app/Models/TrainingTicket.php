@@ -5,9 +5,12 @@ namespace App\Models;
 use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\TrainingTicket
+ *
  * @property int $id
  * @property int $controller_cid
  * @property int $trainer_cid
@@ -21,6 +24,32 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $ins_comments
  * @property string $created_at
  * @property string $updated_at
+ * @property int $controller_id
+ * @property int $trainer_id
+ * @property-read mixed $controller_name
+ * @property-read mixed $date_edit
+ * @property-read mixed $date_sort
+ * @property-read mixed $last_training
+ * @property-read mixed $position_name
+ * @property-read mixed $trainer_name
+ * @property-read mixed $type_name
+ * @method static Builder|TrainingTicket newModelQuery()
+ * @method static Builder|TrainingTicket newQuery()
+ * @method static Builder|TrainingTicket query()
+ * @method static Builder|TrainingTicket whereComments($value)
+ * @method static Builder|TrainingTicket whereControllerId($value)
+ * @method static Builder|TrainingTicket whereCreatedAt($value)
+ * @method static Builder|TrainingTicket whereDate($value)
+ * @method static Builder|TrainingTicket whereDuration($value)
+ * @method static Builder|TrainingTicket whereEndTime($value)
+ * @method static Builder|TrainingTicket whereId($value)
+ * @method static Builder|TrainingTicket whereInsComments($value)
+ * @method static Builder|TrainingTicket wherePosition($value)
+ * @method static Builder|TrainingTicket whereStartTime($value)
+ * @method static Builder|TrainingTicket whereTrainerId($value)
+ * @method static Builder|TrainingTicket whereType($value)
+ * @method static Builder|TrainingTicket whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class TrainingTicket extends Model {
     /**

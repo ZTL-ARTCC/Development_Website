@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvailable;
-use App\TrainingTicket;
-use App\User;
+use App\Models\MentorAvailable;
+use App\Models\TrainingTicket;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;

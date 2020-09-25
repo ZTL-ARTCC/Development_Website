@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\Scenery
+ *
  * @property int $id
  * @property string $airport
  * @property string $developer
@@ -17,6 +20,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $image3
  * @property string $created_at
  * @property string $updated_at
+ * @method static Builder|Scenery newModelQuery()
+ * @method static Builder|Scenery newQuery()
+ * @method static Builder|Scenery query()
+ * @method static Builder|Scenery whereAirport($value)
+ * @method static Builder|Scenery whereCreatedAt($value)
+ * @method static Builder|Scenery whereCurrency($value)
+ * @method static Builder|Scenery whereDeveloper($value)
+ * @method static Builder|Scenery whereId($value)
+ * @method static Builder|Scenery whereImage1($value)
+ * @method static Builder|Scenery whereImage2($value)
+ * @method static Builder|Scenery whereImage3($value)
+ * @method static Builder|Scenery whereLink($value)
+ * @method static Builder|Scenery wherePrice($value)
+ * @method static Builder|Scenery whereSim($value)
+ * @method static Builder|Scenery whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Scenery extends Model {
     /**

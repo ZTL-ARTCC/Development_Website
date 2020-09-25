@@ -2,12 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\ControllerLogUpdate
+ *
  * @property int $id
  * @property string $created_at
  * @property string $updated_at
+ * @method static Builder|ControllerLogUpdate newModelQuery()
+ * @method static Builder|ControllerLogUpdate newQuery()
+ * @method static Builder|ControllerLogUpdate query()
+ * @method static Builder|ControllerLogUpdate whereCreatedAt($value)
+ * @method static Builder|ControllerLogUpdate whereId($value)
+ * @method static Builder|ControllerLogUpdate whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class ControllerLogUpdate extends Model {
     /**

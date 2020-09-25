@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Document;
+use App\Models\File;
+use http\Client\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class DocumentController extends Controller {
 
@@ -13,7 +16,7 @@ class DocumentController extends Controller {
      * @return Response
      */
     public function index() {
-        $Documents = Document::all();
+        $Documents = File::all();
         $byType = function($type) {
             return function($Document) use ($type) {
                 return $Document->type == $type;
@@ -52,7 +55,7 @@ class DocumentController extends Controller {
         $file->move(config('app.documentsPath'), $file->getClientOriginalName());
         $relativePath = "/" . basename(Config::get('app.documentsPath')) . "/" . $file->getClientOriginalName();
 
-        $document = new Document;
+        $document = new File();
         $document->fill(Input::all());
         $document->url = $relativePath;
         $document->save();
@@ -84,7 +87,7 @@ class DocumentController extends Controller {
      */
     public function update($id) {
         $file = Input::file('file');
-        $Document = Document::find($id);
+        $Document = File::find($id);
 
         if ($file && $file->isValid()) {
             $file->move(Config::get('app.documentsPath'), $file->getClientOriginalName());
@@ -109,11 +112,11 @@ class DocumentController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        $document = Document::find($id);
+        $document = File::find($id);
         ActivityLog::create(['note' => 'Deleted Document: ' . $document->name, 'user_id' => Auth::id(),
                              'log_state' => 3, 'log_type' => 3]);
 
-        Document::destroy($id);
+        File::destroy($id);
 
         return Redirect::to('/admin/docs')->withMessage('Document deleted!');
     }

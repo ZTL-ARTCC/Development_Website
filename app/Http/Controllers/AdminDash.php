@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Airport;
-use App\Announcement;
-use App\Audit;
-use App\Bronze;
-use App\Calendar;
-use App\ControllerLog;
-use App\Event;
-use App\EventPosition;
-use App\EventRegistration;
-use App\Feedback;
-use App\File;
-use App\Incident;
-use App\Metar;
-use App\PositionPreset;
-use App\PresetPosition;
-use App\Pyrite;
-use App\Scenery;
-use App\SoloCert;
-use App\User;
-use App\Visitor;
-use App\VisitRej;
+use App\Models\Airport;
+use App\Models\AirportWeather;
+use App\Models\Announcement;
+use App\Models\Audit;
+use App\Models\BronzeMic;
+use App\Models\Calendar;
+use App\Models\ControllerLog;
+use App\Models\Event;
+use App\Models\EventPosition;
+use App\Models\EventRegistration;
+use App\Models\Feedback;
+use App\Models\File;
+use App\Models\Incident;
+use App\Models\PositionPreset;
+use App\Models\PresetPosition;
+use App\Models\PyriteMic;
+use App\Models\Scenery;
+use App\Models\SoloCertification;
+use App\Models\User;
+use App\Models\VisitorRejected;
+use App\Models\VisitorRequest;
 use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
@@ -157,7 +157,7 @@ class AdminDash extends Controller {
         $a->ltr_4 = Input::get('ICAO');
         $a->save();
 
-        $metar = new Metar;
+        $metar = new AirportWeather();
         $metar->icao = Input::get('ICAO');
         $metar->save();
 
@@ -255,7 +255,7 @@ class AdminDash extends Controller {
             $user->gnd = Input::get('gnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -268,7 +268,7 @@ class AdminDash extends Controller {
                 if (Input::get('twr') == 99) {
                     $expire = Carbon::now()->addMonth()->format('Y-m-d');
                     $user->twr = Input::get('twr');
-                    $cert = new SoloCert;
+                    $cert = new SoloCertification();
                     $cert->cid = $id;
                     $cert->pos = 0;
                     $cert->expiration = $expire;
@@ -280,7 +280,7 @@ class AdminDash extends Controller {
             }
             if ($user->app == 99) {
                 if (Input::get('app') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -294,7 +294,7 @@ class AdminDash extends Controller {
             }
             if ($user->ctr == 99) {
                 if (Input::get('ctr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -456,7 +456,7 @@ class AdminDash extends Controller {
             $user->gnd = Input::get('gnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -469,7 +469,7 @@ class AdminDash extends Controller {
                 if (Input::get('twr') == 99) {
                     $expire = Carbon::now()->addMonth()->format('Y-m-d');
                     $user->twr = Input::get('twr');
-                    $cert = new SoloCert;
+                    $cert = new SoloCertification();
                     $cert->cid = $id;
                     $cert->pos = 0;
                     $cert->expiration = $expire;
@@ -481,7 +481,7 @@ class AdminDash extends Controller {
             }
             if ($user->app == 99) {
                 if (Input::get('app') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -495,7 +495,7 @@ class AdminDash extends Controller {
             }
             if ($user->ctr == 99) {
                 if (Input::get('ctr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCertification::where('cid', $user->id)->where('status', 0)->first();
                     if ($solo) {
                         $solo->status = 1;
                         $solo->save();
@@ -541,7 +541,7 @@ class AdminDash extends Controller {
 
     public function allowVisitReq(Request $request) {
         $id = $request->cid;
-        $visitrej = VisitRej::where('cid', $id)->first();
+        $visitrej = VisitorRejected::where('cid', $id)->first();
         $visitrej->delete();
 
         $audit = new Audit;
@@ -554,16 +554,16 @@ class AdminDash extends Controller {
     }
 
     public function showVisitRequests() {
-        $new = Visitor::where('status', 0)->orderBy('created_at', 'ASC')->get();
-        $accepted = Visitor::where('status', 1)->orderBy('updated_at', 'ASC')->get();
-        $rejected = Visitor::where('status', 2)->orderBy('updated_at', 'ASC')->get();
+        $new = VisitorRequest::where('status', 0)->orderBy('created_at', 'ASC')->get();
+        $accepted = VisitorRequest::where('status', 1)->orderBy('updated_at', 'ASC')->get();
+        $rejected = VisitorRequest::where('status', 2)->orderBy('updated_at', 'ASC')->get();
 
         return view('admin.roster.visit')->with('new', $new)->with('accepted', $accepted)
                                          ->with('rejected', $rejected);
     }
 
     public function acceptVisitRequest($id) {
-        $visitor = Visitor::find($id);
+        $visitor = VisitorRequest::find($id);
         $visitor->updated_by = Auth::id();
         $visitor->status = 1;
         $visitor->save();
@@ -933,7 +933,7 @@ class AdminDash extends Controller {
         $validator = $request->validate([
                                             'reject_reason' => 'required'
                                         ]);
-        $visitor = Visitor::find($id);
+        $visitor = VisitorRequest::find($id);
         $visitor->updated_by = Auth::id();
         $visitor->status = 2;
         $visitor->reject_reason = $request->reject_reason;
@@ -1547,7 +1547,7 @@ class AdminDash extends Controller {
 
         $homec = User::where('visitor', 0)->where('status', 1)->get();
         $visitc = User::where('visitor', 1)->where('status', 1)->get();
-        $winner = Bronze::where('month', $month)->where('year', $year)->first();
+        $winner = BronzeMic::where('month', $month)->where('year', $year)->first();
 
         $home = $homec->sortByDesc(function($user) use ($stats) {
             return $stats[$user->id]->bronze_hrs;
@@ -1559,7 +1559,7 @@ class AdminDash extends Controller {
     }
 
     public function setBronzeWinner(Request $request, $year, $month, $hours, $id) {
-        $bronze = new Bronze;
+        $bronze = new BronzeMic();
         $bronze->controller_id = $id;
         $bronze->month = $month;
         $bronze->year = $year;
@@ -1577,7 +1577,7 @@ class AdminDash extends Controller {
     }
 
     public function removeBronzeWinner($id, $year, $month) {
-        $bronze = Bronze::find($id);
+        $bronze = BronzeMic::find($id);
         $bronze->delete();
 
         $audit = new Audit;
@@ -1600,7 +1600,7 @@ class AdminDash extends Controller {
 
         $homec = User::where('visitor', 0)->where('status', 1)->get();
         $visitc = User::where('visitor', 1)->where('status', 1)->get();
-        $winner = Pyrite::where('year', $year)->first();
+        $winner = PyriteMic::where('year', $year)->first();
 
         $home = $homec->sortByDesc(function($user) use ($year_stats) {
             return $year_stats[$user->id]->bronze_hrs;
@@ -1611,7 +1611,7 @@ class AdminDash extends Controller {
     }
 
     public function setPyriteWinner(Request $request, $year, $hours, $id) {
-        $bronze = new Pyrite;
+        $bronze = new PyriteMic();
         $bronze->controller_id = $id;
         $bronze->year = $year;
         $bronze->year_hours = $hours;
@@ -1628,7 +1628,7 @@ class AdminDash extends Controller {
     }
 
     public function removePyriteWinner($id, $year) {
-        $bronze = Pyrite::find($id);
+        $bronze = PyriteMic::find($id);
         $bronze->delete();
 
         $audit = new Audit;

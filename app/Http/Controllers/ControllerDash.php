@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Announcement;
-use App\ATC;
-use App\Bronze;
-use App\Calendar;
-use App\ControllerLog;
-use App\ControllerLogUpdate;
-use App\DiscordUser;
-use App\Event;
-use App\EventPosition;
-use App\EventRegistration;
-use App\Feedback;
-use App\File;
-use App\Incident;
-use App\Opt;
-use App\Overflight;
-use App\OverflightUpdate;
-use App\PositionPreset;
-use App\Pyrite;
-use App\Scenery;
-use App\TrainingTicket;
-use App\User;
+use App\Models\Announcement;
+use App\Models\BronzeMic;
+use App\Models\Calendar;
+use App\Models\ControllerLog;
+use App\Models\ControllerLogUpdate;
+use App\Models\DiscordUser;
+use App\Models\Event;
+use App\Models\EventPosition;
+use App\Models\EventRegistration;
+use App\Models\Feedback;
+use App\Models\File;
+use App\Models\GdprCompliance;
+use App\Models\Incident;
+use App\Models\ArtccFlight;
+use App\Models\OnlineAtc;
+use App\Models\PositionPreset;
+use App\Models\PyriteMic;
+use App\Models\Scenery;
+use App\Models\TrainingTicket;
+use App\Models\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -163,7 +162,7 @@ class ControllerDash extends Controller {
         } else {
             $year = substr($now->year, -2);
         }
-        $winner = Bronze::where('month', $month)->where('year', $year)->first();
+        $winner = BronzeMic::where('month', $month)->where('year', $year)->first();
 
         if ($pmonth < 1) {
             $pyear = substr($now->year, -2) - '1';
@@ -177,10 +176,10 @@ class ControllerDash extends Controller {
         } else {
             $pyear = substr($now->year, -2);
         }
-        $pwinner = Bronze::where('month', $pmonth)->where('year', $pyear)->first();
-        $pyrite = Pyrite::where('year', $lyear)->first();
+        $pwinner = BronzeMic::where('month', $pmonth)->where('year', $pyear)->first();
+        $pyrite = PyriteMic::where('year', $lyear)->first();
 
-        $controllers = ATC::get();
+        $controllers = OnlineAtc::get();
         $last_update = ControllerLogUpdate::first();
         $controllers_update = substr($last_update->created_at, -8, 5);
         $events = Event::where('status', 1)->get()->filter(function($e) use ($now) {
@@ -189,8 +188,8 @@ class ControllerDash extends Controller {
             return strtotime($e->date);
         });
 
-        $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
-        $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
+        $flights = ArtccFlight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
+        $flights_update = substr(ArtccFlight::first()->updated_at, -8, 5);
 
         return view('dashboard.dashboard')->with('calendar', $calendar)->with('news', $news)
                                           ->with('announcement', $announcement)
@@ -638,7 +637,7 @@ class ControllerDash extends Controller {
                                             'You have not been opted in. You must select both checkboxes if you would like to continue.');
         }
 
-        $opt = new Opt;
+        $opt = new GdprCompliance();
         $opt->controller_id = Auth::id();
         $opt->option = 1;
         $opt->ip_address = $_SERVER['REMOTE_ADDR'];

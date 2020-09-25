@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvailable;
+use App\Models\MentorAvailable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

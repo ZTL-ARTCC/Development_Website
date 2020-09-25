@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\ATC;
-use App\ControllerLog;
-use App\ControllerLogUpdate;
+use App\Models\ControllerLog;
+use App\Models\ControllerLogUpdate;
+use App\Models\OnlineAtc;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 use function Exception;
 
@@ -115,7 +115,7 @@ class OnlineControllerUpdate extends Command {
                     $time_now = strtotime(Carbon::now());
                     $duration = $time_now - $time_logon;
 
-                    ATC::create([
+                    OnlineAtc::create([
                                     'position' => $position,
                                     'freq' => $frequency,
                                     'name' => $name,

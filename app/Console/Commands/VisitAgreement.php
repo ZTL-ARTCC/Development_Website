@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\EventRegistration;
-use App\User;
-use App\VisitRej;
+use App\Models\EventRegistration;
+use App\Models\User;
+use App\Models\VisitorRejected;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
@@ -65,7 +65,7 @@ class VisitAgreement extends Command {
                     }
                     $user->rating_id = $r->rating;
                     $user->visitor = '1';
-                    $visitrej = VisitRej::where('cid', $r->cid)->first();
+                    $visitrej = VisitorRejected::where('cid', $r->cid)->first();
                     if ($visitrej == null) {
                         if ($user->status == 2) {
                             $user->status = 1;
@@ -81,7 +81,7 @@ class VisitAgreement extends Command {
                     }
                     $user->save();
                 } else {
-                    $visitrej = VisitRej::where('cid', $r->cid)->first();
+                    $visitrej = VisitorRejected::where('cid', $r->cid)->first();
                     if ($visitrej == null) {
                         $user = new User;
                         $user->id = $r->cid;

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\Feedback
+ *
  * @property int $id
  * @property int $controller_cid
  * @property string $position
@@ -19,6 +22,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
+ * @property int $controller_id
+ * @property-read mixed $controller_name
+ * @property-read mixed $service_level_text
+ * @method static Builder|Feedback newModelQuery()
+ * @method static Builder|Feedback newQuery()
+ * @method static Builder|Feedback query()
+ * @method static Builder|Feedback whereCallsign($value)
+ * @method static Builder|Feedback whereComments($value)
+ * @method static Builder|Feedback whereControllerId($value)
+ * @method static Builder|Feedback whereCreatedAt($value)
+ * @method static Builder|Feedback whereId($value)
+ * @method static Builder|Feedback wherePilotCid($value)
+ * @method static Builder|Feedback wherePilotEmail($value)
+ * @method static Builder|Feedback wherePilotName($value)
+ * @method static Builder|Feedback wherePosition($value)
+ * @method static Builder|Feedback whereServiceLevel($value)
+ * @method static Builder|Feedback whereStaffComments($value)
+ * @method static Builder|Feedback whereStatus($value)
+ * @method static Builder|Feedback whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Feedback extends Model {
     /**

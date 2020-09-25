@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\User;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\OtsRecommendation
+ *
  * @property int $id
  * @property int $controller_cid
  * @property int $recommender_cid
@@ -16,6 +19,28 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $report
  * @property string $created_at
  * @property string $updated_at
+ * @property int $controller_id
+ * @property int $recommender_id
+ * @property-read mixed $controller_name
+ * @property-read mixed $ins_name
+ * @property-read mixed $position_name
+ * @property-read mixed $recommended_on
+ * @property-read mixed $recommender_name
+ * @property-read mixed $result
+ * @property-read mixed $status_name
+ * @method static Builder|OtsRecommendation newModelQuery()
+ * @method static Builder|OtsRecommendation newQuery()
+ * @method static Builder|OtsRecommendation query()
+ * @method static Builder|OtsRecommendation whereControllerId($value)
+ * @method static Builder|OtsRecommendation whereCreatedAt($value)
+ * @method static Builder|OtsRecommendation whereId($value)
+ * @method static Builder|OtsRecommendation whereInsId($value)
+ * @method static Builder|OtsRecommendation wherePosition($value)
+ * @method static Builder|OtsRecommendation whereRecommenderId($value)
+ * @method static Builder|OtsRecommendation whereReport($value)
+ * @method static Builder|OtsRecommendation whereStatus($value)
+ * @method static Builder|OtsRecommendation whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class OtsRecommendation extends Model {
     /**
