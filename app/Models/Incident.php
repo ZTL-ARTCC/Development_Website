@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -32,4 +33,21 @@ class Incident extends Model {
     protected $fillable = ['controller_cid', 'controller_callsign', 'reporter_cid', 'reporter_callsign',
                            'aircraft_callsign', 'time', 'date', 'description', 'status', 'created_at', 'updated_at'];
 
+    public function getControllerNameAttribute() {
+        $user = User::find($this->controller_id);
+        if (isset($user)) {
+            return $user->full_name;
+        } else {
+            return '[Hidden: Archived or Controller Removed]';
+        }
+    }
+
+    public function getReporterNameAttribute() {
+        $user = User::find($this->reporter_id);
+        if (isset($user)) {
+            return $user->full_name;
+        } else {
+            return '[Hidden: Archived or Controller Removed]';
+        }
+    }
 }

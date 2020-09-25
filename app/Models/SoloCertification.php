@@ -26,4 +26,21 @@ class SoloCertification extends Model {
      */
     protected $fillable = ['cid', 'pos', 'expiration', 'status', 'created_at', 'updated_at'];
 
+    public function getPosTxtAttribute() {
+        if ($this->pos == 0) {
+            $pos = 'Tower';
+        } else {
+            if ($this->pos == 1) {
+                $pos = 'Approach';
+            } else {
+                if ($this->pos == 2) {
+                    $pos = 'Center';
+                } else {
+                    $pos = 'N/A';
+                }
+            }
+        }
+
+        return $pos;
+    }
 }

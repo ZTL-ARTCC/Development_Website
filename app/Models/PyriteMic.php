@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 // TODO: This and bronze mid can most likely be combined into one table
@@ -26,4 +27,9 @@ class PyriteMic extends Model {
      */
     protected $fillable = ['controller_cid', 'year', 'year_hours', 'created_at', 'updated_at'];
 
+    public function getNameAttribute() {
+        $user = User::find($this->controller_id);
+
+        return $user->full_name;
+    }
 }

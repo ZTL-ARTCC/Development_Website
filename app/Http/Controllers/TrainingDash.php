@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Audit;
-use App\MentorAvail;
+use App\MentorAvailable;
 use App\Ots;
 use App\PublicTrainingInfo;
 use App\PublicTrainingInfoPdf;
@@ -57,10 +57,10 @@ class TrainingDash extends Controller {
             $last_training_given = null;
         }
         $postion = ['Minor Delivery/Ground'];
-        $availability = MentorAvail::with('mentor')
-                                   ->whereNull('trainee_id')
-                                   ->where('slot', '>', Carbon::now('America/New_York'))
-                                   ->get();
+        $availability = MentorAvailable::with('mentor')
+                                       ->whereNull('trainee_id')
+                                       ->where('slot', '>', Carbon::now('America/New_York'))
+                                       ->get();
         $exam = json_decode(file_get_contents("https://api.vatusa.net/v2/user/" . $id .
                                               "/exam/history?apikey=ef9SEgwK6Z0bCDPp"), true);
         return view('site.training')->with('user', $user)->with('exam', $exam)->with('tickets', $tickets)
@@ -164,12 +164,12 @@ class TrainingDash extends Controller {
 
     public function saveSession() {
         $id = Auth::id();
-        $nSessions = MentorAvail::where('trainee_id', $id)->where('slot', '>', Carbon::now())->count();
+        $nSessions = MentorAvailable::where('trainee_id', $id)->where('slot', '>', Carbon::now())->count();
 
 
         $position = Input::get('position');
         $slot_id = Input::get('slot');
-        $Slot = MentorAvail::find($slot_id);
+        $Slot = MentorAvailable::find($slot_id);
 
         $Slot->trainee_id = $id;
         $Slot->position_id = $position;

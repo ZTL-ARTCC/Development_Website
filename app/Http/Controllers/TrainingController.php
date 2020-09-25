@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvail;
+use App\MentorAvailable;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class TrainingController extends Controller {
     public function cancelSession($id) {
-        $session = MentorAvail::find($id);
+        $session = MentorAvailable::find($id);
         $session->sendCancellationEmail();
         $session->trainee_id = null;
         $session->position_id = null;
@@ -24,25 +24,25 @@ class TrainingController extends Controller {
     public function showRequests() {
         $id = Auth::id();
         $time = Carbon::now('America/New_York');
-        $sessions = MentorAvail::with('mentor')->where('trainee_id', $id)->where('slot', '>', $time)->get();
+        $sessions = MentorAvailable::with('mentor')->where('trainee_id', $id)->where('slot', '>', $time)->get();
         return View('dashboard.training.sch.index')->with('sessions', $sessions);
     }
 
     public function showMentAvail() {
         $id = Auth::id();
         $postion = ['Minor Delivery/Ground'];
-        $availability = MentorAvail::with('mentor')
-                                   ->whereNull('trainee_id')
-                                   ->where('slot', '>', Carbon::now('America/New_York'))
-                                   ->get();
+        $availability = MentorAvailable::with('mentor')
+                                       ->whereNull('trainee_id')
+                                       ->where('slot', '>', Carbon::now('America/New_York'))
+                                       ->get();
         return View('site.mentoravi')->with('availability', $availability)->with('postion', $postion);
     }
 
     public function saveSession() {
         $id = Auth::id();
-        $nSessions = MentorAvail::where('trainee_id', $id)->where('slot', '>', Carbon::now())->count();
+        $nSessions = MentorAvailable::where('trainee_id', $id)->where('slot', '>', Carbon::now())->count();
         $slot_id = Input::get('slot');
-        $Slot = MentorAvail::find($slot_id);
+        $Slot = MentorAvailable::find($slot_id);
         $Slot->trainee_id = $id;
         $Slot->trainee_comments = Input::get('comments');
         $Slot->position_id = Input::get('position');

@@ -19,4 +19,13 @@ class File extends Model {
      */
     protected $fillable = ['name', 'type', 'description', 'path', 'created_at', 'updated_at'];
 
+    public function getWordTypeAttribute() {
+        foreach (\App\File::$WordType as $id => $wordType) {
+            if ($this->type == $id) {
+                return $wordType;
+            }
+        }
+
+        return "";
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 // TODO: This and pyrite mic can most likely be combined into one table
@@ -27,4 +28,9 @@ class BronzeMic extends Model {
      */
     protected $fillable = ['cid', 'month', 'year', 'month_hours', 'created_at', 'updated_at'];
 
+    public function getNameAttribute() {
+        $user = User::find($this->controller_id);
+
+        return $user->full_name;
+    }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 
-class MentorAvail extends Model {
+class MentorAvailable extends Model {
 
     protected $table = 'mentor_training_times';
 

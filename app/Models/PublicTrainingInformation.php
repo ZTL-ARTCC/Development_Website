@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\PublicTrainingInfoPdf;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,4 +25,9 @@ class PublicTrainingInformation extends Model {
      */
     protected $fillable = ['name', 'order', 'created_at', 'updated_at'];
 
+    public function GetPdfAttribute() {
+        $pdfs = PublicTrainingInfoPdf::where('section_id', $this->id)->get();
+
+        return $pdfs;
+    }
 }

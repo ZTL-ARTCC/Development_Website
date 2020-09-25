@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MentorAvail;
+use App\MentorAvailable;
 use App\TrainingTicket;
 use App\User;
 use Carbon\Carbon;
@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class MentorController extends Controller {
     public function showAvail() {
-        $availability = MentorAvail::where('mentor_id', '=', Auth::id())->get();
+        $availability = MentorAvailable::where('mentor_id', '=', Auth::id())->get();
         return View('dashboard.training.mentors.mentoravail')->with('availability', $availability);
     }
 
     public function cancelSession($id) {
-        $request = MentorAvail::find($id);
+        $request = MentorAvailable::find($id);
         $request->cancel_message = Input::get('cancel');
         $request->save();
         $request->sendCancellationEmail();
@@ -42,7 +42,7 @@ class MentorController extends Controller {
         $slots = Input::get('slots');
         $today = new Carbon("midnight today", 'America/New_York');
 
-        $availability = MentorAvail::where('mentor_id', '=', $mentor_id)->where('slot', '>=', $today)->get();
+        $availability = MentorAvailable::where('mentor_id', '=', $mentor_id)->where('slot', '>=', $today)->get();
 
         if (!$slots) {
             $slots = [];
@@ -55,21 +55,21 @@ class MentorController extends Controller {
         $old_slots = array_diff($availability->Pluck('slot')->toArray(), $slots);
 
         foreach ($new_slots as $slot) {
-            MentorAvail::create([
+            MentorAvailable::create([
                                     'mentor_id' => $mentor_id,
                                     'slot' => $slot,
                                 ]);
         }
 
-        MentorAvail::where('mentor_id', '=', $mentor_id)->whereIn('slot', $old_slots)->delete();
+        MentorAvailable::where('mentor_id', '=', $mentor_id)->whereIn('slot', $old_slots)->delete();
         return Redirect::action('MentorController@showAvail')->with('success', 'Availability has been updated');
 
     }
 
     public function showRequests() {
-        $sessions = MentorAvail::where('trainee_id', '!=', 0)
-                               ->where('slot', '>', new Carbon('midnight today', 'America/New_York'))
-                               ->orderBy('slot', 'ASC')->get();
+        $sessions = MentorAvailable::where('trainee_id', '!=', 0)
+                                   ->where('slot', '>', new Carbon('midnight today', 'America/New_York'))
+                                   ->orderBy('slot', 'ASC')->get();
         return View('dashboard.training.mentors.sessions')->with('sessions', $sessions);
     }
 
@@ -118,10 +118,10 @@ class MentorController extends Controller {
             $last_training_given = null;
         }
         $postion = ['Minor Delivery/Ground'];
-        $availability = MentorAvail::with('mentor')
-                                   ->whereNull('trainee_id')
-                                   ->where('slot', '>', Carbon::now('America/New_York'))
-                                   ->get();
+        $availability = MentorAvailable::with('mentor')
+                                       ->whereNull('trainee_id')
+                                       ->where('slot', '>', Carbon::now('America/New_York'))
+                                       ->get();
         $exam = json_decode(file_get_contents("https://api.vatusa.net/v2/user/" . $id .
                                               "/exam/history?apikey=ef9SEgwK6Z0bCDPp"), true);
         return view('admin.mentors.student')->with('user', $user)->with('exam', $exam)->with('tickets', $tickets)
