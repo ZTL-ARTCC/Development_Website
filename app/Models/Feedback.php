@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $controller_id
+ * @property int $controller_cid
  * @property string $position
  * @property int $service_level
  * @property string $callsign
@@ -23,7 +23,7 @@ class Feedback extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['controller_id', 'position', 'service_level', 'callsign', 'pilot_name', 'pilot_email',
+    protected $fillable = ['controller_cid', 'position', 'service_level', 'callsign', 'pilot_name', 'pilot_email',
                            'pilot_cid', 'comments', 'staff_comments', 'status', 'created_at', 'updated_at'];
 
 }

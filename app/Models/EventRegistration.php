@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $event_id
- * @property int $controller_id
+ * @property int $controller_cid
  * @property int $position_id
  * @property string $start_time
  * @property string $end_time
@@ -28,7 +28,7 @@ class EventRegistration extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['event_id', 'controller_id', 'position_id', 'start_time', 'end_time', 'status',
+    protected $fillable = ['event_id', 'controller_cid', 'position_id', 'start_time', 'end_time', 'status',
                            'choice_number', 'reminder', 'created_at', 'updated_at'];
 
 }

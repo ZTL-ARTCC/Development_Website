@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $pilot_cid
  * @property string $pilot_name
  * @property string $callsign
- * @property string $type
- * @property string $dep
- * @property string $arr
+ * @property string $aircraft_type
+ * @property string $departure
+ * @property string $arrival
  * @property string $route
  * @property string $created_at
  * @property string $updated_at
@@ -27,7 +27,7 @@ class ArtccFlight extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['pilot_cid', 'pilot_name', 'callsign', 'type', 'dep', 'arr', 'route', 'created_at',
+    protected $fillable = ['pilot_cid', 'pilot_name', 'callsign', 'aircraft_type', 'departure', 'arrival', 'route', 'created_at',
                            'updated_at'];
 
 }

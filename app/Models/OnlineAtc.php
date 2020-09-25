@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $cid
+ * @property int $controller_cid
  * @property string $name
  * @property string $position
  * @property string $freq
@@ -25,6 +25,6 @@ class OnlineAtc extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['cid', 'name', 'position', 'freq', 'time_logon', 'created_at', 'updated_at'];
+    protected $fillable = ['controller_cid', 'name', 'position', 'freq', 'time_logon', 'created_at', 'updated_at'];
 
 }

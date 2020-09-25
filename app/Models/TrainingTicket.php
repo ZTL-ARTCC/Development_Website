@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $controller_id
- * @property int $trainer_id
+ * @property int $controller_cid
+ * @property int $trainer_cid
  * @property int $position
  * @property int $type
  * @property string $date
@@ -23,7 +23,7 @@ class TrainingTicket extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['controller_id', 'trainer_id', 'position', 'type', 'date', 'start_time', 'end_time',
+    protected $fillable = ['controller_cid', 'trainer_cid', 'position', 'type', 'date', 'start_time', 'end_time',
                            'duration', 'comments', 'ins_comments', 'created_at', 'updated_at'];
 
 }

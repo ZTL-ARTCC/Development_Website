@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $controller_id
+ * @property int $controller_cid
  * @property int $option
- * @property string $ip_address
+ * @property string $ip
  * @property string $means
  * @property string $created_at
  * @property string $updated_at
@@ -24,6 +24,6 @@ class GdprCompliance extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['controller_id', 'option', 'ip_address', 'means', 'created_at', 'updated_at'];
+    protected $fillable = ['controller_cid', 'option', 'ip', 'means', 'created_at', 'updated_at'];
 
 }

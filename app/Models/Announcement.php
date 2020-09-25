@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $body
- * @property int $staff_member
+ * @property int $creator_cid
  * @property string $created_at
  * @property string $updated_at
  */
@@ -22,6 +22,6 @@ class Announcement extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['body', 'staff_member', 'created_at', 'updated_at'];
+    protected $fillable = ['body', 'creator_cid', 'created_at', 'updated_at'];
 
 }

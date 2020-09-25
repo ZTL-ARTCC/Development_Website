@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $cid
- * @property string $c_name
+ * @property string $controller_name
  * @property string $message
- * @property int $deleted
- * @property string $format_time
+ * @property boolean $deleted
  * @property string $created_at
  * @property string $updated_at
  */
@@ -25,6 +24,6 @@ class Chat extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['cid', 'c_name', 'message', 'deleted', 'format_time', 'created_at', 'updated_at'];
+    protected $fillable = ['cid', 'controller_name', 'message', 'deleted', 'created_at', 'updated_at'];
 
 }

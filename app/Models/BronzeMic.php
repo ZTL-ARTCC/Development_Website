@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// TODO: This and pyrite mic can most likely be combined into one table
 /**
  * @property int $id
- * @property int $controller_id
+ * @property int $cid
  * @property int $month
  * @property int $year
  * @property string $month_hours
@@ -24,6 +25,6 @@ class BronzeMic extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['controller_id', 'month', 'year', 'month_hours', 'created_at', 'updated_at'];
+    protected $fillable = ['cid', 'month', 'year', 'month_hours', 'created_at', 'updated_at'];
 
 }

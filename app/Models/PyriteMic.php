@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// TODO: This and bronze mid can most likely be combined into one table
 /**
  * @property int $id
- * @property int $controller_id
+ * @property int $controller_cid
  * @property int $year
  * @property string $year_hours
  * @property string $created_at
@@ -23,6 +24,6 @@ class PyriteMic extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['controller_id', 'year', 'year_hours', 'created_at', 'updated_at'];
+    protected $fillable = ['controller_cid', 'year', 'year_hours', 'created_at', 'updated_at'];
 
 }

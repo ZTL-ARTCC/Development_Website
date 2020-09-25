@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $cid
+ * @property int $rejected_cid
  * @property int $staff_cid
  * @property string $created_at
  * @property string $updated_at
@@ -22,6 +22,6 @@ class VisitorRejected extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['cid', 'staff_cid', 'created_at', 'updated_at'];
+    protected $fillable = ['rejected_cid', 'staff_cid', 'created_at', 'updated_at'];
 
 }

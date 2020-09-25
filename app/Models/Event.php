@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $start_time
  * @property string $end_time
  * @property string $banner_path
- * @property int $status
- * @property int $reg
+ * @property boolean $status
+ * @property boolean $reg
  * @property string $created_at
  * @property string $updated_at
  */
