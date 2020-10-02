@@ -5,7 +5,7 @@
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Carbon;
 
-$factory->define(App\Role::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\Role::class, function(Faker\Generator $faker) {
     $time = Carbon::now();
 
     return [

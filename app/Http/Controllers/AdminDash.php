@@ -135,7 +135,7 @@ class AdminDash extends Controller {
     }
 
     public function showAirports() {
-        $airports = Airport::orderBy('ltr_3', 'ASC')->get();
+        $airports = Airport::orderBy('iata', 'ASC')->get();
 
         return view('dashboard.admin.airports.index')->with('airports', $airports);
     }
@@ -147,14 +147,14 @@ class AdminDash extends Controller {
     public function storeAirport(Request $request) {
         $validator = $request->validate([
                                             'name' => 'required',
-                                            'FAA' => 'required|unique:airports,ltr_3',
+                                            'FAA' => 'required|unique:airports,iata',
                                             'ICAO' => 'required'
                                         ]);
 
         $a = new Airport;
         $a->name = Input::get('name');
-        $a->ltr_3 = Input::get('FAA');
-        $a->ltr_4 = Input::get('ICAO');
+        $a->iata = Input::get('FAA');
+        $a->icao = Input::get('ICAO');
         $a->save();
 
         $metar = new AirportWeather();

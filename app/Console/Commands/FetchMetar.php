@@ -39,7 +39,7 @@ class FetchMetar extends Command {
      * @return mixed
      */
     public function handle() {
-        $airports_icao = Airport::get()->pluck('ltr_4');
+        $airports_icao = Airport::get()->pluck('icao');
         $airports_full = Airport::get();
         $airports = $airports_icao->toArray();
 

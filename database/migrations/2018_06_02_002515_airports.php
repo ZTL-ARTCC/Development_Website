@@ -15,8 +15,8 @@ class Airports extends Migration {
             $table->integer('id')->autoIncrement();
             $table->string('name');
             $table->integer('front_pg')->default(0);
-            $table->string('ltr_4');
-            $table->string('ltr_3');
+            $table->string('icao');
+            $table->string('iata');
         });
     }
 

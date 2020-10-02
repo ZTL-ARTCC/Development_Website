@@ -65,7 +65,7 @@ class FrontController extends Controller {
             }
         }
 
-        $airports = Airport::where('front_pg', 1)->orderBy('ltr_4', 'ASC')->get();
+        $airports = Airport::whereFrontPg(true)->orderBy('icao', 'ASC')->get();
         $metar_update = AirportWeather::first();
         if ($metar_update != null) {
             $metar_last_updated = substr($metar_update, -10, 5);
@@ -103,7 +103,7 @@ class FrontController extends Controller {
         });
 
         $flights = ArtccFlight::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
-        $flights_update = substr(ArtccFlightUpdate::first()->updated_at, -8, 5);
+//        $flights_update = substr(ArtccFlightUpdate::first()->updated_at, -8, 5);
 
         try {
             $lastTop5 = ControllerLog::top5Controllers(date('Y-n', strtotime("first day of previous month")));
@@ -120,7 +120,7 @@ class FrontController extends Controller {
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
                                 ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
-                                ->with('flights', $flights)->with('flights_update', $flights_update)
+//                                ->with('flights', $flights)->with('flights_update', $flights_update)
                                 ->with('lastTop5', $lastTop5)->with('currentTop5', $currentTop5)
                                 ->with('currentTop3', $currentTop3);
     }
@@ -246,7 +246,7 @@ class FrontController extends Controller {
     }
 
     public function airportIndex() {
-        $airports = Airport::orderBy('ltr_3', 'ASC')->get();
+        $airports = Airport::orderBy('iata', 'ASC')->get();
         return view('site.airports.index')->with('airports', $airports);
     }
 
@@ -344,13 +344,13 @@ class FrontController extends Controller {
         $airport = Airport::find($id);
 
         $client = new Client(['http_errors' => false]);
-        $res = $client->request('GET', 'https://api.aviationapi.com/v1/charts?apt=' . $airport->ltr_4);
+        $res = $client->request('GET', 'https://api.aviationapi.com/v1/charts?apt=' . $airport->icao);
         $status = $res->getStatusCode();
         if ($status == 404) {
             $charts = null;
         } else {
             if (json_decode($res->getBody()) != '[]') {
-                $apt_r = $airport->ltr_4;
+                $apt_r = $airport->icao;
                 $charts = collect(json_decode($res->getBody())->$apt_r);
                 $min = $charts->where('chart_code', 'MIN');
                 $hot = $charts->where('chart_code', 'HOT');

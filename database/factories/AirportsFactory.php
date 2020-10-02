@@ -14,7 +14,7 @@ $factory->define(App\Airport::class, function(Faker\Generator $faker) {
     return [
         "name" => $faker->text(10),
         "front_pg" => $faker->numberBetween(0, 1),
-        "ltr_3" => substr($randomIcao, 1),
-        "ltr_4" => $randomIcao
+        "iata" => substr($randomIcao, 1),
+        "icao" => $randomIcao
     ];
 });

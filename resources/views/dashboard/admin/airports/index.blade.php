@@ -24,7 +24,7 @@
             @foreach($airports as $a)
                 <tr>
                     <td>{{ $a->name }}</td>
-                    <td>{{ $a->ltr_4 }}</td>
+                    <td>{{ $a->icao }}</td>
                     <td>
                         <div class="row">
                             <div class="col-sm-2">

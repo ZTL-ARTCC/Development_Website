@@ -470,10 +470,10 @@
                                 </tr>
                                 @foreach($airports as $a)
                                     <tr align="center">
-                                        <td style="vertical-align:middle;">{{ $a->ltr_4 }}</td>
+                                        <td style="vertical-align:middle;">{{ $a->icao }}</td>
                                         <td>
                                             <button type="button" class="btn btn-alt-{{$a->visual_conditions}}"
-                                                    data-toggle="popover" title="{{$a->ltr_4}} METAR"
+                                                    data-toggle="popover" title="{{$a->icao}} METAR"
                                                     data-placement="top"
                                                     data-content="{{$a->metar}}">{{$a->visual_conditions}}</button>
                                         </td>

@@ -9,6 +9,6 @@ class RolesSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Role::class, 100)->create();
+        factory(App\Models\Role::class, 100)->create();
     }
 }
