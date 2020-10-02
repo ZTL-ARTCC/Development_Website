@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,7 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Incident whereStatus($value)
  * @method static Builder|Incident whereTime($value)
  * @method static Builder|Incident whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Incident extends Model {
     /**

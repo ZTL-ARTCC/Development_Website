@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|PositionPreset whereLastPosition($value)
  * @method static Builder|PositionPreset whereName($value)
  * @method static Builder|PositionPreset whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class PositionPreset extends Model {
     /**

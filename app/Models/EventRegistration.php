@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|EventRegistration whereStartTime($value)
  * @method static Builder|EventRegistration whereStatus($value)
  * @method static Builder|EventRegistration whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class EventRegistration extends Model {
     /**

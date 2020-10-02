@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Visitor;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|VisitorRequest whereStatus($value)
  * @method static Builder|VisitorRequest whereUpdatedAt($value)
  * @method static Builder|VisitorRequest whereUpdatedBy($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class VisitorRequest extends Model {
     /**
@@ -62,7 +62,7 @@ class VisitorRequest extends Model {
     ];
 
     public function getRatingShortAttribute() {
-        foreach (Visitor::$RatingShort as $id => $Short) {
+        foreach (self::$RatingShort as $id => $Short) {
             if ($this->rating == $id) {
                 return $Short;
             }

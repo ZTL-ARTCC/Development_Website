@@ -2,9 +2,18 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Barryvdh\LaravelIdeHelper\Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\TrainingRequest
+ *
+ * @method static Builder|TrainingRequest newModelQuery()
+ * @method static Builder|TrainingRequest newQuery()
+ * @method static Builder|TrainingRequest query()
+ * @mixin Eloquent
+ */
 class TrainingRequest extends Model {
     /**
      * The table associated with the model.
@@ -16,8 +25,8 @@ class TrainingRequest extends Model {
     /**
      * @var array
      */
-    protected $fillable = array('controller_id', 'position_id', 'date', 'request_begin', 'request_end', 'comments',
-                                'accepted', 'mentor', 'session_begin', 'session_end', 'complete');
+    protected $fillable = ['controller_id', 'position_id', 'date', 'request_begin', 'request_end', 'comments',
+                                'accepted', 'mentor', 'session_begin', 'session_end', 'complete'];
 
     public static $PosReq = [
         1 => 'Minor Delivery',

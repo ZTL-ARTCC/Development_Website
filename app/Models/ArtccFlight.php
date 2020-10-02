@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|ArtccFlight whereRoute($value)
  * @method static Builder|ArtccFlight whereType($value)
  * @method static Builder|ArtccFlight whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class ArtccFlight extends Model {
     /**
@@ -47,7 +48,8 @@ class ArtccFlight extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['pilot_cid', 'pilot_name', 'callsign', 'aircraft_type', 'departure', 'arrival', 'route', 'created_at',
+    protected $fillable = ['pilot_cid', 'pilot_name', 'callsign', 'aircraft_type', 'departure', 'arrival', 'route',
+                           'created_at',
                            'updated_at'];
 
 }

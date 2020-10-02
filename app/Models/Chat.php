@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Chat whereId($value)
  * @method static Builder|Chat whereMessage($value)
  * @method static Builder|Chat whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Chat extends Model {
     /**

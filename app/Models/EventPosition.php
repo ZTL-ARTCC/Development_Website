@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\EventRegistration;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|EventPosition whereId($value)
  * @method static Builder|EventPosition whereName($value)
  * @method static Builder|EventPosition whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class EventPosition extends Model {
     /**
@@ -32,10 +32,9 @@ class EventPosition extends Model {
     protected $fillable = ['event_id', 'name', 'created_at', 'updated_at'];
 
     public function getControllerAttribute() {
-        $controllers =
-            EventRegistration::where('position_id', $this->id)->where('status', 1)->orderBy('start_time', 'ASC')
-                             ->get();
-
-        return $controllers;
+        return EventRegistration::wherePositionId($this->id)
+                                ->where('status', 1)
+                                ->orderBy('start_time', 'ASC')
+                                ->get();
     }
 }

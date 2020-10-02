@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|AirportWeather whereUpdatedAt($value)
  * @method static Builder|AirportWeather whereVisualConditions($value)
  * @method static Builder|AirportWeather whereWind($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class AirportWeather extends Model {
     /**

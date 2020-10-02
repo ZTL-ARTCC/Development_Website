@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\PublicTrainingInfoPdf;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|PublicTrainingInformation whereName($value)
  * @method static Builder|PublicTrainingInformation whereOrder($value)
  * @method static Builder|PublicTrainingInformation whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class PublicTrainingInformation extends Model {
     /**
@@ -38,7 +38,7 @@ class PublicTrainingInformation extends Model {
     protected $fillable = ['name', 'order', 'created_at', 'updated_at'];
 
     public function GetPdfAttribute() {
-        $pdfs = PublicTrainingInfoPdf::where('section_id', $this->id)->get();
+        $pdfs = PublicTrainingInformationPdf::where('section_id', $this->id)->get();
 
         return $pdfs;
     }

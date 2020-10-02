@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|GdprCompliance whereMeans($value)
  * @method static Builder|GdprCompliance whereOption($value)
  * @method static Builder|GdprCompliance whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class GdprCompliance extends Model {
     /**

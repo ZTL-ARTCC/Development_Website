@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\User;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use SimpleXMLElement;
 
 /**
  * App\Models\OtsRecommendation
@@ -40,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|OtsRecommendation whereReport($value)
  * @method static Builder|OtsRecommendation whereStatus($value)
  * @method static Builder|OtsRecommendation whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class OtsRecommendation extends Model {
     /**

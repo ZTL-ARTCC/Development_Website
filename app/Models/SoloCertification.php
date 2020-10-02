@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|SoloCertification wherePos($value)
  * @method static Builder|SoloCertification whereStatus($value)
  * @method static Builder|SoloCertification whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class SoloCertification extends Model {
     /**

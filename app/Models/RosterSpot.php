@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -76,7 +77,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|RosterSpot whereUpdatedAt($value)
  * @method static Builder|RosterSpot whereVisitor($value)
  * @method static Builder|RosterSpot whereVisitorFrom($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class RosterSpot extends Model {
     /**

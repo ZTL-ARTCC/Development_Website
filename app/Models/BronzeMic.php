@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 // TODO: This and pyrite mic can most likely be combined into one table
+
 /**
  * App\Models\BronzeMic
  *
@@ -28,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|BronzeMic whereMonthHours($value)
  * @method static Builder|BronzeMic whereUpdatedAt($value)
  * @method static Builder|BronzeMic whereYear($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class BronzeMic extends Model {
     /**

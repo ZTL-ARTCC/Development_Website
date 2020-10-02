@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Laratrust\Models\LaratrustTeam;
@@ -24,7 +25,7 @@ use Laratrust\Models\LaratrustTeam;
  * @method static Builder|Team whereId($value)
  * @method static Builder|Team whereName($value)
  * @method static Builder|Team whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Team extends LaratrustTeam {
     //

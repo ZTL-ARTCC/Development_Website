@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\User;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 // TODO: This and bronze mid can most likely be combined into one table
+
 /**
  * App\Models\PyriteMic
  *
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|PyriteMic whereUpdatedAt($value)
  * @method static Builder|PyriteMic whereYear($value)
  * @method static Builder|PyriteMic whereYearHours($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class PyriteMic extends Model {
     /**

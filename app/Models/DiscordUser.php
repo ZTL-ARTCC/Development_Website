@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|DiscordUser whereOnlineTimeMonth($value)
  * @method static Builder|DiscordUser whereRatingId($value)
  * @method static Builder|DiscordUser whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class DiscordUser extends Model {
     /**

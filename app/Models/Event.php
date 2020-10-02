@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,7 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Event whereStartTime($value)
  * @method static Builder|Event whereStatus($value)
  * @method static Builder|Event whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Event extends Model {
     /**

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
+ * App\Models\ControllerLog
+ *
  * @property int $id
  * @property int $cid
  * @property string $name
@@ -17,6 +20,20 @@ use Illuminate\Support\Facades\DB;
  * @property string $streamupdate
  * @property string $created_at
  * @property string $updated_at
+ * @method static QueryBuilder|ControllerLog newModelQuery()
+ * @method static QueryBuilder|ControllerLog newQuery()
+ * @method static QueryBuilder|ControllerLog query()
+ * @method static QueryBuilder|ControllerLog whereCid($value)
+ * @method static QueryBuilder|ControllerLog whereCreatedAt($value)
+ * @method static QueryBuilder|ControllerLog whereDate($value)
+ * @method static QueryBuilder|ControllerLog whereDuration($value)
+ * @method static QueryBuilder|ControllerLog whereId($value)
+ * @method static QueryBuilder|ControllerLog whereName($value)
+ * @method static QueryBuilder|ControllerLog wherePosition($value)
+ * @method static QueryBuilder|ControllerLog whereStreamupdate($value)
+ * @method static QueryBuilder|ControllerLog whereTimeLogon($value)
+ * @method static QueryBuilder|ControllerLog whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class ControllerLog extends Model {
     /**
@@ -72,7 +89,7 @@ class ControllerLog extends Model {
     }
 
     public static function getControllerStats($id) {
-        return static::aggregateStatsByTime(static::where('cid', $id));
+        return static::aggregateStatsByTime(static::whereCid($id));
     }
 
     public static function aggregateAllControllersByPosAndMonth($year = null, $month = null) {

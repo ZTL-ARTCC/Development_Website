@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|File wherePath($value)
  * @method static Builder|File whereType($value)
  * @method static Builder|File whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class File extends Model {
     /**
@@ -36,7 +37,7 @@ class File extends Model {
     protected $fillable = ['name', 'type', 'description', 'path', 'created_at', 'updated_at'];
 
     public function getWordTypeAttribute() {
-        foreach (\App\File::$WordType as $id => $wordType) {
+        foreach (File::$WordType as $id => $wordType) {
             if ($this->type == $id) {
                 return $wordType;
             }

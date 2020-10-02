@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Scenery wherePrice($value)
  * @method static Builder|Scenery whereSim($value)
  * @method static Builder|Scenery whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Scenery extends Model {
     /**

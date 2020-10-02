@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -9,21 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\OnlineAtc
  *
- * @property int $id    public function getTimeOnlineAttribute() {
- * $time_logon = Carbon::createFromTimestamp($this->time_logon);
- * $time_now = Carbon::now();
- * 
- * $time_online = $time_logon->diffInMinutes($time_now) * 60;
- * 
- * $time = date("H:i", $time_online);
- * 
- * return $time;
- * }
- * 
- * public function getLogonTimeAttribute() {
- * $time = Carbon::createFromTimestamp($this->time_logon);
- * return $time->format('m/d/Y H:i') . 'z';
- * }
+ * @property int $id
  * @property int $controller_cid
  * @property string $name
  * @property string $position
@@ -45,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|OnlineAtc wherePosition($value)
  * @method static Builder|OnlineAtc whereTimeLogon($value)
  * @method static Builder|OnlineAtc whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class OnlineAtc extends Model {
     /**

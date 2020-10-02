@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\TrainingInfo;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|TrainingInformation whereNumber($value)
  * @method static Builder|TrainingInformation whereSection($value)
  * @method static Builder|TrainingInformation whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class TrainingInformation extends Model {
     /**
@@ -42,14 +42,14 @@ class TrainingInformation extends Model {
     protected $fillable = ['number', 'section', 'info', 'created_at', 'updated_at'];
 
     public function getNewNumbersAttribute() {
-        $group_number = TrainingInfo::where('section', $this->section)->get()->count() + 1;
+        $group_number = TrainingInformation::where('section', $this->section)->get()->count() + 1;
         $numbers = range(1, $group_number);
 
         return $numbers;
     }
 
     public function getDefaultNewNumberAttribute() {
-        $number = TrainingInfo::where('section', $this->section)->get()->count();
+        $number = TrainingInformation::where('section', $this->section)->get()->count();
 
         return $number;
     }

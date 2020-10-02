@@ -2,9 +2,18 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Mail;
 
+/**
+ * App\Models\MentorAvailable
+ *
+ * @method static Builder|MentorAvailable newModelQuery()
+ * @method static Builder|MentorAvailable newQuery()
+ * @method static Builder|MentorAvailable query()
+ * @mixin Eloquent
+ */
 class MentorAvailable extends Model {
 
     protected $table = 'mentor_training_times';

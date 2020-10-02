@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|ArtccFlightUpdate whereCreatedAt($value)
  * @method static Builder|ArtccFlightUpdate whereId($value)
  * @method static Builder|ArtccFlightUpdate whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class ArtccFlightUpdate extends Model {
     /**

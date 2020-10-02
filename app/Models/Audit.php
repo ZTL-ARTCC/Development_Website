@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Audit whereIp($value)
  * @method static Builder|Audit whereUpdatedAt($value)
  * @method static Builder|Audit whereWhat($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Audit extends Model {
     /**

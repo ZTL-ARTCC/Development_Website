@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|PublicTrainingInformationPdf wherePdfPath($value)
  * @method static Builder|PublicTrainingInformationPdf whereSectionId($value)
  * @method static Builder|PublicTrainingInformationPdf whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class PublicTrainingInformationPdf extends Model {
     /**

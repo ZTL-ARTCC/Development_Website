@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|ControllerLogUpdate whereCreatedAt($value)
  * @method static Builder|ControllerLogUpdate whereId($value)
  * @method static Builder|ControllerLogUpdate whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class ControllerLogUpdate extends Model {
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|VisitorRejected whereId($value)
  * @method static Builder|VisitorRejected whereStaffCid($value)
  * @method static Builder|VisitorRejected whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class VisitorRejected extends Model {
     /**

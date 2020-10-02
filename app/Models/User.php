@@ -2,11 +2,81 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Barryvdh\LaravelIdeHelper\Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laratrust\Traits\LaratrustUserTrait;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $fname
+ * @property string $lname
+ * @property string|null $initials
+ * @property string $email
+ * @property int $rating_id
+ * @property int $canTrain
+ * @property int $canEvents
+ * @property int $visitor
+ * @property string|null $visitor_from
+ * @property int $api_exempt
+ * @property int $status
+ * @property int $loa
+ * @property int $del
+ * @property int $gnd
+ * @property int $twr
+ * @property int $app
+ * @property int $ctr
+ * @property int $train_pwr
+ * @property int $monitor_pwr
+ * @property int|null $opt
+ * @property string|null $remember_token
+ * @property string|null $json_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $time_added_to_facility
+ * @property int $training_power
+ * @property int $mentor_power
+ * @property int $max
+ * @property string|null $path
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereApiExempt($value)
+ * @method static Builder|User whereApp($value)
+ * @method static Builder|User whereCanEvents($value)
+ * @method static Builder|User whereCanTrain($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereCtr($value)
+ * @method static Builder|User whereDel($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereFname($value)
+ * @method static Builder|User whereGnd($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereInitials($value)
+ * @method static Builder|User whereJsonToken($value)
+ * @method static Builder|User whereLname($value)
+ * @method static Builder|User whereLoa($value)
+ * @method static Builder|User whereMax($value)
+ * @method static Builder|User whereMentorPower($value)
+ * @method static Builder|User whereMonitorPwr($value)
+ * @method static Builder|User whereOpt($value)
+ * @method static Builder|User wherePath($value)
+ * @method static Builder|User whereRatingId($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereStatus($value)
+ * @method static Builder|User whereTimeAddedToFacility($value)
+ * @method static Builder|User whereTrainPwr($value)
+ * @method static Builder|User whereTrainingPower($value)
+ * @method static Builder|User whereTwr($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereVisitor($value)
+ * @method static Builder|User whereVisitorFrom($value)
+ * @mixin Eloquent
+ */
 class User extends Authenticatable {
     use Notifiable;
     use LaratrustUserTrait;

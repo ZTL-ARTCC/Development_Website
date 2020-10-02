@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\User;
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use SimpleXMLElement;
 
 /**
  * App\Models\TrainingTicket
@@ -49,7 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|TrainingTicket whereTrainerId($value)
  * @method static Builder|TrainingTicket whereType($value)
  * @method static Builder|TrainingTicket whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class TrainingTicket extends Model {
     /**
