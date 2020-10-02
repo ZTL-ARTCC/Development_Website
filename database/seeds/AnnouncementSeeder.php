@@ -9,6 +9,6 @@ class AnnouncementSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Announcement::class, 100)->create();
+        factory(App\Models\Announcement::class, 100)->create();
     }
 }

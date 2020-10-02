@@ -9,6 +9,6 @@ class ChatRoomSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Chat::class, 100)->create();
+        factory(App\Models\Chat::class, 100)->create();
     }
 }

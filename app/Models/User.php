@@ -253,7 +253,7 @@ class User extends Authenticatable {
     }
 
     public function getLastLogonAttribute() {
-        $last = ControllerLog::where('cid', $this->id)->orderBy('created_at', 'DSC')->first();
+        $last = ControllerLog::whereCid($this->id)->orderBy('created_at', 'DSC')->first();
         if ($last != null) {
             $date = Carbon::parse($last->created_at)->format('m/d/Y');
         } else {
@@ -276,7 +276,7 @@ class User extends Authenticatable {
     }
 
     public function getSoloAttribute() {
-        $cert = SoloCert::where('cid', $this->id)->where('status', 0)->first();
+        $cert = SoloCertification::whereCid($this->id)->where('status', 0)->first();
         if ($cert) {
             $date = Carbon::parse($cert->expiration)->format('m/d/Y');
         } else {

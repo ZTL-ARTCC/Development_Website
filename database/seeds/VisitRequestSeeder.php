@@ -9,6 +9,6 @@ class VisitRequestSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Visitor::class, 100)->create();
+        factory(App\Models\VisitorRequest::class, 100)->create();
     }
 }

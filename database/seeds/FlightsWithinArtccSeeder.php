@@ -9,6 +9,6 @@ class FlightsWithinArtccSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Overflight::class, 100)->create();
+        factory(App\Models\ArtccFlight::class, 100)->create();
     }
 }

@@ -158,7 +158,7 @@
                                     <center>{{ $v->updated_at }}</center>
                                 </td>
                                 <td>
-                                    <center>{{ App\User::find($v->updated_by)->full_name }}</center>
+                                    <center>{{ App\Models\User::find($v->updated_by)->full_name }}</center>
                                 </td>
                             </tr>
                         @endforeach
@@ -210,7 +210,7 @@
                                     <center>{{ $v->updated_at }}</center>
                                 </td>
                                 <td>
-                                    <center>{{ App\User::find($v->updated_by)->full_name }}</center>
+                                    <center>{{ App\Models\User::find($v->updated_by)->full_name }}</center>
                                 </td>
                             </tr>
                         @endforeach

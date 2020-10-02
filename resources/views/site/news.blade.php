@@ -55,10 +55,10 @@
                         <p><b>Additional Information:</b></p>
                         <p>{!! $calendar->body !!}</p>
                         <hr>
-                        <p class="small"><i>Created by {{ App\User::find($calendar->created_by)->full_name }}
+                        <p class="small"><i>Created by {{ App\Models\User::find($calendar->created_by)->full_name }}
                                 at {{ $calendar->created_at }}</i></p>
                         @if($calendar->updated_by != null)
-                            <p class="small"><i>Last updated by {{ App\User::find($calendar->updated_by)->full_name }}
+                            <p class="small"><i>Last updated by {{ App\Models\User::find($calendar->updated_by)->full_name }}
                                     at {{ $calendar->updated_at }}</i></p>
                         @endif
                     </div>

@@ -9,6 +9,6 @@ class CalendarSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Calendar::class, 100)->create();
+        factory(App\Models\Calendar::class, 100)->create();
     }
 }

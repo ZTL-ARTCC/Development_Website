@@ -9,6 +9,6 @@ class SoloCertsSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\SoloCert::class, 100)->create();
+        factory(App\Models\SoloCertification::class, 100)->create();
     }
 }

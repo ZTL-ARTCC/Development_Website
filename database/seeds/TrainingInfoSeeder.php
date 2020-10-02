@@ -9,6 +9,6 @@ class TrainingInfoSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\TrainingInfo::class, 100)->create();
+        factory(App\Models\TrainingInformation::class, 100)->create();
     }
 }

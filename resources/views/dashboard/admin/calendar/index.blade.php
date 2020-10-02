@@ -63,11 +63,11 @@
                                     <center>{!! str_limit($c->body, 50, '...') !!}</center>
                                 </td>
                                 <td data-toggle="tooltip" title="{{ $c->created_at }}">
-                                    <center>{{ App\User::find($c->created_by)->full_name }}</center>
+                                    <center>{{ App\Models\User::find($c->created_by)->full_name }}</center>
                                 </td>
                                 @if($c->updated_by != null)
                                     <td data-toggle="tooltip" title="{{ $c->updated_at }}">
-                                        <center>{{ App\User::find($c->updated_by)->full_name }}</center>
+                                        <center>{{ App\Models\User::find($c->updated_by)->full_name }}</center>
                                     </td>
                                 @else
                                     <td></td>
@@ -131,11 +131,11 @@
                                     <center>{!! str_limit($c->body, 50, '...') !!}</center>
                                 </td>
                                 <td data-toggle="tooltip" title="{{ $c->created_at }}">
-                                    <center>{{ App\User::find($c->created_by)->full_name }}</center>
+                                    <center>{{ App\Models\User::find($c->created_by)->full_name }}</center>
                                 </td>
                                 @if($c->updated_by != null)
                                     <td data-toggle="tooltip" title="{{ $c->updated_at }}">
-                                        <center>{{ App\User::find($c->updated_by)->full_name }}</center>
+                                        <center>{{ App\Models\User::find($c->updated_by)->full_name }}</center>
                                     </td>
                                 @else
                                     <td></td>

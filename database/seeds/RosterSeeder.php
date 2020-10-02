@@ -9,6 +9,6 @@ class RosterSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\User::class, 100)->create();
+        factory(App\Models\User::class, 100)->create();
     }
 }

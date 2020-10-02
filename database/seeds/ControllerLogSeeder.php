@@ -9,6 +9,6 @@ class ControllerLogSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\ControllerLog::class, 100)->create();
+        factory(App\Models\ControllerLog::class, 100)->create();
     }
 }

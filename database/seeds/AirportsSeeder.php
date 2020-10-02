@@ -9,6 +9,6 @@ class AirportsSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Airport::class, 100)->create();
+        factory(App\Models\Airport::class, 10)->create();
     }
 }

@@ -9,6 +9,6 @@ class BronzeMicSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Bronze::class, 100)->create();
+        factory(App\Models\BronzeMic::class, 100)->create();
     }
 }

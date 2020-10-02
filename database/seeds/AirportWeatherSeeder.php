@@ -9,6 +9,6 @@ class AirportWeatherSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\AirportWeather::class, 100)->create();
+        factory(App\Models\AirportWeather::class, 100)->create();
     }
 }

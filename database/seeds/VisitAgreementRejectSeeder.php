@@ -9,6 +9,6 @@ class VisitAgreementRejectSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\VisitRej::class, 100)->create();
+        factory(App\Models\VisitorRejected::class, 100)->create();
     }
 }

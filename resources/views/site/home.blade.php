@@ -244,6 +244,13 @@
                 <!-- Notices -->
                 <h2 class="content-heading-hp">News </h2>
 
+                @if(sizeof($news) == 0)
+                    <div class="col-md-6 col-xl-12"><a class="block block-transparent text-center bg-gd-emerald">
+                            <div class="block-content bg-black-op-5"><p class="font-w600 text-white">No news to show</p></div>
+                            <div class="block-content"><p><i
+                                        class="fa fa-exclamation-triangle fa-4x text-white-op"></i></p></div>
+                        </a></div>
+                @else
                 @foreach($news as $n)
                     <a class="block block-rounded block-link-shadow" href="/news/view/{{ $n->id }}">
                         <div class="block-content block-content-full">
@@ -254,6 +261,7 @@
                         </div>
                     </a>
             @endforeach
+                @endif
 
             <!-- END Notices -->
 
@@ -284,11 +292,11 @@
                         @empty
                             <div class="col-md-12 col-xl-12">
                                 <div class="block-content block-content-full">
-                                    <div class="py-50 text-center bg-white-op-25">
-                                        <div class="font-size-h2 font-w700 mb-0 text-primary"><i
-                                                class="fa fa-calendar-times-o text-muted mr-5"></i></div>
-                                        <div class="font-size-h2 font-w700 mb-0 text-primary">No events scheduled</div>
-                                        <div class="font-size-sm font-w600 text-uppercase">Check back soon!</div>
+                                    <div class="py-50 text-center bg-gd-elegance">
+                                        <div class="font-size-h2 font-w700 mb-0 text-white"><i
+                                                class="fa fa-calendar-times-o text-white mr-5"></i></div>
+                                        <div class="font-size-h2 font-w700 mb-0 text-white">No events scheduled</div>
+                                        <div class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
                                     </div>
                                 </div>
                             </div>
@@ -319,14 +327,13 @@
                             @endif
 
                         @empty
-
                             <div class="col-md-12 col-xl-12">
                                 <div class="block-content block-content-full">
-                                    <div class="py-50 text-center bg-white-op-25">
-                                        <div class="font-size-h2 font-w700 mb-0 text-primary"><i
-                                                class="fa fa-calendar-times-o text-muted mr-5"></i></div>
-                                        <div class="font-size-h2 font-w700 mb-0 text-primary">No events scheduled</div>
-                                        <div class="font-size-sm font-w600 text-uppercase">Check back soon!</div>
+                                    <div class="py-50 text-center bg-gd-elegance">
+                                        <div class="font-size-h2 font-w700 mb-0 text-white"><i
+                                                class="fa fa-calendar-times-o text-white mr-5"></i></div>
+                                        <div class="font-size-h2 font-w700 mb-0 text-white">No events scheduled</div>
+                                        <div class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
                                     </div>
                                 </div>
                             </div>
@@ -459,7 +466,7 @@
                     </div>
                     <div class="block-content">
                         @if($airports->count() == 0)
-                            <center>No airport to show.</center><br/>
+                            <center>No airports to show.</center><br/>
                         @elseif($airports->count() > 0)
                             <table class="table table-borderless table-vcenter" style="text-align: center">
                                 <tbody>

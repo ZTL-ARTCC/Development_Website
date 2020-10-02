@@ -17,6 +17,7 @@ class Airports extends Migration {
             $table->integer('front_pg')->default(0);
             $table->string('icao');
             $table->string('iata');
+            $table->timestamps();
         });
     }
 

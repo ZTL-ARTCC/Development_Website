@@ -9,6 +9,6 @@ class AuditsSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\Audit::class, 100)->create();
+        factory(App\Models\Audit::class, 100)->create();
     }
 }

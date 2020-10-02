@@ -1,16 +1,16 @@
 @if(
 
-    Auth::user()->hasRole('ins') && App\Ots::where('status', 0)->get()->count() > 0 || Auth::user()->hasRole('atm') && App\Ots::where('status', 0)->get()->count() > 0 ||
+    Auth::user()->hasRole('ins') && App\Models\Ots::where('status', 0)->get()->count() > 0 || Auth::user()->hasRole('atm') && App\Models\Ots::where('status', 0)->get()->count() > 0 ||
 
-    App\Ots::where('status', 1)->where('ins_id', Auth::id())->get()->count() > 0 ||
+    App\Models\Ots::where('status', 1)->where('ins_id', Auth::id())->get()->count() > 0 ||
 
-    App\TrainingTicket::where('created_at', '>=', Carbon\Carbon::now()->subHours(24))->where('controller_id', Auth::id())->first() != null ||
+    App\Models\TrainingTicket::where('created_at', '>=', Carbon\Carbon::now()->subHours(24))->where('controller_id', Auth::id())->first() != null ||
 
-    count(App\Incident::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
+    count(App\Models\Incident::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
 
-    count(App\Feedback::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
+    count(App\Models\Feedback::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
 
-    count(App\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff')
+    count(App\Models\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff')
 
     )
 
@@ -18,7 +18,7 @@
 
     <center><h4><i>Notifications</i></h4></center>
 
-    @if(Auth::user()->hasRole('ins') && App\Ots::where('status', 0)->get()->count() > 0 || Auth::user()->hasRole('atm') && App\Ots::where('status', 0)->get()->count() > 0)
+    @if(Auth::user()->hasRole('ins') && App\Models\Ots::where('status', 0)->get()->count() > 0 || Auth::user()->hasRole('atm') && App\Models\Ots::where('status', 0)->get()->count() > 0)
 
         <br>
 
@@ -33,7 +33,7 @@
 
 
 
-    @if(App\Ots::where('status', 1)->where('ins_id', Auth::id())->get()->count() > 0)
+    @if(App\Models\Ots::where('status', 1)->where('ins_id', Auth::id())->get()->count() > 0)
 
         <br>
 
@@ -48,7 +48,7 @@
 
 
 
-    @if(App\TrainingTicket::where('created_at', '>=', Carbon\Carbon::now()->subHours(24))->where('controller_id', Auth::id())->first() != null)
+    @if(App\Models\TrainingTicket::where('created_at', '>=', Carbon\Carbon::now()->subHours(24))->where('controller_id', Auth::id())->first() != null)
 
         <br>
 
@@ -63,7 +63,7 @@
 
 
 
-    @if(count(App\Incident::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
+    @if(count(App\Models\Incident::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
 
         <br>
 
@@ -76,7 +76,7 @@
 
     @endif
 
-    @if(count(App\Feedback::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
+    @if(count(App\Models\Feedback::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
 
         <br>
 
@@ -89,7 +89,7 @@
 
     @endif
 
-    @if(count(App\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
+    @if(count(App\Models\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff'))
 
         <br>
 

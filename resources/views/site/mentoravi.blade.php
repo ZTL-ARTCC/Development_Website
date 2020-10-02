@@ -111,7 +111,7 @@
                         }
                     }
 
-                    var ratingIdToText = {!! json_encode(App\User::$RatingShort, JSON_FORCE_OBJECT) !!},
+                    var ratingIdToText = {!! json_encode(App\Models\User::$RatingShort, JSON_FORCE_OBJECT) !!},
                         currentAvailability = {!! $availability->toJSON() !!},
                         now = moment(),
                         $table = $(".availability"),

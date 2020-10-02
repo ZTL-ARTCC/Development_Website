@@ -9,6 +9,6 @@ class TrainingTicketsSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(App\TrainingTicket::class, 100)->create();
+        factory(App\Models\TrainingTicket::class, 100)->create();
     }
 }

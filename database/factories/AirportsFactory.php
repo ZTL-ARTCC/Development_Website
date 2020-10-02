@@ -4,7 +4,7 @@
 
 use Illuminate\Database\Eloquent\Factory;
 
-$factory->define(App\Airport::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\Airport::class, function(Faker\Generator $faker) {
     $icaos = array("KATL", "KCLT",
                    "KBHM", "KGSP", "KAVL", "KGSO", "KTYS", "KCHA", "KFTY", "KRYY", "KAHN",
                    "KAGS", "KGMU", "KGYH", "KTCL", "KMXF", "KMGM", "KLSF", "KCSG", "KMCN",
@@ -13,7 +13,7 @@ $factory->define(App\Airport::class, function(Faker\Generator $faker) {
 
     return [
         "name" => $faker->text(10),
-        "front_pg" => $faker->numberBetween(0, 1),
+        "front_pg" => $faker->boolean,
         "iata" => substr($randomIcao, 1),
         "icao" => $randomIcao
     ];
