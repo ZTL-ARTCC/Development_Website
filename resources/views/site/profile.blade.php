@@ -224,11 +224,10 @@
                                 <div class="float-right mt-15 d-none d-sm-block">
                                     <i class="si si-book-open fa-2x text-success"></i>
                                 </div>
-                                @if($personal_stats->total_hrs < 0)
-                                <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="{{ $personal_stats->total_hrs }}">
-                                    @else
-                                        0
-                                    @endif</div>
+                              
+                                <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="">
+                                   
+                                 </div>
 
                                 </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-success-light">Hours This Month</div>
