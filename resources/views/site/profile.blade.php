@@ -238,11 +238,9 @@
                                 <div class="float-right mt-15 d-none d-sm-block">
                                     <i class="si si-envelope-open fa-2x text-warning"></i>
                                 </div>
-                                <div class="font-size-h3 font-w600 text-warning" data-toggle="countTo" data-speed="1000" data-to="	@if(!empty($stats['total']))
-                                {{{ $stats['total'] }}}
-                                @else
-                                        0
-@endif">0</div>
+                                <div class="font-size-h3 font-w600 text-warning" data-toggle="countTo" data-speed="1000" data-to="	
+                                
+                                   0"</div>
                                 <div class="font-size-sm font-w600 text-uppercase text-warning-light">Total Controlling Hours</div>
                             </div>
 
