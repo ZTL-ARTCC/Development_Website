@@ -555,8 +555,8 @@ class FrontController extends Controller
         $log = ControllerLog::where('cid', '=', $id)->orderBy('id', 'DESC')->get();
         $stats = ControllerLog::getControllerStats($id);
         
-        $personal_stats = $dashstats[$user_id];
-        return view('site.profile')->with('user', $user)->with('feedback', $feedback)->with('personal_stats', $personal_stats)
+        
+        return view('site.profile')->with('user', $user)->with('feedback', $feedback)
             ->with('log', $log)->with('stats', $stats)->with('url_exist', $url_exist)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given);
     }
 
