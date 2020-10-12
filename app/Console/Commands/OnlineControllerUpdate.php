@@ -6,8 +6,8 @@ use App\Models\ControllerLog;
 use App\Models\ControllerLogUpdate;
 use App\Models\OnlineAtc;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use function Exception;
 
 class OnlineControllerUpdate extends Command {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\ArtccFlight;
 use App\Models\BronzeMic;
 use App\Models\Calendar;
 use App\Models\ControllerLog;
@@ -15,7 +16,6 @@ use App\Models\Feedback;
 use App\Models\File;
 use App\Models\GdprCompliance;
 use App\Models\Incident;
-use App\Models\ArtccFlight;
 use App\Models\OnlineAtc;
 use App\Models\PositionPreset;
 use App\Models\PyriteMic;

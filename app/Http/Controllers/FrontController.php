@@ -6,7 +6,6 @@ use App\Http\Controllers\toArray;
 use App\Models\Airport;
 use App\Models\AirportWeather;
 use App\Models\ArtccFlight;
-use App\Models\ArtccFlightUpdate;
 use App\Models\Calendar;
 use App\Models\ControllerLog;
 use App\Models\ControllerLogUpdate;
