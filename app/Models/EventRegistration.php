@@ -56,15 +56,13 @@ class EventRegistration extends Model {
     public function getControllerNameAttribute() {
         $controller = User::find($this->controller_id);
         if (isset($controller)) {
-            $name = User::find($this->controller_id)->full_name_rating;
-            return $name;
+            return User::find($this->controller_id)->full_name_rating;
         } else {
             return '[Controller no longer exists]';
         }
     }
 
     public function getPositionNameAttribute() {
-        $name = EventPosition::find($this->position_id)->name;
-        return $name;
+        return EventPosition::find($this->position_id)->name;
     }
 }

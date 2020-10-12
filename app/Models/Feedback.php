@@ -51,31 +51,21 @@ class Feedback extends Model {
                            'pilot_cid', 'comments', 'staff_comments', 'status', 'created_at', 'updated_at'];
 
     public function getServiceLevelTextAttribute() {
-        $level = $this->service_level;
-        if ($level == 0) {
+        switch ($this->service_level) {
+        case 0:
             return 'Excellent';
-        } else {
-            if ($level == 1) {
-                return 'Good';
-            } else {
-                if ($level == 2) {
-                    return 'Fair';
-                } else {
-                    if ($level == 3) {
-                        return 'Poor';
-                    } else {
-                        if ($level == 4) {
-                            return 'Unsatisfactory';
-                        } else {
-                            if ($level == 5) {
-                                return 'N/A';
-                            } else {
-                                return 'Value not Found';
-                            }
-                        }
-                    }
-                }
-            }
+        case 1:
+            return 'Good';
+        case 2:
+            return 'Fair';
+        case 3:
+            return 'Poor';
+        case 4:
+            return 'Unsatisfactory';
+        case 5:
+            return 'N/A';
+        default:
+            return 'Value not found';
         }
     }
 

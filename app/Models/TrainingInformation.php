@@ -42,15 +42,12 @@ class TrainingInformation extends Model {
     protected $fillable = ['number', 'section', 'info', 'created_at', 'updated_at'];
 
     public function getNewNumbersAttribute() {
-        $group_number = TrainingInformation::where('section', $this->section)->get()->count() + 1;
-        $numbers = range(1, $group_number);
-
-        return $numbers;
+        $group_number = TrainingInformation::whereSection($this->section)->count() + 1;
+        return range(1, $group_number);
     }
 
     public function getDefaultNewNumberAttribute() {
-        $number = TrainingInformation::where('section', $this->section)->get()->count();
-
-        return $number;
+        TrainingInformation::whereSection($this->section)->count();
+        return TrainingInformation::whereSection($this->section)->count();
     }
 }

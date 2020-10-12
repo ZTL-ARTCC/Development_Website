@@ -75,370 +75,159 @@ class TrainingTicket extends Model {
     }
 
     public function getControllerNameAttribute() {
-        $name = User::find($this->controller_id)->full_name;
-
-        return $name;
+        return User::find($this->controller_id)->full_name;
     }
 
     public function getTypeNameAttribute() {
-        $pos = $this->type;
-        if ($pos == 0) {
-            $position = 'Classroom Training';
-        } else {
-            if ($pos == 1) {
-                $position = 'Sweatbox Training';
-            } else {
-                if ($pos == 2) {
-                    $position = 'Live Training';
-                } else {
-                    if ($pos == 3) {
-                        $position = 'Live Monitoring';
-                    } else {
-                        if ($pos == 4) {
-                            $position = 'Sweatbox OTS (Pass)';
-                        } else {
-                            if ($pos == 5) {
-                                $position = 'Live OTS (Pass)';
-                            } else {
-                                if ($pos == 6) {
-                                    $position = 'Sweatbox OTS (Fail)';
-                                } else {
-                                    if ($pos == 7) {
-                                        $position = 'Live OTS (Fail)';
-                                    } else {
-                                        if ($pos == 8) {
-                                            $position = 'Live OTS';
-                                        } else {
-                                            if ($pos == 9) {
-                                                $position = 'Sweatbox OTS';
-                                            } else {
-                                                if ($pos == 10) {
-                                                    $position = 'No Show';
-                                                } else {
-                                                    if ($pos == 11) {
-                                                        $position = 'No Show';
-                                                    } else {
-                                                        if ($pos == 12) {
-                                                            $position = 'Complete';
-                                                        } else {
-                                                            if ($pos == 13) {
-                                                                $position = 'Incomplete';
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        switch ($this->type) {
+        case 0:
+            return 'Classroom Training';
+        case 1:
+            return 'Sweatbox Training';
+        case 2:
+            return 'Live Training';
+        case 3:
+            return 'Live Monitoring';
+        case 4:
+            return 'Sweatbox OTS (Pass)';
+        case 5:
+            return 'Live OTS (Pass)';
+        case 6:
+            return 'Sweatbox OTS (Fail)';
+        case 7:
+            return 'Live OTS (Fail)';
+        case 8:
+            return 'Live OTS';
+        case 9:
+            return 'Sweatbox OTS';
+        case 10:
+            return 'No Show';
+        case 11 || 12:
+            return 'Complete';
+        case 13:
+            return 'Incomplete';
+        default:
+            return 'Unknown';
         }
-
-
-        return $position;
     }
 
     public function getPositionNameAttribute() {
-        $pos = $this->position;
-        if ($pos == 0) {
-            $position = 'Minor Delivery/Ground';
-        } else {
-            if ($pos == 1) {
-                $position = 'Minor Local';
-            } else {
-                if ($pos == 2) {
-                    $position = 'Major Delivery/Ground';
-                } else {
-                    if ($pos == 3) {
-                        $position = 'Major Local';
-                    } else {
-                        if ($pos == 4) {
-                            $position = 'Minor Approach';
-                        } else {
-                            if ($pos == 5) {
-                                $position = 'Major Approach';
-                            } else {
-                                if ($pos == 6) {
-                                    $position = 'Center';
-                                } else {
-                                    if ($pos == 7) {
-                                        $position = 'S1 T1-DEL-1 (Theory)';
-                                    } else {
-                                        if ($pos == 8) {
-                                            $position = 'S1 P1-DEL-2';
-                                        } else {
-                                            if ($pos == 9) {
-                                                $position = 'S1 P2-DEL-3';
-                                            } else {
-                                                if ($pos == 10) {
-                                                    $position = 'S1 M1-DEL-4 (Live Network Monitoring - CLT)';
-                                                } else {
-                                                    if ($pos == 11) {
-                                                        $position = 'S1T2-DEL-5 (Theroy, ATL)';
-                                                    } else {
-                                                        if ($pos == 12) {
-                                                            $position = 'S1P3-DEL 6';
-                                                        } else {
-                                                            if ($pos == 13) {
-                                                                $position =
-                                                                    'S1M2-DEL-7 (Live Network Monitoring - ATL)';
-                                                            } else {
-                                                                if ($pos == 14) {
-                                                                    $position = 'S1T3-GND-1 (Theory)';
-                                                                } else {
-                                                                    if ($pos == 15) {
-                                                                        $position = 'S1P4-GND-2';
-                                                                    } else {
-                                                                        if ($pos == 16) {
-                                                                            $position = 'S1P5-GND-3';
-                                                                        } else {
-                                                                            if ($pos == 17) {
-                                                                                $position =
-                                                                                    'S1M3-GND-4 (Live Network Monitoring - CLT)';
-                                                                            } else {
-                                                                                if ($pos == 18) {
-                                                                                    $position =
-                                                                                        'S1T4-GND-5 (Theory, ATL)';
-                                                                                } else {
-                                                                                    if ($pos == 19) {
-                                                                                        $position = 'S1P6-GND-6';
-                                                                                    } else {
-                                                                                        if ($pos == 20) {
-                                                                                            $position = 'S1P7-GND-7';
-                                                                                        } else {
-                                                                                            if ($pos == 21) {
-                                                                                                $position =
-                                                                                                    'S1M4-GND-8 (Live Network Monitoring – ATL)';
-                                                                                            } else {
-                                                                                                if ($pos == 22) {
-                                                                                                    $position =
-                                                                                                        'S2T1-TWR-1 (Theory)';
-                                                                                                } else {
-                                                                                                    if ($pos == 23) {
-                                                                                                        $position =
-                                                                                                            'S2P1-TWR-2';
-                                                                                                    } else {
-                                                                                                        if ($pos ==
-                                                                                                            24) {
-                                                                                                            $position =
-                                                                                                                'S2P2-TWR-3';
-                                                                                                        } else {
-                                                                                                            if ($pos ==
-                                                                                                                25) {
-                                                                                                                $position =
-                                                                                                                    'S2P3-TWR-4';
-                                                                                                            } else {
-                                                                                                                if ($pos ==
-                                                                                                                    26) {
-                                                                                                                    $position =
-                                                                                                                        'S2M1-TWR-5 (Live Network Monitoring – CLT)';
-                                                                                                                } else {
-                                                                                                                    if ($pos ==
-                                                                                                                        27) {
-                                                                                                                        $position =
-                                                                                                                            'S2T2-TWR-6 (Theory, ATL)';
-                                                                                                                    } else {
-                                                                                                                        if ($pos ==
-                                                                                                                            28) {
-                                                                                                                            $position =
-                                                                                                                                'S2P4-TWR-7';
-                                                                                                                        } else {
-                                                                                                                            if ($pos ==
-                                                                                                                                29) {
-                                                                                                                                $position =
-                                                                                                                                    'S2P5-TWR-8';
-                                                                                                                            } else {
-                                                                                                                                if ($pos ==
-                                                                                                                                    30) {
-                                                                                                                                    $position =
-                                                                                                                                        'S2M2-TWR-9 (Live Network Monitoring – ATL)';
-                                                                                                                                } else {
-                                                                                                                                    if ($pos ==
-                                                                                                                                        31) {
-                                                                                                                                        $position =
-                                                                                                                                            'S3T1-APP-1 (Theory)';
-                                                                                                                                    } else {
-                                                                                                                                        if ($pos ==
-                                                                                                                                            32) {
-                                                                                                                                            $position =
-                                                                                                                                                'S3T2-APP-2 (Theory)';
-                                                                                                                                        } else {
-                                                                                                                                            if ($pos ==
-                                                                                                                                                33) {
-                                                                                                                                                $position =
-                                                                                                                                                    'S3P1-APP-3';
-                                                                                                                                            } else {
-                                                                                                                                                if ($pos ==
-                                                                                                                                                    34) {
-                                                                                                                                                    $position =
-                                                                                                                                                        'S3P2-APP-4';
-                                                                                                                                                } else {
-                                                                                                                                                    if ($pos ==
-                                                                                                                                                        35) {
-                                                                                                                                                        $position =
-                                                                                                                                                            'S3M1-APP-5 (Live Network Monitoring - BHM/CLT)';
-                                                                                                                                                    } else {
-                                                                                                                                                        if ($pos ==
-                                                                                                                                                            36) {
-                                                                                                                                                            $position =
-                                                                                                                                                                'S3T3-APP-6 (Theory)';
-                                                                                                                                                        } else {
-                                                                                                                                                            if ($pos ==
-                                                                                                                                                                37) {
-                                                                                                                                                                $position =
-                                                                                                                                                                    'S3P3-APP-7';
-                                                                                                                                                            } else {
-                                                                                                                                                                if ($pos ==
-                                                                                                                                                                    38) {
-                                                                                                                                                                    $position =
-                                                                                                                                                                        'S3P3-APP-8';
-                                                                                                                                                                } else {
-                                                                                                                                                                    if ($pos ==
-                                                                                                                                                                        39) {
-                                                                                                                                                                        $position =
-                                                                                                                                                                            'S3P5-APP-9';
-                                                                                                                                                                    } else {
-                                                                                                                                                                        if ($pos ==
-                                                                                                                                                                            40) {
-                                                                                                                                                                            $position =
-                                                                                                                                                                                'S3P6-APP-10';
-                                                                                                                                                                        } else {
-                                                                                                                                                                            if ($pos ==
-                                                                                                                                                                                41) {
-                                                                                                                                                                                $position =
-                                                                                                                                                                                    'S3M2-APP-11 (Live Network Monitoring – ATL)';
-                                                                                                                                                                            } else {
-                                                                                                                                                                                if ($pos ==
-                                                                                                                                                                                    42) {
-                                                                                                                                                                                    $position =
-                                                                                                                                                                                        'C1T1-CTR-1 (Theory)';
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    if ($pos ==
-                                                                                                                                                                                        43) {
-                                                                                                                                                                                        $position =
-                                                                                                                                                                                            'C1P1-CTR-2';
-                                                                                                                                                                                    } else {
-                                                                                                                                                                                        if ($pos ==
-                                                                                                                                                                                            44) {
-                                                                                                                                                                                            $position =
-                                                                                                                                                                                                'C1P2-CTR-2';
-                                                                                                                                                                                        } else {
-                                                                                                                                                                                            if ($pos ==
-                                                                                                                                                                                                45) {
-                                                                                                                                                                                                $position =
-                                                                                                                                                                                                    'C1P3-CTR-3';
-                                                                                                                                                                                            } else {
-                                                                                                                                                                                                if ($pos ==
-                                                                                                                                                                                                    46) {
-                                                                                                                                                                                                    $position =
-                                                                                                                                                                                                        'C1M2-CTR-4';
-                                                                                                                                                                                                } else {
-                                                                                                                                                                                                    if ($pos ==
-                                                                                                                                                                                                        46) {
-                                                                                                                                                                                                        $position =
-                                                                                                                                                                                                            'C1M3-CTR-5 (Live Network Monitoring)';
-                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                        if ($pos ==
-                                                                                                                                                                                                            47) {
-                                                                                                                                                                                                            $position =
-                                                                                                                                                                                                                'C1M4-CTR-6';
-                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                            if ($pos ==
-                                                                                                                                                                                                                48) {
-                                                                                                                                                                                                                $position =
-                                                                                                                                                                                                                    'S1 Visiting Major Checkout';
-                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                if ($pos ==
-                                                                                                                                                                                                                    49) {
-                                                                                                                                                                                                                    $position =
-                                                                                                                                                                                                                        'S2 Visiting Major Checkout';
-                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                    if ($pos ==
-                                                                                                                                                                                                                        50) {
-                                                                                                                                                                                                                        $position =
-                                                                                                                                                                                                                            'S3 Visiting Major Checkout';
-                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                        if ($pos ==
-                                                                                                                                                                                                                            51) {
-                                                                                                                                                                                                                            $position =
-                                                                                                                                                                                                                                'C1 Visiting Major Checkout';
-                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                            if ($pos ==
-                                                                                                                                                                                                                                52) {
-                                                                                                                                                                                                                                $position =
-                                                                                                                                                                                                                                    'Enroute OTS';
-                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                if ($pos ==
-                                                                                                                                                                                                                                    53) {
-                                                                                                                                                                                                                                    $position =
-                                                                                                                                                                                                                                        'Approach OTS';
-                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                    if ($pos ==
-                                                                                                                                                                                                                                        54) {
-                                                                                                                                                                                                                                        $position =
-                                                                                                                                                                                                                                            'Local OTS';
-                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                }
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
-                                                                                                                                                                                }
-                                                                                                                                                                            }
-                                                                                                                                                                        }
-                                                                                                                                                                    }
-                                                                                                                                                                }
-                                                                                                                                                            }
-                                                                                                                                                        }
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        switch ($this->position) {
+        case 0:
+            return 'Minor Delivery/Ground';
+        case 1:
+            return 'Minor Local';
+        case 2:
+            return 'Major Delivery/Ground';
+        case 3:
+            return 'Major Local';
+        case 4:
+            return 'Minor Approach';
+        case 5:
+            return 'Major Approach';
+        case 6:
+            return 'Center';
+        case 7:
+            return 'S1 T1-DEL-1 (Theory)';
+        case 8:
+            return 'S1 P1-DEL-2';
+        case 9:
+            return 'S1 P2-DEL-3';
+        case 10:
+            return 'S1 M1-DEL-4 (Live Network Monitoring - CLT)';
+        case 11:
+            return 'S1T2-DEL-5 (Theroy, ATL)';
+        case 12:
+            return 'S1P3-DEL 6';
+        case 13:
+            return 'S1M2-DEL-7 (Live Network Monitoring - ATL)';
+        case 14:
+            return 'S1T3-GND-1 (Theory)';
+        case 15:
+            return 'S1P4-GND-2';
+        case 16:
+            return 'S1P5-GND-3';
+        case 17:
+            return 'S1M3-GND-4 (Live Network Monitoring - CLT)';
+        case 18:
+            return 'S1T4-GND-5 (Theory, ATL)';
+        case 19:
+            return 'S1P6-GND-6';
+        case 20:
+            return 'S1P7-GND-7';
+        case 21:
+            return 'S1M4-GND-8 (Live Network Monitoring – ATL)';
+        case 22:
+            return 'S2T1-TWR-1 (Theory)';
+        case 23:
+            return 'S2P1-TWR-2';
+        case 24:
+            return 'S2P2-TWR-3';
+        case 25:
+            return 'S2P3-TWR-4';
+        case 26:
+            return 'S2M1-TWR-5 (Live Network Monitoring – CLT)';
+        case 27:
+            return 'S2T2-TWR-6 (Theory, ATL)';
+        case 28:
+            return 'S2P4-TWR-7';
+        case 29:
+            return 'S2P5-TWR-8';
+        case 30:
+            return 'S2M2-TWR-9 (Live Network Monitoring – ATL)';
+        case 31:
+            return 'S3T1-APP-1 (Theory)';
+        case 32:
+            return 'S3T2-APP-2 (Theory)';
+        case 33:
+            return 'S3P1-APP-3';
+        case 34:
+            return 'S3P2-APP-4';
+        case 35:
+            return 'S3M1-APP-5 (Live Network Monitoring - BHM/CLT)';
+        case 36:
+            return 'S3T3-APP-6 (Theory)';
+        case 37:
+            return 'S3P3-APP-7';
+        case 38:
+            return 'S3P3-APP-8';
+        case 39:
+            return 'S3P5-APP-9';
+        case 40:
+            return 'S3P6-APP-10';
+        case 41:
+            return 'S3M2-APP-11 (Live Network Monitoring – ATL)';
+        case 42:
+            return 'C1T1-CTR-1 (Theory)';
+        case 43:
+            return 'C1P1-CTR-2';
+        case 44:
+            return 'C1P2-CTR-2';
+        case 45:
+            return 'C1P3-CTR-3';
+        case 46:
+            return 'C1M2-CTR-4';
+//        case 46:
+//            return 'C1M3-CTR-5 (Live Network Monitoring)';
+        case 47:
+            return 'C1M4-CTR-6';
+        case 48:
+            return 'S1 Visiting Major Checkout';
+        case 49:
+            return 'S2 Visiting Major Checkout';
+        case 50:
+            return 'S3 Visiting Major Checkout';
+        case 51:
+            return 'C1 Visiting Major Checkout';
+        case 52:
+            return 'Enroute OTS';
+        case 53:
+            return 'Approach OTS';
+        case 54:
+            return 'Local OTS';
+        default:
+            return 'Unknown';
         }
-
-        return $position;
     }
 
     public function getLastTrainingAttribute() {
@@ -453,7 +242,6 @@ class TrainingTicket extends Model {
     }
 
     public function getDateSortAttribute() {
-        $date = strtodate($this->date . ' ' . $this->time);
-        return $date;
+        return strtodate($this->date . ' ' . $this->time);
     }
 }

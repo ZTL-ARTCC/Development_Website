@@ -81,7 +81,14 @@ class User extends Authenticatable {
     use Notifiable;
     use LaratrustUserTrait;
 
-    public static $RatingShort = [
+    protected $table = 'roster';
+    protected $fillable = ['id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 'visitor', 'status', 'loa',
+                           'del', 'gnd', 'twr', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials',
+                           'added_to_facility', 'max', 'max_minor_del', 'max_minor_gnd', 'max_minor_twr',
+                           'max_minor_app', 'path'];
+    protected $secret = ['remember_token', 'password', 'json_token'];
+
+    public static $ratingsShort = [
         0 => 'N/A',
         1 => 'OBS', 2 => 'S1',
         3 => 'S2', 4 => 'S3',
@@ -89,7 +96,7 @@ class User extends Authenticatable {
         8 => 'I1', 10 => 'I3',
         11 => 'SUP', 12 => 'ADM',
     ];
-    public static $RatingLong = [
+    public static $ratingsLong = [
         0 => 'Pilot',
         1 => 'Observer (OBS)', 2 => 'Student 1 (S1)',
         3 => 'Student 2 (S2)', 4 => 'Senior Student (S3)',
@@ -97,16 +104,10 @@ class User extends Authenticatable {
         8 => 'Instructor (I1)', 10 => 'Senior Instructor (I3)',
         11 => 'Supervisor (SUP)', 12 => 'Admin (ADM)',
     ];
-    public static $StatusText = [
+    public static $statusText = [
         0 => 'LOA',
         1 => 'Active'
     ];
-    protected $table = 'roster';
-    protected $fillable = ['id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 'visitor', 'status', 'loa',
-                           'del', 'gnd', 'twr', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials',
-                           'added_to_facility', 'max', 'max_minor_del', 'max_minor_gnd', 'max_minor_twr',
-                           'max_minor_app', 'path'];
-    protected $secret = ['remember_token', 'password', 'json_token'];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -129,7 +130,7 @@ class User extends Authenticatable {
     }
 
     public function getRatingShortAttribute() {
-        foreach (User::$RatingShort as $id => $Short) {
+        foreach (User::$ratingsShort as $id => $Short) {
             if ($this->rating_id == $id) {
                 return $Short;
             }
@@ -139,7 +140,7 @@ class User extends Authenticatable {
     }
 
     public function getRatingLongAttribute() {
-        foreach (User::$RatingLong as $id => $Short) {
+        foreach (User::$ratingsLong as $id => $Short) {
             if ($this->rating_id == $id) {
                 return $Short;
             }
@@ -149,7 +150,7 @@ class User extends Authenticatable {
     }
 
     public function getStatusTextAttribute() {
-        foreach (User::$StatusText as $id => $Status) {
+        foreach (User::$statusText as $id => $Status) {
             if ($this->status == $id) {
                 return $Status;
             }
@@ -270,9 +271,7 @@ class User extends Authenticatable {
     }
 
     public function getTextDateCreateAttribute() {
-        $date = Carbon::parse($this->created_at)->format('m/d/Y');
-
-        return $date;
+        return Carbon::parse($this->created_at)->format('m/d/Y');
     }
 
     public function getSoloAttribute() {

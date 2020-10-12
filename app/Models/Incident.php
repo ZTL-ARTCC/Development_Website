@@ -56,6 +56,9 @@ class Incident extends Model {
     protected $fillable = ['controller_cid', 'controller_callsign', 'reporter_cid', 'reporter_callsign',
                            'aircraft_callsign', 'time', 'date', 'description', 'status', 'created_at', 'updated_at'];
 
+    // TODO: Do an API call out to vatsim to get the reporter cid name since currently it assumes the incident
+    //   reporter cid is part of the ARTCC which is a bad assumption
+
     public function getControllerNameAttribute() {
         $user = User::find($this->controller_id);
         if (isset($user)) {

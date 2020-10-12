@@ -40,14 +40,22 @@ class Airport extends Model {
      */
     protected $fillable = ['name', 'front_page', 'icao', 'iata'];
 
+    private $url = "http://api.vateud.net/online";
+    private $client;
+
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
+        $this->client = new Client();
+    }
+
     public function getMetarAttribute() {
         $airport = AirportWeather::whereIcao($this->icao)->first();
 
         if (isset($airport)) {
             return $airport->metar;
-        } else {
-            return 'N/A';
         }
+        
+        return 'N/A';
     }
 
     public function getTafAttribute() {
@@ -55,9 +63,9 @@ class Airport extends Model {
 
         if (isset($airport)) {
             return $airport->taf;
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     public function getVisualConditionsAttribute() {
@@ -65,9 +73,9 @@ class Airport extends Model {
 
         if (isset($airport)) {
             return $airport->visual_conditions;
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     public function getWindAttribute() {
@@ -75,9 +83,9 @@ class Airport extends Model {
 
         if (isset($airport)) {
             return $airport->wind;
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     public function getAltimeterAttribute() {
@@ -85,9 +93,9 @@ class Airport extends Model {
 
         if (isset($airport)) {
             return $airport->altimeter;
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     public function getTemperatureDewpointAttribute() {
@@ -95,32 +103,30 @@ class Airport extends Model {
 
         if (isset($airport)) {
             return $airport->temp . '/' . $airport->dp;
-        } else {
-            return 'N/A';
         }
+
+        return 'N/A';
     }
 
     public function getInboundTrafficAttribute() {
-        $client = new Client();
-        $res = $client->get('http://api.vateud.net/online/arrivals/' . $this->icao . '.json');
+        $res = $this->client->get("$this->url/arrivals/" . $this->icao . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);
 
         if ($pilots) {
             return collect($pilots);
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     public function getOutboundTrafficAttribute() {
-        $client = new Client();
-        $res = $client->get('http://api.vateud.net/online/departures/' . $this->icao . '.json');
+        $res = $this->client->get("$this->url/departures/" . $this->icao . '.json');
         $pilots = json_decode($res->getBody()->getContents(), true);
 
         if ($pilots) {
             return collect($pilots);
-        } else {
-            return null;
         }
+
+        return null;
     }
 }

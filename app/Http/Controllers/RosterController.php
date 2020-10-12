@@ -38,7 +38,7 @@ class RosterController extends Controller {
         foreach ($xml->user->children() as $child) {
             $res[$child->getName()] = $child->__toString();
         }
-        foreach (User::$RatingLong as $id => $long) {
+        foreach (User::$ratingsLong as $id => $long) {
             if (strtolower($res['rating']) == strtolower($long)) {
                 $res['rating'] = $id;
             }

@@ -35,8 +35,6 @@ class Audit extends Model {
 
     public function getTimeDateAttribute() {
         $date = $this->created_at;
-        $new_date = $date->format('m/d/Y') . ' at ' . substr($date, 11, 5);
-
-        return $new_date;
+        return $date->format('m/d/Y') . ' at ' . substr($date, 11, 5);
     }
 }

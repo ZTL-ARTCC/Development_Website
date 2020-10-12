@@ -33,7 +33,7 @@ class EventPosition extends Model {
 
     public function getControllerAttribute() {
         return EventRegistration::wherePositionId($this->id)
-                                ->where('status', 1)
+                                ->whereStatus(1)
                                 ->orderBy('start_time', 'ASC')
                                 ->get();
     }

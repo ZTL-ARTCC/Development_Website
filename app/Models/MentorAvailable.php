@@ -5,6 +5,7 @@ namespace App\Models;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * App\Models\MentorAvailable
@@ -39,7 +40,7 @@ class MentorAvailable extends Model {
     }
 
     public function sendNewSessionEmail() {
-        return Mail::send('emails.training.new_session', ['session' => $this], function($message) {
+        Mail::send('emails.training.new_session', ['session' => $this], function($message) {
             $message->from('training@notams.ztlartcc.org', 'vZTL Training Depatment');
             $message->to($this->mentor->email)->cc($this->trainee->email);
             $message->subject('ZTL - New Session');
@@ -47,7 +48,7 @@ class MentorAvailable extends Model {
     }
 
     public function sendCancellationEmail() {
-        return Mail::send('emails.training.cancel_session', ['session' => $this], function($message) {
+        Mail::send('emails.training.cancel_session', ['session' => $this], function($message) {
             $message->from('training@notams.ztlartcc.org', 'vZTL Training Depatment');
             $message->to($this->mentor->email)->cc($this->trainee->email);
             $message->subject('ZTL - Session Canceled');

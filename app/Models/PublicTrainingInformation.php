@@ -37,9 +37,7 @@ class PublicTrainingInformation extends Model {
      */
     protected $fillable = ['name', 'order', 'created_at', 'updated_at'];
 
-    public function GetPdfAttribute() {
-        $pdfs = PublicTrainingInformationPdf::where('section_id', $this->id)->get();
-
-        return $pdfs;
+    public function getPdf() {
+        return PublicTrainingInformationPdf::whereSectionId($this->id)->get();
     }
 }

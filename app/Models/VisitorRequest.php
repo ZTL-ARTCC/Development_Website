@@ -52,7 +52,7 @@ class VisitorRequest extends Model {
     protected $fillable = ['requester_cid', 'name', 'email', 'rating', 'home', 'reason', 'status', 'updated_by', 'created_at',
                            'updated_at'];
 
-    public static $RatingShort = [
+    public static $ratingsShort = [
         0 => 'N/A',
         1 => 'OBS', 2 => 'S1',
         3 => 'S2', 4 => 'S3',
@@ -62,9 +62,9 @@ class VisitorRequest extends Model {
     ];
 
     public function getRatingShortAttribute() {
-        foreach (self::$RatingShort as $id => $Short) {
+        foreach (self::$ratingsShort as $id => $short) {
             if ($this->rating == $id) {
-                return $Short;
+                return $short;
             }
         }
 
