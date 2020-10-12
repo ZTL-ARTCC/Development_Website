@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\toArray;
 use App\Models\Airport;
 use App\Models\AirportWeather;
-use App\Models\ArtccFlight;
+use App\Models\FlightWithinArtcc;
 use App\Models\Calendar;
 use App\Models\ControllerLog;
 use App\Models\ControllerLogUpdate;
@@ -101,7 +101,7 @@ class FrontController extends Controller {
             return strtotime($e->date);
         });
 
-        $flights = ArtccFlight::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
+        $flights = FlightWithinArtcc::where('dep', '!=', '')->where('arr', '!=', '')->take(10)->get();
 //        $flights_update = substr(ArtccFlightUpdate::first()->updated_at, -8, 5);
 
         try {

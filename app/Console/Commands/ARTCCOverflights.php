@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\ArtccFlight;
-use App\Models\ArtccFlightUpdate;
+use App\Models\FlightWithinArtcc;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
@@ -41,16 +40,17 @@ class ARTCCOverflights extends Command {
      */
     public function handle() {
         $client = new Client();
-        $res = $client->get('https://api.denartcc.org/live/' . Config::get('vatusa.facility'));
+        $flightsWithinArtcc = $client->get('https://api.denartcc.org/live/' . Config::get('vatusa.facility'));
 
         DB::table('flights_within_artcc')->truncate();
 
-        $result = json_decode($res->getBody());
+        $result = json_decode($flightsWithinArtcc->getBody());
         foreach ($result as $r) {
-            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid=' . $r->cid);
+            $response = $client->get('https://cert.vatsim.net/vatsimnet/idstatus.php?cid=' . $r->cid);
             $res = new SimpleXMLElement($response->getBody());
             $pilot_name = $res->user->name_first . ' ' . $res->user->name_last;
-            $flight = new ArtccFlight();
+
+            $flight = new FlightWithinArtcc();
             $flight->pilot_cid = $r->cid;
             $flight->pilot_name = $pilot_name;
             $flight->callsign = $r->callsign;
@@ -61,9 +61,7 @@ class ARTCCOverflights extends Command {
             $flight->save();
         }
 
-        $update = ArtccFlightUpdate::first();
-        $update->delete();
-        $u = new ArtccFlightUpdate();
-        $u->save();
+        $update = FlightWithinArtcc::first();
+        return $update->delete();
     }
 }

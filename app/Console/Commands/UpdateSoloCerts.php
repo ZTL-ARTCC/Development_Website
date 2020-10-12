@@ -24,6 +24,8 @@ class UpdateSoloCerts extends Command {
      */
     protected $description = 'Updates solo certs. Runs daily.';
 
+    private $client;
+
     /**
      * Create a new command instance.
      *
@@ -31,6 +33,8 @@ class UpdateSoloCerts extends Command {
      */
     public function __construct() {
         parent::__construct();
+
+        $this->client = new Client();
     }
 
     /**
@@ -39,14 +43,13 @@ class UpdateSoloCerts extends Command {
      * @return mixed
      */
     public function handle() {
-        $client = new Client();
-        $res = $client->request('GET', 'https://api.vatusa.net/v2/solo');
+        $res = $this->client->get('https://api.vatusa.net/v2/solo');
         $solo_certs = json_decode($res->getBody());
 
         foreach ($solo_certs as $s) {
             if (!($s === true || $s === false)) {
                 if ($s->position == 'ATL_CTR') {
-                    $current_cert = SoloCertification::where('cid', $s->cid)->where('status', 0)->first();
+                    $current_cert = SoloCertification::whereCid($s->cid)->whereStatus(0)->first();
                     if (!$current_cert) {
                         $cert = new SoloCertification;
                         $cert->cid = $s->cid;
@@ -61,10 +64,10 @@ class UpdateSoloCerts extends Command {
                     }
                 } else {
                     if (substr($s->position, -3) == 'APP') {
-                        $hcontrol = User::where('visitor', 0)->get();
+                        $hcontrol = User::whereVisitor(0)->get();
                         foreach ($hcontrol as $h) {
                             if ($s->cid == $h->id) {
-                                $current_cert = SoloCertification::where('cid', $s->cid)->where('status', 0)->first();
+                                $current_cert = SoloCertification::whereCid($s->cid)->whereStatus(0)->first();
                                 if (!$current_cert) {
                                     $cert = new SoloCertification;
                                     $cert->cid = $s->cid;

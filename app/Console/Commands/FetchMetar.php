@@ -24,6 +24,8 @@ class FetchMetar extends Command {
      */
     protected $description = 'Updates weather with the ADDS weather service.';
 
+    private $client;
+
     /**
      * Create a new command instance.
      *
@@ -31,6 +33,8 @@ class FetchMetar extends Command {
      */
     public function __construct() {
         parent::__construct();
+
+        $this->client = new Client();
     }
 
     /**
@@ -43,13 +47,12 @@ class FetchMetar extends Command {
         $airports_full = Airport::get();
         $airports = $airports_icao->toArray();
 
-        $client = new Client;
-        $response_metars = $client->request('GET',
-                                            'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
-                                            implode(',', $airports));
-        $response_tafs = $client->request('GET',
-                                          'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
-                                          implode(',', $airports));
+        $response_metars =
+            $this->client->get('https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                               implode(',', $airports));
+        $response_tafs =
+            $this->client->get('https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&hoursBeforeNow=2&mostRecentForEachStation=true&stationString=' .
+                                implode(',', $airports));
 
         $root_metars = new SimpleXMLElement($response_metars->getBody());
         $root_tafs = new SimpleXMLElement($response_tafs->getBody());

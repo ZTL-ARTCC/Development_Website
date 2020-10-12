@@ -22,22 +22,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property string $dep
  * @property string $arr
- * @method static Builder|ArtccFlight newModelQuery()
- * @method static Builder|ArtccFlight newQuery()
- * @method static Builder|ArtccFlight query()
- * @method static Builder|ArtccFlight whereArr($value)
- * @method static Builder|ArtccFlight whereCallsign($value)
- * @method static Builder|ArtccFlight whereCreatedAt($value)
- * @method static Builder|ArtccFlight whereDep($value)
- * @method static Builder|ArtccFlight whereId($value)
- * @method static Builder|ArtccFlight wherePilotCid($value)
- * @method static Builder|ArtccFlight wherePilotName($value)
- * @method static Builder|ArtccFlight whereRoute($value)
- * @method static Builder|ArtccFlight whereType($value)
- * @method static Builder|ArtccFlight whereUpdatedAt($value)
+ * @method static Builder|FlightWithinArtcc newModelQuery()
+ * @method static Builder|FlightWithinArtcc newQuery()
+ * @method static Builder|FlightWithinArtcc query()
+ * @method static Builder|FlightWithinArtcc whereArr($value)
+ * @method static Builder|FlightWithinArtcc whereCallsign($value)
+ * @method static Builder|FlightWithinArtcc whereCreatedAt($value)
+ * @method static Builder|FlightWithinArtcc whereDep($value)
+ * @method static Builder|FlightWithinArtcc whereId($value)
+ * @method static Builder|FlightWithinArtcc wherePilotCid($value)
+ * @method static Builder|FlightWithinArtcc wherePilotName($value)
+ * @method static Builder|FlightWithinArtcc whereRoute($value)
+ * @method static Builder|FlightWithinArtcc whereType($value)
+ * @method static Builder|FlightWithinArtcc whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class ArtccFlight extends Model {
+class FlightWithinArtcc extends Model {
     /**
      * The table associated with the model.
      *

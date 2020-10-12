@@ -41,7 +41,7 @@ class RosterUpdate extends Command {
         $client = new Client();
         $res = $client->get('https://api.vatusa.net/v2/facility/' . Config::get('vatusa.facility') .
                             '/roster?apikey=' . Config::get('vatusa.api_key'));
-        $users = User::where('visitor', '0')->get()->pluck('id');
+        $users = User::whereVisitor(0)->get()->p('id');
         if ($res->getStatusCode() == "200") {
             $roster = json_decode($res->getBody());
         } else {
@@ -171,7 +171,7 @@ class RosterUpdate extends Command {
             if ($delete == '0') {
                 $use = User::find($u);
                 if ($use->visitor == 0 && $use->api_exempt == 0) {
-                    $event_requests = EventRegistration::where('controller_id', $use->id)->get();
+                    $event_requests = EventRegistration::whereControllerId($use->id)->get();
 
                     foreach ($event_requests as $e) {
                         $e->delete();
@@ -193,116 +193,7 @@ class RosterUpdate extends Command {
      * @return string
      */
     public function letterFromNum($fi_int) {
-        if ($fi_int == 1) {
-            $fn_initial = 'A';
-        } else {
-            if ($fi_int == 2) {
-                $fn_initial = 'B';
-            } else {
-                if ($fi_int == 3) {
-                    $fn_initial = 'C';
-                } else {
-                    if ($fi_int == 4) {
-                        $fn_initial = 'D';
-                    } else {
-                        if ($fi_int == 5) {
-                            $fn_initial = 'E';
-                        } else {
-                            if ($fi_int == 6) {
-                                $fn_initial = 'F';
-                            } else {
-                                if ($fi_int == 7) {
-                                    $fn_initial = 'G';
-                                } else {
-                                    if ($fi_int == 8) {
-                                        $fn_initial = 'H';
-                                    } else {
-                                        if ($fi_int == 9) {
-                                            $fn_initial = 'I';
-                                        } else {
-                                            if ($fi_int == 10) {
-                                                $fn_initial = 'J';
-                                            } else {
-                                                if ($fi_int == 11) {
-                                                    $fn_initial = 'K';
-                                                } else {
-                                                    if ($fi_int == 12) {
-                                                        $fn_initial = 'L';
-                                                    } else {
-                                                        if ($fi_int == 13) {
-                                                            $fn_initial = 'M';
-                                                        } else {
-                                                            if ($fi_int == 14) {
-                                                                $fn_initial = 'N';
-                                                            } else {
-                                                                if ($fi_int == 15) {
-                                                                    $fn_initial = 'O';
-                                                                } else {
-                                                                    if ($fi_int == 16) {
-                                                                        $fn_initial = 'P';
-                                                                    } else {
-                                                                        if ($fi_int == 17) {
-                                                                            $fn_initial = 'Q';
-                                                                        } else {
-                                                                            if ($fi_int == 18) {
-                                                                                $fn_initial = 'R';
-                                                                            } else {
-                                                                                if ($fi_int == 19) {
-                                                                                    $fn_initial = 'S';
-                                                                                } else {
-                                                                                    if ($fi_int == 20) {
-                                                                                        $fn_initial = 'T';
-                                                                                    } else {
-                                                                                        if ($fi_int == 21) {
-                                                                                            $fn_initial = 'U';
-                                                                                        } else {
-                                                                                            if ($fi_int == 22) {
-                                                                                                $fn_initial = 'V';
-                                                                                            } else {
-                                                                                                if ($fi_int == 23) {
-                                                                                                    $fn_initial = 'W';
-                                                                                                } else {
-                                                                                                    if ($fi_int == 24) {
-                                                                                                        $fn_initial =
-                                                                                                            'X';
-                                                                                                    } else {
-                                                                                                        if ($fi_int ==
-                                                                                                            25) {
-                                                                                                            $fn_initial =
-                                                                                                                'Y';
-                                                                                                        } else {
-                                                                                                            if ($fi_int ==
-                                                                                                                26) {
-                                                                                                                $fn_initial =
-                                                                                                                    'Z';
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return $fn_initial;
+        return chr($fi_int + 64);
     }
 
     /**
@@ -311,117 +202,6 @@ class RosterUpdate extends Command {
      * @return string
      */
     public function genRandLetter() {
-        $fi_int = rand(1, 26);
-
-        if ($fi_int == 1) {
-            $fn_initial = 'A';
-        } else {
-            if ($fi_int == 2) {
-                $fn_initial = 'B';
-            } else {
-                if ($fi_int == 3) {
-                    $fn_initial = 'C';
-                } else {
-                    if ($fi_int == 4) {
-                        $fn_initial = 'D';
-                    } else {
-                        if ($fi_int == 5) {
-                            $fn_initial = 'E';
-                        } else {
-                            if ($fi_int == 6) {
-                                $fn_initial = 'F';
-                            } else {
-                                if ($fi_int == 7) {
-                                    $fn_initial = 'G';
-                                } else {
-                                    if ($fi_int == 8) {
-                                        $fn_initial = 'H';
-                                    } else {
-                                        if ($fi_int == 9) {
-                                            $fn_initial = 'I';
-                                        } else {
-                                            if ($fi_int == 10) {
-                                                $fn_initial = 'J';
-                                            } else {
-                                                if ($fi_int == 11) {
-                                                    $fn_initial = 'K';
-                                                } else {
-                                                    if ($fi_int == 12) {
-                                                        $fn_initial = 'L';
-                                                    } else {
-                                                        if ($fi_int == 13) {
-                                                            $fn_initial = 'M';
-                                                        } else {
-                                                            if ($fi_int == 14) {
-                                                                $fn_initial = 'N';
-                                                            } else {
-                                                                if ($fi_int == 15) {
-                                                                    $fn_initial = 'O';
-                                                                } else {
-                                                                    if ($fi_int == 16) {
-                                                                        $fn_initial = 'P';
-                                                                    } else {
-                                                                        if ($fi_int == 17) {
-                                                                            $fn_initial = 'Q';
-                                                                        } else {
-                                                                            if ($fi_int == 18) {
-                                                                                $fn_initial = 'R';
-                                                                            } else {
-                                                                                if ($fi_int == 19) {
-                                                                                    $fn_initial = 'S';
-                                                                                } else {
-                                                                                    if ($fi_int == 20) {
-                                                                                        $fn_initial = 'T';
-                                                                                    } else {
-                                                                                        if ($fi_int == 21) {
-                                                                                            $fn_initial = 'U';
-                                                                                        } else {
-                                                                                            if ($fi_int == 22) {
-                                                                                                $fn_initial = 'V';
-                                                                                            } else {
-                                                                                                if ($fi_int == 23) {
-                                                                                                    $fn_initial = 'W';
-                                                                                                } else {
-                                                                                                    if ($fi_int == 24) {
-                                                                                                        $fn_initial =
-                                                                                                            'X';
-                                                                                                    } else {
-                                                                                                        if ($fi_int ==
-                                                                                                            25) {
-                                                                                                            $fn_initial =
-                                                                                                                'Y';
-                                                                                                        } else {
-                                                                                                            if ($fi_int ==
-                                                                                                                26) {
-                                                                                                                $fn_initial =
-                                                                                                                    'Z';
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return $fn_initial;
+        return chr(rand(65, 90));
     }
 }

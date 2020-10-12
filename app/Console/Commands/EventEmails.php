@@ -43,7 +43,8 @@ class EventEmails extends Command {
         $event = Event::where('date', $today)->first();
 
         if ($event != null) {
-            $positions = EventRegistration::where('status', 1)->where('event_id', $event->id)->get()
+            $positions = EventRegistration::whereStatus(1)
+                                          ->whereEventId($event->id)
                                           ->sortBy(function($a) use ($event) {
                                               if ($a->start_time == null) {
                                                   return $event->start_time;
@@ -52,14 +53,16 @@ class EventEmails extends Command {
                                               }
                                           })->sortBy(function($p) {
                     return $p->position_name;
-                });
-            $registrations = EventRegistration::where('event_id', $event->id)->get();
+                })->get();
+            $registrations = EventRegistration::whereEventId($event->id)->get();
             foreach ($registrations as $remind) {
                 $r = EventRegistration::find($remind->id);
                 if ($r->reminder != 1) {
                     $user = User::find($r->controller_id);
                     $reg =
-                        EventRegistration::where('controller_id', $user->id)->where('event_id', $event->id)->get();
+                        EventRegistration::whereControllerId($user->id)
+                                         ->where('event_id', $event->id)
+                                         ->get();
                     $r->reminder = 1;
                     $r->save();
                     foreach ($reg as $re) {

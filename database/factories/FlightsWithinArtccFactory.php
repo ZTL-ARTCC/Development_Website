@@ -5,7 +5,7 @@
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Carbon;
 
-$factory->define(App\Models\ArtccFlight::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\FlightWithinArtcc::class, function(Faker\Generator $faker) {
     $time = Carbon::now();
     $icaos = array("KATL", "KCLT",
                    "KBHM", "KGSP", "KAVL", "KGSO", "KTYS", "KCHA", "KFTY", "KRYY", "KAHN",

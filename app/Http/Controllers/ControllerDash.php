@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
-use App\Models\ArtccFlight;
+use App\Models\FlightWithinArtcc;
 use App\Models\BronzeMic;
 use App\Models\Calendar;
 use App\Models\ControllerLog;
@@ -188,8 +188,8 @@ class ControllerDash extends Controller {
             return strtotime($e->date);
         });
 
-        $flights = ArtccFlight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
-        $flights_update = substr(ArtccFlight::first()->updated_at, -8, 5);
+        $flights = FlightWithinArtcc::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
+        $flights_update = substr(FlightWithinArtcc::first()->updated_at, -8, 5);
 
         return view('dashboard.dashboard')->with('calendar', $calendar)->with('news', $news)
                                           ->with('announcement', $announcement)
