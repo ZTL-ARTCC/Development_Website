@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\toArray;
 use App\Models\Airport;
 use App\Models\AirportWeather;
-use App\Models\FlightWithinArtcc;
 use App\Models\Calendar;
 use App\Models\ControllerLog;
-use App\Models\ControllerLogUpdate;
 use App\Models\Event;
 use App\Models\EventPosition;
 use App\Models\EventRegistration;
 use App\Models\Feedback;
 use App\Models\File;
+use App\Models\FlightWithinArtcc;
 use App\Models\OnlineAtc;
 use App\Models\PositionPreset;
 use App\Models\Scenery;
@@ -374,8 +372,10 @@ class FrontController extends Controller {
         if ($request->search == null) {
             $scenery = Scenery::orderBy('airport', 'ASC')->get();
         } else {
-            $scenery = Scenery::where('airport', $request->search)->orWhere('developer', $request->search)
-                              ->orderBy('airport', 'ASC')->get();
+            $scenery = Scenery::whereAirport($request->search)
+                              ->orWhere('developer', $request->search)
+                              ->orderBy('airport', 'ASC')
+                              ->get();
         }
 
         $fsx = $scenery->where('sim', 0);
@@ -390,7 +390,7 @@ class FrontController extends Controller {
     }
 
     public function showScenery($id) {
-        $scenery = Scenery::find($id);
+        $scenery = Scenery::whereId($id);
 
         return view('site.scenery.show')->with('scenery', $scenery);
     }
@@ -407,10 +407,13 @@ class FrontController extends Controller {
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
         $all_stats = ControllerLog::getAllControllerStats();
 
-        $homec = User::where('visitor', 0)->where('status', 1)->get();
-        $visitc = User::where('visitor', 1)->where('status', 1)->get();
-        $agreevisitc = User::where('visitor', 1)->where('visitor_from', 'ZHU')->orWhere('visitor_from', 'ZJX')
-                           ->where('status', 1)->get();
+        $homec = User::whereVisitor(0)->whereStatus(1)->get();
+        $visitc = User::whereVisitor(1)->whereStatus(1)->get();
+        $agreevisitc = User::whereVisitor(1)
+                           ->whereVisitorFrom('ZHU')
+                           ->orWhere('visitor_from', 'ZJX')
+                           ->whereStatus(1)
+                           ->get();
 
 
         $home = $homec->sortByDesc(function($user) use ($stats) {
@@ -515,12 +518,12 @@ class FrontController extends Controller {
     }
 
     public function showFiles() {
-        $vrc = File::where('type', 0)->orderBy('name', 'ASC')->get();
-        $vstars = File::where('type', 1)->orderBy('name', 'ASC')->get();
-        $veram = File::where('type', 2)->orderBy('name', 'ASC')->get();
-        $vatis = File::where('type', 3)->orderBy('name', 'ASC')->get();
-        $sop = File::where('type', 4)->orderBy('name', 'ASC')->get();
-        $loa = File::where('type', 5)->orderBy('name', 'ASC')->get();
+        $vrc = File::whereType(0)->orderBy('name', 'ASC')->get();
+        $vstars = File::whereType(1)->orderBy('name', 'ASC')->get();
+        $veram = File::whereType(2)->orderBy('name', 'ASC')->get();
+        $vatis = File::whereType(3)->orderBy('name', 'ASC')->get();
+        $sop = File::whereType(4)->orderBy('name', 'ASC')->get();
+        $loa = File::whereType(5)->orderBy('name', 'ASC')->get();
 
         return view('site.downloads')->with('vrc', $vrc)->with('vstars', $vstars)->with('veram', $veram)
                                      ->with('vatis', $vatis)->with('sop', $sop)->with('loa', $loa);
@@ -590,21 +593,20 @@ class FrontController extends Controller {
     }
 
     public function showRunways() {
-        $kmco = AirportWeather::find('KMCO');
-        $kcae = AirportWeather::find('KMCO');
-        $kchs = AirportWeather::find('KMCO');
-        $kdab = AirportWeather::find('KMCO');
-        $kjax = AirportWeather::find('KMCO');
-        $kmyr = AirportWeather::find('KMCO');
-        $kpns = AirportWeather::find('KMCO');
-        $ksav = AirportWeather::find('KMCO');
-        $ksfb = AirportWeather::find('KMCO');
-        $ktlh = AirportWeather::find('KMCO');
+        $katl = AirportWeather::whereIcao('KATL');
+        $kavl = AirportWeather::whereIcao('KAVL');
+        $kbhm = AirportWeather::whereIcao('KBHM');
+        $kcha = AirportWeather::whereIcao('KCHA');
+        $kclt = AirportWeather::whereIcao('KCLT');
+        $kgso = AirportWeather::whereIcao('KGSO');
+        $kgsp = AirportWeather::whereIcao('KGSP');
+        $kmcn = AirportWeather::whereIcao('KMCN');
+        $ktri = AirportWeather::whereIcao('KTRI');
+        $ktys = AirportWeather::whereIcao('KTYS');
 
-        return view('site.runway')->with('kmco', $kmco)->with('kcae', $kcae)->with('kchs', $kchs)
-                                  ->with('kdab', $kdab)->with('kjax', $kjax)->with('kmyr', $kmyr)
-                                  ->with('kpns', $kpns)->with('ksav', $ksav)->with('ksfb', $ksfb)
-                                  ->with('ktlh', $ktlh);
+        return view('site.runway')
+            ->with('katl', $katl)->with('kavl', $kavl)->with('kbhm', $kbhm)->with('kcha', $kcha)->with('kclt', $kclt)
+            ->with('kgso', $kgso)->with('kgsp', $kgsp)->with('kmcn', $kmcn)->with('ktri', $ktri)->with('ktys', $ktys);
     }
 
     public function staffRequest(Request $request) {

@@ -13,15 +13,25 @@ use SimpleXMLElement;
 
 class RosterController extends Controller {
     public function index() {
-        $hcontrollers = User::where('visitor', '0')->where('status', '1')->orderBy('lname', 'ASC')->get();
-        $vcontrollers = User::where('visitor', '1')->where('status', '1')->where('visitor_from', '!=', 'ZJX')
-                            ->orderBy('lname', 'ASC')->get();
-        $visagreecontrollers =
-            User::where('visitor', '1')->where('visitor_from', 'ZJX')->orderBy('visitor_from', 'ASC')
-                ->orderBy('lname', 'ASC')->get();
+        $homeControllers = User::whereVisitor(0)
+                               ->whereStatus(1)
+                               ->orderBy('lname', 'ASC')
+                               ->get();
+        $visitingControllers = User::whereVisitor(1)
+                                   ->whereStatus(1)
+                                   ->where('visitor_from', '!=', 'ZJX')
+                                   ->orderBy('lname', 'ASC')
+                                   ->get();
+        $agreementVisitingControllers =
+            User::whereVisitor(1)
+                ->whereVisitorFrom('ZJX')
+                ->orderBy('visitor_from', 'ASC')
+                ->orderBy('lname', 'ASC')
+                ->get();
 
-        return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers)
-                                  ->with('visagreecontrollers', $visagreecontrollers);
+        return view('site.roster')->with('homeControllers', $homeControllers)
+                                  ->with('visitingControllers', $visitingControllers)
+                                  ->with('agreementVisitingControllers', $agreementVisitingControllers);
     }
 
     public function ajax_get_user_info($cid) {
@@ -146,8 +156,9 @@ class RosterController extends Controller {
                         }
                     } else {
                         $user_opt =
-                            GdprCompliance::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')
-                               ->where('option', 1)->first();
+                            GdprCompliance::where('controller_id', $userstatuscheck->id)
+                                          ->where('means', '!=', 'VATUSA API')
+                                          ->where('option', 1)->first();
                         if ($userstatuscheck->opt != 0 && !isset($user_opt)) {
                             $opt = new GdprCompliance();
                             $opt->controller_id = $res['cid'];
@@ -257,11 +268,13 @@ class RosterController extends Controller {
             return $user->hasRole('mtr');
         });
 
-        return view('site.staff')->with('atm', $atm)->with('datm', $datm)
-                                 ->with('ta', $ta)->with('ata', $ata)
-                                 ->with('wm', $wm)->with('awm', $awm)
-                                 ->with('ec', $ec)->with('aec', $aec)
-                                 ->with('fe', $fe)->with('afe', $afe)
-                                 ->with('ins', $ins)->with('mtr', $mtr);
+        return view('site.staff')
+            ->with('atm', $atm)
+            ->with('datm', $datm)
+            ->with('ta', $ta)->with('ata', $ata)
+            ->with('wm', $wm)->with('awm', $awm)
+            ->with('ec', $ec)->with('aec', $aec)
+            ->with('fe', $fe)->with('afe', $afe)
+            ->with('ins', $ins)->with('mtr', $mtr);
     }
 }
