@@ -3,12 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\ControllerLog;
-use App\Models\ControllerLogUpdate;
 use App\Models\OnlineAtc;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use function Exception;
 
 class OnlineControllerUpdate extends Command {
     /**
@@ -25,7 +22,7 @@ class OnlineControllerUpdate extends Command {
      */
     protected $description = 'Retrieves all the online controllers and records them in the database.';
 
-    protected $statusUrl = "http://status.vatsim.net/status.txt";
+    private $statusUrl = "http://status.vatsim.net/status.txt";
 
     protected $facilities = [
         /* BRAVO */
@@ -55,13 +52,8 @@ class OnlineControllerUpdate extends Command {
      */
     public function handle() {
         $statsData = $this->getStatsData();
-        $last_update_log = ControllerLogUpdate::get()->first();
-        $last_update = $last_update_log->created_at;
-        $last_update_log->delete();
-        $update_now = new ControllerLogUpdate;
-        $update_now->save();
 
-        DB::table('online_atc')->truncate();
+        OnlineAtc::truncate();
 
         $client_section = false;
         foreach ($statsData as $line) {
@@ -75,7 +67,6 @@ class OnlineControllerUpdate extends Command {
                 list($command, $time) = explode("=", $line);
                 $time = trim($time);
                 $time = preg_replace("/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/", "$1-$2-$3 $4:$5:$6", $time);
-                $lastUpdated = strtotime($time);
 
             }
 
@@ -96,6 +87,7 @@ class OnlineControllerUpdate extends Command {
                 $is_controller = $clienttype == "ATC" && strpos($position, "OBS") === false && $rating != '1' &&
                                  $facilitytype != '0' && strpos($position, "SAVF") === false &&
                                  strpos($position, "SAVC") === false;
+
                 if (!$is_controller) {
                     continue;
                 }
@@ -135,12 +127,10 @@ class OnlineControllerUpdate extends Command {
                                                   'position' => $position,
                                                   'duration' => $duration,
                                                   'date' => date('n/j/y'),
-                                                  'time_logon' => $time_logon,
-                                                  'streamupdate' => strtotime($update_now->created_at),
+                                                  'time_logon' => $time_logon
                                               ]);
                     } else {
                         $MostRecentLog->duration = $duration;
-                        $MostRecentLog->streamupdate = strtotime($update_now->created_at);
                         $MostRecentLog->save();
                     }
                 }

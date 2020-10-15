@@ -30,34 +30,32 @@ use SimpleXMLElement;
 
 class FrontController extends Controller {
     public function home() {
+        $atlCtr = false;
+        $atlApp = false;
+        $atlTwr = false;
+        $cltLocal = false;
 
         $atc = OnlineAtc::get();
         if ($atc) {
-            $atl_ctr = 0;
-            $atl_app = 0;
-            $atl_twr = 0;
-            $clt_twr = 0;
             foreach ($atc as $a) {
                 $field = substr($a->position, 0, 3);
                 $position = substr($a->position, -3);
-                if ($field == 'ATL') {
+
+                switch ($field) {
+                case 'ATL':
                     if ($position == 'TWR' || $position == 'GND') {
-                        $atl_twr = 1;
-                    } else {
-                        if ($position == 'APP' || $position == 'DEP') {
-                            $atl_app = 1;
-                        } else {
-                            if ($position == 'CTR') {
-                                $atl_ctr = 1;
-                            }
-                        }
+                        $atlTwr = true;
+                    } else if ($position == 'APP' || $position == 'DEP') {
+                        $atlApp = true;
+                    } else if ($position == 'CTR') {
+                        $atlCtr = true;
                     }
-                } else {
-                    if ($field == 'CLT') {
-                        if ($position == 'TWR' || $position == 'GND' || $position == 'APP' || $position == 'DEP') {
-                            $clt_twr = 1;
-                        }
+                    break;
+                case 'CLT':
+                    if ($position == 'TWR' || $position == 'GND' || $position == 'APP' || $position == 'DEP') {
+                        $cltLocal = true;
                     }
+                    break;
                 }
             }
         }
@@ -66,13 +64,13 @@ class FrontController extends Controller {
         $metar_update = AirportWeather::first();
         if ($metar_update != null) {
             $metar_last_updated = substr($metar_update, -10, 5);
-        } else {
+        } else{
             $metar_last_updated = null;
         }
 
         try {
             $controllers = OnlineAtc::get();
-            $last_update = ControllerLogUpdate::first();
+//            $last_update = ControllerLogUpdate::first();
             $controllers_update = substr($last_update->created_at, -8, 5);
         } catch (Exception $e) {
             $last_update = null;
@@ -81,19 +79,19 @@ class FrontController extends Controller {
 
         $now = Carbon::now();
 
-        $calendar = Calendar::where('type', '1')->get()->filter(function($news) use ($now) {
+        $calendar = Calendar::whereType(1)->get()->filter(function($news) use ($now) {
             return strtotime($news->date . ' ' . $news->time) > strtotime($now);
         })->sortBy(function($news) {
             return strtotime($news->date . ' ' . $news->time);
         });
 
-        $news = Calendar::where('type', '2')->where('visible', '1')->get()->filter(function($news) use ($now) {
+        $news = Calendar::whereType(2)->where('visible', '1')->get()->filter(function($news) use ($now) {
             return strtotime($news->date . ' ' . $news->time) < strtotime($now);
         })->sortByDesc(function($news) {
             return strtotime($news->date . ' ' . $news->time);
         });
 
-        $events = Event::where('status', 1)->get()->filter(function($e) use ($now) {
+        $events = Event::whereStatus(1)->get()->filter(function($e) use ($now) {
             return strtotime($e->date . ' ' . $e->start_time) > strtotime($now);
         })->sortBy(function($e) {
             return strtotime($e->date);
@@ -112,14 +110,21 @@ class FrontController extends Controller {
             $currentTop3 = null;
         }
 
-        return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)
-                                ->with('atl_ctr', $atl_ctr)
-                                ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
-                                ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
-                                ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
+        return view('site.home')
+            ->with('cltLocal', $cltLocal)
+            ->with('atlTwr', $atlTwr)
+            ->with('atlApp', $atlApp)
+            ->with('atlCtr', $atlCtr)
+            ->with('airports', $airports)
+            ->with('metar_last_updated', $metar_last_updated)
+            ->with('controllers', $controllers)
+            ->with('controllers_update', $controllers_update)
+            ->with('calendar', $calendar)
+            ->with('news', $news)->with('events', $events)
 //                                ->with('flights', $flights)->with('flights_update', $flights_update)
-                                ->with('lastTop5', $lastTop5)->with('currentTop5', $currentTop5)
-                                ->with('currentTop3', $currentTop3);
+            ->with('lastTop5', $lastTop5)
+            ->with('currentTop5', $currentTop5)
+            ->with('currentTop3', $currentTop3);
     }
 
     public function teamspeak() {
@@ -127,7 +132,7 @@ class FrontController extends Controller {
     }
 
     public function newProfilePic($id) {
-        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function($t) {
+        $tickets_sort = TrainingTicket::whereControllerId(Auth::id())->get()->sortByDesc(function($t) {
             return strtotime($t->date . ' ' . $t->start_time);
         })->pluck('id');
         if ($tickets_sort->count() != 0) {
@@ -136,7 +141,7 @@ class FrontController extends Controller {
                                      ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
             $last_training = TrainingTicket::whereIn('id', $tickets_sort)
                                            ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
-        } else {
+        } else{
             $tickets = null;
             $last_training = null;
         }
@@ -150,10 +155,10 @@ class FrontController extends Controller {
                 $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)
                                                      ->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)
                                                      ->first();
-            } else {
+            } else{
                 $last_training_given = null;
             }
-        } else {
+        } else{
             $last_training_given = null;
         }
         $user = User::find($id);
@@ -214,12 +219,12 @@ class FrontController extends Controller {
 
     public function viewEvent($id) {
         $event = Event::find($id);
-        $positions = EventPosition::where('event_id', $event->id)->orderBy('created_at', 'ASC')->get();
+        $positions = EventPosition::whereEventId($event->id)->orderBy('created_at', 'ASC')->get();
         if (Auth::guest()) {
-        } else {
+        } else{
             if (Auth::user()->can('events')) {
                 $registrations =
-                    EventRegistration::where('event_id', $event->id)->where('status', 0)->orderBy('created_at', 'ASC')
+                    EventRegistration::whereEventId($event->id)->where('status', 0)->orderBy('created_at', 'ASC')
                                      ->get();
                 $presets = PositionPreset::get()->pluck('name', 'id');
                 $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name_rating', 'id');
@@ -227,12 +232,12 @@ class FrontController extends Controller {
             }
         }
 
-        $your_registration1 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
-                                               ->where('choice_number', 1)->first();
-        $your_registration2 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
-                                               ->where('choice_number', 2)->first();
-        $your_registration3 = EventRegistration::where('event_id', $event->id)->where('controller_id', Auth::id())
-                                               ->where('choice_number', 3)->first();
+        $your_registration1 = EventRegistration::whereEventId($event->id)->where('controller_id', Auth::id())
+                                               ->whereChoiceNumber(1)->first();
+        $your_registration2 = EventRegistration::whereEventId($event->id)->where('controller_id', Auth::id())
+                                               ->whereChoiceNumber(2)->first();
+        $your_registration3 = EventRegistration::whereEventId($event->id)->where('controller_id', Auth::id())
+                                               ->whereChoiceNumber(3)->first();
 
         return view('site.events')->with('event', $event)->with('positions', $positions)
                                   ->with('registrations', $registrations)->with('presets', $presets)
@@ -256,10 +261,10 @@ class FrontController extends Controller {
         $apt = $request->apt;
         if (strlen($apt) == 3) {
             $apt_s = 'k' . strtolower($apt);
-        } else {
+        } else{
             if (strlen($apt) == 4) {
                 $apt_s = strtolower($apt);
-            } else {
+            } else{
                 return redirect()->back()->with('error',
                                                 'You either did not search for an airport or the airport ID is too long.');
             }
@@ -295,7 +300,7 @@ class FrontController extends Controller {
 
         if ($pilots_a) {
             $pilots_a = collect($pilots_a);
-        } else {
+        } else{
             $pilots_a = null;
         }
 
@@ -304,7 +309,7 @@ class FrontController extends Controller {
 
         if ($pilots_d) {
             $pilots_d = collect($pilots_d);
-        } else {
+        } else{
             $pilots_d = null;
         }
 
@@ -313,7 +318,7 @@ class FrontController extends Controller {
         $status = $res->getStatusCode();
         if ($status == 404) {
             $charts = null;
-        } else {
+        } else{
             if (json_decode($res->getBody()) != '[]') {
                 $charts = collect(json_decode($res->getBody())->$apt_r);
                 $min = $charts->where('chart_code', 'MIN');
@@ -324,7 +329,7 @@ class FrontController extends Controller {
                 $dp = $charts->where('chart_code', 'DP');
                 $star = $charts->where('chart_code', 'STAR');
                 $cvfp = $charts->where('chart_code', 'CVFP');
-            } else {
+            } else{
                 $charts = null;
             }
         }
@@ -345,7 +350,7 @@ class FrontController extends Controller {
         $status = $res->getStatusCode();
         if ($status == 404) {
             $charts = null;
-        } else {
+        } else{
             if (json_decode($res->getBody()) != '[]') {
                 $apt_r = $airport->icao;
                 $charts = collect(json_decode($res->getBody())->$apt_r);
@@ -357,7 +362,7 @@ class FrontController extends Controller {
                 $dp = $charts->where('chart_code', 'DP');
                 $star = $charts->where('chart_code', 'STAR');
                 $cvfp = $charts->where('chart_code', 'CVFP');
-            } else {
+            } else{
                 $charts = null;
             }
         }
@@ -371,7 +376,7 @@ class FrontController extends Controller {
     public function sceneryIndex(Request $request) {
         if ($request->search == null) {
             $scenery = Scenery::orderBy('airport', 'ASC')->get();
-        } else {
+        } else{
             $scenery = Scenery::whereAirport($request->search)
                               ->orWhere('developer', $request->search)
                               ->orderBy('airport', 'ASC')
@@ -467,7 +472,7 @@ class FrontController extends Controller {
 
             return redirect('/')->with('success',
                                        'Thank you for your interest in the ZTL ARTCC! Your visit request has been submitted.');
-        } else {
+        } else{
             return redirect('/')->with('error', 'You need to be a S1 rated controller or greater');
         }
     }
@@ -550,7 +555,7 @@ class FrontController extends Controller {
                                      ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
             $last_training = TrainingTicket::whereIn('id', $tickets_sort)
                                            ->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
-        } else {
+        } else{
             $tickets = null;
             $last_training = null;
         }
@@ -564,10 +569,10 @@ class FrontController extends Controller {
                 $last_training_given = TrainingTicket::whereIn('id', $tickets_sort_t)
                                                      ->orderByRaw("field(id,{$tickets_order_t})", $tickets_sort_t)
                                                      ->first();
-            } else {
+            } else{
                 $last_training_given = null;
             }
-        } else {
+        } else{
             $last_training_given = null;
         }
 
@@ -575,7 +580,7 @@ class FrontController extends Controller {
         $headers = get_headers($url);
         if ($headers && strpos($headers[0], '200')) {
             $url_exist = "1";
-        } else {
+        } else{
             $url_exist = "0";
         }
 

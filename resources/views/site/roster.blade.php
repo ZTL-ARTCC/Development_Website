@@ -66,7 +66,7 @@
                             </thead>
                             <tbody>
 
-                            @forelse($hcontrollers as $h)
+                            @forelse($homeControllers as $h)
                                 <tr>
                                     @if(Auth::check())
                                         @if(Auth::user()->can('roster'))
@@ -163,7 +163,7 @@
                             </thead>
                             <tbody>
 
-                            @forelse($vcontrollers as $h)
+                            @forelse($visitingControllers as $h)
                                 <tr>
                                     @if(Auth::check())
                                         @if(Auth::user()->can('roster'))

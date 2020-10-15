@@ -82,7 +82,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($hcontrollers as $c)
+                    @foreach($homeControllers as $c)
                         <tr>
                             @if(Auth::user()->can('roster') || Auth::user()->can('train'))
                                 <td><a href="/dashboard/admin/roster/edit/{{ $c->id }}">
@@ -259,7 +259,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($vcontrollers as $c)
+                    @foreach($visitingControllers as $c)
                         <tr>
                             @if(Auth::user()->can('roster') || Auth::user()->can('train'))
                                 <td><a href="/dashboard/admin/roster/edit/{{ $c->id }}">{{ $c->backwards_name }}

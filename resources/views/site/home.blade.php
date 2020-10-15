@@ -21,12 +21,14 @@
                             data-class="animated fadeInDown">Welcome to the Atlanta ARTCC</h1>
                         <h2 class="font-w400 text-white-op mb-50 invisible" data-toggle="appear"
                             data-class="animated fadeInDown">Part of VATUSA and VATSIM</h2>
-                        <!--<a class="btn btn-hero btn-noborder btn-rounded btn-success mr-5 mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp" href="#">
+                        <a class="btn btn-hero btn-noborder btn-rounded btn-success mr-5 mb-10 invisible"
+                           data-toggle="appear" data-class="animated fadeInUp" href="#">
                             <i class="fa fa-info mr-10"></i> About Us
                         </a>
-                        <a class="btn btn-hero btn-noborder btn-rounded btn-primary mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp" href="#">
+                        <a class="btn btn-hero btn-noborder btn-rounded btn-primary mb-10 invisible"
+                           data-toggle="appear" data-class="animated fadeInUp" href="#">
                             <i class="fa fa-user mr-10"></i> Join Us
-                        </a>-->
+                        </a>
                     </div>
                 </div>
             </div>
@@ -251,8 +253,8 @@
                                         class="fa fa-exclamation-triangle fa-4x text-white-op"></i></p></div>
                         </a></div>
                 @else
-                @foreach($news as $n)
-                    <a class="block block-rounded block-link-shadow" href="/news/view/{{ $n->id }}">
+                    @foreach($news as $n)
+                        <a class="block block-rounded block-link-shadow" href="/news/view/{{ $n->id }}">
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted float-sm-right mb-5"><em>{{$n->date}}</em></p>
                             <h4 class="font-size-default text-primary mb-0">
@@ -260,8 +262,8 @@
                             </h4>
                         </div>
                     </a>
-            @endforeach
-                @endif
+                @endforeach
+            @endif
 
             <!-- END Notices -->
 
@@ -296,7 +298,8 @@
                                         <div class="font-size-h2 font-w700 mb-0 text-white"><i
                                                 class="fa fa-calendar-times-o text-white mr-5"></i></div>
                                         <div class="font-size-h2 font-w700 mb-0 text-white">No events scheduled</div>
-                                        <div class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
+                                        <div
+                                            class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +336,8 @@
                                         <div class="font-size-h2 font-w700 mb-0 text-white"><i
                                                 class="fa fa-calendar-times-o text-white mr-5"></i></div>
                                         <div class="font-size-h2 font-w700 mb-0 text-white">No events scheduled</div>
-                                        <div class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
+                                        <div
+                                            class="font-size-sm font-w600 text-uppercase text-white">Check back soon!</div>
                                     </div>
                                 </div>
                             </div>
@@ -353,53 +357,55 @@
                 <!-- Table for Online Facilities -->
                 <div class="block">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title"><i class="si si-earphones mr-10"></i>Facilities</h3>
+                        <h3 class="block-title"><i class="fa fa-building mr-10"></i>Facilities</h3>
                     </div>
                     <div class="block-content" style="padding-top:0px;">
                         <table class="table table-borderless table-vcenter" style="text-align: center">
                             <tbody>
-                            <tr align="center" style="border-bottom:1px solid lightgrey;">
+                            <tr style="border-bottom:1px solid lightgrey;">
                                 <th style="vertical-align:middle; text-align:center;">Facility</th>
                                 <th style="vertical-align:middle; text-align:center;">Status</th>
                             </tr>
-                            <tr align="center">
-                                @if($atl_ctr === 1)
-                                    <td>Atlanta Center</td>
-                                    <td>
-                                        <span class="badge badge-success">Online</span></td></tr>
-                            @else
+                            <tr>
                                 <td>Atlanta Center</td>
                                 <td>
-                                    <span class="badge badge-danger">Offline</span></td></tr>
-                            @endif
-                            @if($atl_app === 1)
+                                    @if($atlCtr)
+                                        <span class="badge badge-success">Online</span>
+                                    @else
+                                        <span class="badge badge-danger">Online</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>A80 TRACON</td>
                                 <td>
-                                    <span class="badge badge-success">Online</span></td></tr>
-                            @else
-                                <td>A80 TRACON</td>
-                                <td>
-                                    <span class="badge badge-danger">Offline</span></td></tr>
-                            @endif
-                            @if($atl_twr === 1)
+                                    @if($atlApp)
+                                        <span class="badge badge-success">Online</span>
+                                    @else
+                                        <span class="badge badge-danger">Online</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>ATL ATCT</td>
                                 <td>
-                                    <span class="badge badge-success">Online</span></td></tr>
-                            @else
-                                <td>ATL ATCT</td>
-                                <td>
-                                    <span class="badge badge-danger">Offline</span></td></tr>
-                            @endif
-                            @if($clt_twr === 1)
+                                    @if($atlTwr)
+                                        <span class="badge badge-success">Online</span>
+                                    @else
+                                        <span class="badge badge-danger">Online</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>CLT ATCT</td>
                                 <td>
-                                    <span class="badge badge-success">Online</span></td></tr>
-                            @else
-                                <td>CLT ATCT</td>
-                                <td>
-                                    <span class="badge badge-danger">Offline</span></td></tr>
-                            @endif
-
+                                    @if($cltLocal)
+                                        <span class="badge badge-success">Online</span>
+                                    @else
+                                        <span class="badge badge-danger">Online</span>
+                                    @endif
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -414,30 +420,6 @@
                     <div class="block-content">
                         @if($controllers->count() == 0)
                             <center>There are no controllers online.</center><br/>
-                        @elseif($controllers->count() == 1)
-                            <table class="table table-borderless table-vcenter" style="text-align: center">
-                                <tbody>
-                                <tr align="center" style="border-bottom:1px solid lightgrey;">
-                                    <th style="vertical-align:middle; text-align:center;">Position</th>
-                                    <th style="vertical-align:middle; text-align:center;">Controller</th>
-                                    <th style="vertical-align:middle; text-align:center;">Duration</th>
-                                </tr>
-                                @foreach($controllers as $controller)
-                                    <tr align="center">
-                                        <td style="vertical-align:middle;">{{ $controller->atc }}</td>
-                                        <td style="vertical-align:middle;">
-                                            @if($controller->controller)
-                                                {{ $controller->controller->full_name }}
-                                            @else
-                                                {{ $controller->name }}
-                                            @endif
-                                        </td>
-                                        <td style="vertical-align:middle;">{{ $controller->duration() }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <center>There is 1 controller online!</center><br/>
                         @else
                             <table class="table table-borderless table-vcenter" style="text-align: center">
                                 <tbody>
@@ -448,13 +430,19 @@
                                 </tr>
                                 @foreach($controllers as $controller)
                                     <tr align="center">
-                                        <td style="vertical-align:middle;">{{ $controller->position }}</td>
+                                        <td style="vertical-align:middle;">
+                                            <span class="badge badge-primary">{{ $controller->position }}</span>
+                                        </td>
                                         <td style="vertical-align:middle;">{{ $controller->name }}</td>
                                         <td style="vertical-align:middle;">{{ $controller->time_online }}</td>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <center>There are {{$controllers->count()}} controllers online!</center><br/>
+                            @if($controllers->count() == 1)
+                                <center>There is 1 controller online!</center><br/>
+                            @elseif($controllers->count() > 1)
+                                <center>There are {{$controllers->count()}} controllers online!</center><br/>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -462,7 +450,7 @@
                 <!-- Table for Weather -->
                 <div class="block">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title"><i class="fa fa-user mr-10"></i>Weather</h3>
+                        <h3 class="block-title"><i class="fa fa-cloud mr-10"></i>Weather</h3>
                     </div>
                     <div class="block-content">
                         @if($airports->count() == 0)
@@ -493,6 +481,4 @@
                         @endif
                     </div>
                 </div>
-
-
 @stop
